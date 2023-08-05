@@ -26,9 +26,35 @@ const fetchPrompt = () => {
     );
 };
 // by default, will fetch quote
-fetchPrompt();
+// fetchPrompt();
 
+// random paragraph API
+// http://metaphorpsum.com/
+const fetchRandomPrompt = () => {
+  const url =
+    // 1 randomly generated paragraph, containing 6 sentences!
+    "http://metaphorpsum.com/paragraphs/1/6";
 
+  fetch(url, {
+    headers: {},
+  })
+    .then((response) => {
+      // since API returns just the text, no object, I needed to do
+      // response.text()
+      return response.text();
+    })
+    .then(
+      (data) => {
+        // api returns just the text, not as JSON
+        quotesData1 = JSON.stringify(data);
+        // quote itself is content of one element
+        promptElem.textContent = quotesData1;
+      },
+      (err) => console.log(err)
+    );
+};
+
+fetchRandomPrompt();
 
 // making a CLASS for user, so can make one for police later if two player
 class Player {
@@ -37,11 +63,11 @@ class Player {
     this.name = name;
     this.criminal = true;
     this.police = false;
-    this.vehicle = vehicle
+    this.vehicle = vehicle;
   }
   // methods
   getVehicle() {
-    console.log(`My vehicle is ${this.vehicle}.`)
+    console.log(`My vehicle is a ${this.vehicle.year} ${this.vehicle.make} ${this.vehicle.model}.`);
   }
   getSpeed() {
     // stuff
@@ -51,5 +77,16 @@ class Player {
   }
 }
 
-const userPlayer = new Player("Bob","","",vehicles[0])
-userPlayer.getVehicle()
+vehicles = [
+  {
+    year: 1996,
+    make: "Oldsmobile",
+    model: "Eighty Eight",
+    price: 200,
+    saying: "Hey, it's a car right?",
+    pic: "/assets/oldsmobile.jpg",
+  },
+];
+
+const userPlayer = new Player("Bob", "", "", vehicles[0]);
+userPlayer.getVehicle();
