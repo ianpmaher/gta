@@ -7,6 +7,49 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <header>
+    <h1>Grand Theft Autocorrect</h1>
+  </header>
+  <main>
+    <aside>
+      <div class="sidebar">
+        <h4>Career Stats</h4>
+        <p>Vehicle:</p>
+        <img id="user-vehicle" src="" />
+        <ul class="user-stats">
+          <li>Health: <span id="user-health"></span></li>
+          <li>Successful Heists: <span id="total-heists"></span></li>
+          <li>Average Accuracy: <span id="avg-accuracy"></span></li>
+          <li>Average Speed: <span id="avg-speed"></span></li>
+        </ul>
+      </div>
+    </aside>
+    <section>
+      <div class="flex-container">
+        <p>Time: <span id="time-elapsed"></span></p>
+        <p>Accuracy: <span id="accuracy"></span></p>
+      </div>
+    </section>
+    <section id="prompt-container">
+      <h2 id="prompt"></h2>
+    </section>
+    <section id="input-field">
+      <input type="text" class="text-input" autocorrect="off" autocapitalize="off" autocomplete="off" maxlength="12">
+    </section>
+    <section>
+      <div class="flex-container">
+        <p>Current Speed: <span id="user-speed"></span></p>
+        <p>Police Speed: <span id="police-speed"></span></p>
+      </div>
+    </section>
+    <section id="graphics">
+      <div class="flex-container">
+        
+      </div>
+    </section>
+  </main>
+  <footer>
+  </footer>
   <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
