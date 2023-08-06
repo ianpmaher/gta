@@ -45,9 +45,6 @@ introSequence()
 
 
 
-
-
-
 // API calls
 let promptElem = document.querySelector("#prompt");
 let promptAuthorElem = document.querySelector("#prompt-author");
@@ -103,7 +100,7 @@ const fetchRandomPrompt = () => {
     );
 };
 
-fetchRandomPrompt();
+// fetchRandomPrompt();
 
 // making a CLASS for user, so can make one for police later if two player
 class Player {
@@ -308,3 +305,93 @@ vehicles = [
 
 const userPlayer = new Player("Bob", "", "", vehicles[0]);
 userPlayer.getVehicle();
+
+// ACTUAL CODE FOR TYPING TEST 
+// 60 seconds for user to type
+const timeLimit = 60;
+
+// fetch quote as above in order to get prompt
+// this already has prompt elem filling w text
+fetchPrompt();
+
+// defining variables for each DOM element
+let timeElapsedElem = document.querySelector("#time-elapsed")
+let accuracyCurrentElem = document.querySelector("#accuracy");
+let userSpeedCurrentElem = document.querySelector("#user-speed");
+let currentErrorElem = document.querySelector("#current-errors")
+// from above Fetch() : 
+// let promptElem = document.querySelector("#prompt");
+// let promptAuthorElem = document.querySelector("#prompt-author");
+let textInputArea = document.querySelector(".text-input");
+let restartButtonElem = document.querySelector(".restart-button");
+
+// defining "career" area variables
+// going to change src of this element
+let userVehiclePicElem = document.querySelector("#user-vehicle");
+// will define health as 100 and subtract from it errors
+let userHealthElem = document.querySelector("#user-health");
+let totalHeistsCountElem = document.querySelector("#total-heists")
+let avgAccuracyElem = document.querySelector("#avg-accuracy")
+let avgSpeedElem = document.querySelector("#avg-speed")
+
+// CAREER variable initializations first 
+// totalHeists will be same thing as number of quotes beaten
+let totalHeists = 0;
+// user starts at 100 health, will subtract some # based on # errors
+let userHealth = 100;
+// will add cumulatively
+let totalErrors = 0;
+
+// needed basic variables for the logic --> "current" 
+// initialize timeElapsed 
+let timeElapsed = 0;
+// defined above
+let timeRemaining = timeLimit
+// user's current errors, accuracy, keystrokes typed all start at 0
+let currentErrors = 0;
+let accuracy = 0;
+let typedInput = 0;
+// will initialize timer on below function, likely an anonymous function
+let timer = null;
+
+// LOGIC OF PROMPT INPUT STUFF
+// prompt generated from API works because 
+// console.log(typeof(promptElem).textContent) = STRING
+let currentPrompt = promptElem.textContent
+// will track the number of prompts that user has loaded here
+let numberQuotes = 0;
+// ^^ as stated above, 
+// totalHeists will be same thing as number of quotes beaten
+// let totalHeists = 0;
+
+// function wrapper for updating quote, unsure if need to change bc fetch
+const updatePromptQuote = () => {
+  fetchPrompt();
+  // need to separate each character of the quote 
+  // each will be an individual element
+  let splitPrompt = currentPrompt.split("");
+  // forEach function works on splitPrompt array, using ind element
+  splitPrompt.forEach(character => {
+    // create span elements for each element 
+    const characterElem = document.createElement("span")
+    // textContent rather than innerText
+    // StackOverflow suggested innerText is more performance heavy
+    // https://stackoverflow.com/questions/35213147/difference-between-textcontent-vs-innertext
+    // https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
+    characterElem.textContent = character
+    // appending the new span children to #prompt elem for now
+    // unsure if need to do #prompt's parent container elem
+    promptElem.appendChild(characterElem)
+  })
+
+  // logic to keep track of number of quotes used, since I am not 
+  // using a predefined array (unless necessary for performance)
+  if (totalHeists = 0) {
+    numberQuotes++
+  } else {
+    console.log("error in updatePromptQuote function")
+  }
+}
+
+// going to have JavaScript do classList.add or .remove to reflect 
+// the prompt character Span elements being input correctly or incorrectly

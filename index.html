@@ -36,6 +36,7 @@
       <div class="flex-container" id="top-row-container">
         <p>Time: <span id="time-elapsed"></span></p>
         <p>Accuracy: <span id="accuracy"></span></p>
+        <p>Errors: <span id="current-errors"></span></p>
       </div>
     </section>
     <section id="prompt-container">
@@ -44,7 +45,8 @@
       <h3> - <span id="prompt-author" class="prompt-text"></span></h3>
     </section>
     <section id="input-field">
-      <input type="text" class="text-input" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false">
+      <textarea class="text-input" placeholder="Type here!" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false"></textarea> 
+      <button class="restart-button">Restart</button>
     </section>
     <section>
       <div class="flex-container" id="speed-container">
@@ -54,7 +56,7 @@
     </section>
     <section id="graphics">
       <div class="flex-container">
-        
+
       </div>
     </section>
   </main>
