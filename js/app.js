@@ -1,4 +1,53 @@
-// what to initialize first?
+// user opens webpage, gets greeting/intro text as below
+
+function introSequence() {
+  let introButton1Elem = document.querySelector("#intro-button1")
+  let introContainerElem = document.querySelector(".intro-container")
+
+  // when user clicks button on page, proceed to show rest of intro sequence/game
+  introButton1Elem.addEventListener("click", () => {
+    // adding each element in dynamically through DOM 
+    let newTextElem1 = document.createElement("p")
+  // allows style to match and have animation
+    newTextElem1.classList.add("intro-text")
+    newTextElem1.innerText = "We need someone to run some jobs for us. If you want to make a name for yourself, you gotta start now."
+    introContainerElem.appendChild(newTextElem1)
+    // also getting rid of first button
+    introButton1Elem.remove()
+    // next string of text to be added in
+    let newTextElem2 = document.createElement("p")
+    newTextElem2.classList.add("intro-text")
+    newTextElem2.innerText = "You interested in learning more?"
+    
+    // intro button, initially hidden
+    let introButton2Elem = document.querySelector("#intro-button2")
+    // shows the second button
+    introButton2Elem.classList.remove("hidden")
+    introButton2Elem.addEventListener("click", () => {
+      // add in the second string of text
+      introContainerElem.appendChild(newTextElem2)
+      // getting rid of second button element
+      introButton2Elem.remove()
+      let introButton3Elem = document.querySelector("#intro-button3")
+      introButton3Elem.classList.remove("hidden")
+      introButton3Elem.addEventListener("click", () => {
+        introContainerElem.classList.add("hidden")
+        // showing the full website
+        let mainElem = document.querySelector("main").classList.remove("hidden")
+        let asideElem = document.querySelector("aside").classList.remove("hidden")
+        // also removing last button
+        introButton3Elem.remove()
+      })
+    })
+  })
+}
+introSequence()
+
+
+
+
+
+
 // API calls
 let promptElem = document.querySelector("#prompt");
 let promptAuthorElem = document.querySelector("#prompt-author");

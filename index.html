@@ -10,36 +10,44 @@
   <header>
     <h1>Grand Theft Autocorrect</h1>
   </header>
-  <main>
-    <aside>
-      <div class="sidebar">
-        <h4>Career Stats</h4>
-        <p>Vehicle:</p>
-        <img id="user-vehicle" src="" />
-        <ul class="user-stats">
-          <li>Health: <span id="user-health"></span></li>
-          <li>Successful Heists: <span id="total-heists"></span></li>
-          <li>Average Accuracy: <span id="avg-accuracy"></span></li>
-          <li>Average Speed: <span id="avg-speed"></span></li>
-        </ul>
-      </div>
-    </aside>
-    <section>
-      <div class="flex-container">
+  <article class="intro">  
+    <div class="intro-container">
+      <p class="intro-text">Hey there, kid.</p>
+    </div>
+    <button id="intro-button1">proceed...</button>
+    <button id="intro-button2" class="hidden">proceed...</button>
+    <button id="intro-button3" class="hidden">proceed...</button>
+  </article>
+  <aside class="hidden">
+    <div class="sidebar">
+      <h4>Career Stats</h4>
+      <p>Vehicle:</p>
+      <img id="user-vehicle" src="" />
+      <ul class="user-stats">
+        <li>Health: <span id="user-health"></span></li>
+        <li>Successful Heists: <span id="total-heists"></span></li>
+        <li>Average Accuracy: <span id="avg-accuracy"></span></li>
+        <li>Average Speed: <span id="avg-speed"></span></li>
+      </ul>
+    </div>
+  </aside>
+  <main class="hidden">
+    <section class="top-row">
+      <div class="flex-container" id="top-row-container">
         <p>Time: <span id="time-elapsed"></span></p>
         <p>Accuracy: <span id="accuracy"></span></p>
       </div>
     </section>
     <section id="prompt-container">
       <p>Enter in the text:</p>
-      <h2><span id="prompt"></span></h2>
-      <h3> - <span id="prompt-author"></span></h3>
+      <h2><span id="prompt" class="prompt-text"></span></h2>
+      <h3> - <span id="prompt-author" class="prompt-text"></span></h3>
     </section>
     <section id="input-field">
-      <input type="text" class="text-input" autocorrect="off" autocapitalize="off" autocomplete="off" maxlength="12">
+      <input type="text" class="text-input" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false">
     </section>
     <section>
-      <div class="flex-container">
+      <div class="flex-container" id="speed-container">
         <p>Current Speed: <span id="user-speed"></span></p>
         <p>Police Speed: <span id="police-speed"></span></p>
       </div>
