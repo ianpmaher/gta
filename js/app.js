@@ -326,7 +326,7 @@ let accuracy = 0;
 // typedCharsInput starts at 0, will use to count user input
 let typedCharsInput = 0;
 // will initialize timer on below function, likely an anonymous function
-let timer = "";
+let timerInterval = "";
 
 // LOGIC OF PROMPT INPUT STUFF
 // prompt generated from API works because
@@ -422,40 +422,77 @@ const handleUserTypingInput = () => {
     } else if (currentUserInputArr[index] == null) {
       // DOM remove class from that character
       if (character.classList.contains("correct-character")) {
-        character.classList.remove("correct-character")
+        character.classList.remove("correct-character");
       } else {
-      character.classList.remove("incorrect-character") 
+        character.classList.remove("incorrect-character");
       }
-    // NOW if character enters the WRONG character
+      // NOW if character enters the WRONG character
     } else {
       // necessary to check if this character already has styling, otherwise error count will be off
       // the syntax below !character.classList.contains ==> if the class list DOES NOT contain
       if (!character.classList.contains("incorrect-character")) {
         // add error
         currentErrors += 1;
-        character.classList.add("incorrect-character")
+        character.classList.add("incorrect-character");
       }
-      currentErrorElem.textContent = currentErrors
+      currentErrorElem.textContent = currentErrors;
     }
     // now writing function to return TRUE if characters are all entered correctly
-    // so user doesn't have to wait for timer to complete unnecessarily 
+    // so user doesn't have to wait for timer to complete unnecessarily
     // using the function .every() with callback function
-    let (checkAllCorrect) = arrPromptCharacters.every((element) => {
-      return element.classList.contains("correct-character")
-    })
+    let checkAllCorrect = arrPromptCharacters.every((element) => {
+      return element.classList.contains("correct-character");
+    });
     // code to end test if that checkAllCorrect evaluates to true
     if (checkAllCorrect) {
-      
+      showResultSession();
     }
   });
 };
 
-let promptButton = document.querySelector("#test-button");
+// now working on time variables
+// timerEndSession function allows timer to end session if time runs out
+const timerEndSession = () => {
+  // let timeElapsedElem = document.querySelector("#time-elapsed");
+  // let timeElapsed = 0;
+  // let timeRemaining = timeLimit;
+  if (timeRemaining === 0) {
+    // ends test by running following function
+    showResultSession();
+  } else {
+    timeRemaining--;
+    timeElapsedElem.textContent = timeRemaining + "sec";
+  }
+};
 
-promptButton.addEventListener("click", () => {
-  fetchPrompt();
-  updatePromptQuote();
-  // handleUserTypingInput();
+// timer function with INTERVAL syntax like my Pomodoro one
+const timerTickTockFunction = () => {
+  // even though global variable defines timeLimit = 60, I am putting this here to reset timer
+  timeLimit = 60;
+  // let timerVariable = "";
+  timerInterval = setInterval(timerEndSession, 1000);
+};
+
+// results of session, DOM manipulation of necessary stats
+// also this function serves to end the typing session
+const showResultSession = () => {
+  // maybe have result section be hidden at first, then remove class hidden?
+  // stop timer from running
+  clearInterval(timerInterval);
+  // stops user from restarting test by accident
+  textInputArea.disabled = true;
+};
+
+// instead of button, going to have it be when user starts typing in text
+// area, OR when user clicks into text input area
+// let textInputArea = document.querySelector(".text-input");
+// from MDN, this works with <textarea> element (as well as <input> and <select>)
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
+
+textInputArea.addEventListener("input", () => {
+  // fetchPrompt();
+  // updatePromptQuote();
+  handleUserTypingInput();
 });
 
 // let promptElem = document.querySelector("#prompt");
