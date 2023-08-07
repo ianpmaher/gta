@@ -288,7 +288,7 @@ const timeLimit = 60;
 // fetch quote as above in order to get prompt
 
 // defining variables for each DOM element
-let timeElapsedElem = document.querySelector("#time-elapsed");
+let timeRemainingElem = document.querySelector("#time-remaining");
 let accuracyCurrentElem = document.querySelector("#accuracy");
 let userSpeedCurrentElem = document.querySelector("#user-speed");
 let currentErrorElem = document.querySelector("#current-errors");
@@ -316,9 +316,9 @@ let userHealth = 100;
 let totalErrors = 0;
 
 // needed basic variables for the logic --> "current"
-// initialize timeElapsed
+// initialize timeElapsed as 0, this will be used as difference in calculations
 let timeElapsed = 0;
-// defined above
+// time remaining can change if timeLimit is changed elsewhere (currently a const variable though)
 let timeRemaining = timeLimit;
 // user's current errors, accuracy, keystrokes typed all start at 0
 let currentErrors = 0;
@@ -343,8 +343,9 @@ let quoteElem = document.querySelector("#quote");
 // attempt to see if can track prompts used in this way:
 let promptsUsedArray = [];
 
-// fetch prompt
-const fetchPrompt = () => {
+// fetch prompt COMBINED with displaying the new prompt
+// also will display the prompt as separated spans
+const updatePromptQuote = () => {
   const url =
     // random 3 quotes fetched with between 150 and 200 characters
     "https://api.quotable.io/quotes/random?limit=3&minLength=150&maxLength=200";
@@ -360,40 +361,28 @@ const fetchPrompt = () => {
         // api returns an array of JSON objects with query parameters set as above, so selecting first one
         quotesData1 = data[0];
         // quote itself is content of one element
-        // LEAVING IN OLD STUFF, BUT CURRENT THEORY IS JUST PUSHING JSON DATA INTO KEY:VALUE PAIRS OF OBJECT
-        // MAYBE THIS WILL STOP ISSUE WHERE SPLIT QUOTE DOESN'T DISPLAY
-        let promptObj = { prompt: quotesData1.content, author: quotesData1.author };
-        // quoteElem.textContent = quotesData1.content;
-        // push just the content of the prompt into array, will use to check length of this array
-        promptsUsedArray.push(promptObj);
+        // let promptObj = { prompt: quotesData1.content, author: quotesData1.author };
+        currentPrompt = quotesData1.content;
+        let splitPrompt = currentPrompt.split("");
+        let arrSplitPrompt = splitPrompt.map((value) => {
+          // necessary to split each character into an individual HTML span 
+          // putting the characters into a HTML span tag element
+          // I chose span because lack of inline-level styling and lack of inherent styling
+          // I had issues with createElement before this attempt
+          return `<span class="prompt-text">${value}</span>`;
+        });
+        // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
+        quoteElem.innerHTML += arrSplitPrompt.join("");
+        // promptsUsedArray.push(promptObj);
         // quote's author populates different element
         // promptAuthorElem.textContent = quotesData1.author;
       },
       (err) => console.log(err)
     );
-};
-
-// setting up one function for quotable API and another for random API
-const updatePromptQuote = () => {
-  for (let i = 0; i < promptsUsedArray.length; i++) {
-    // accessing the value of the prompt key in the object that was pushed when doing earlier fetch
-    let currentPromp = promptsUsedArray[i].prompt;
-    // need to separate each character of the quote
-    // each will be an individual element
-    let splitPrompt = currentPromp.split("");
-    let arrSplitPrompt = splitPrompt.map((value) => {
-      // putting the characters into a HTML span tag element
-      // I chose span because lack of inline-level styling and lack of inherent styling
-      // I had issues with createElement before this attempt
-      return `<span class="prompt-text">${value}</span>`;
-    });
-    // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
-    quoteElem.innerHTML += arrSplitPrompt.join("");
-    // textContent rather than innerText
-    // StackOverflow suggested innerText is more performance heavy
-    // https://stackoverflow.com/questions/35213147/difference-between-textcontent-vs-innertext
-    // https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
-  }
+  // textContent rather than innerText
+  // StackOverflow suggested innerText is more performance heavy
+  // https://stackoverflow.com/questions/35213147/difference-between-textcontent-vs-innertext
+  // https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
 };
 
 // ***
@@ -435,33 +424,45 @@ const handleUserTypingInput = () => {
         currentErrors += 1;
         character.classList.add("incorrect-character");
       }
-      currentErrorElem.textContent = currentErrors;
-    }
-    // now writing function to return TRUE if characters are all entered correctly
-    // so user doesn't have to wait for timer to complete unnecessarily
-    // using the function .every() with callback function
-    let checkAllCorrect = arrPromptCharacters.every((element) => {
-      return element.classList.contains("correct-character");
-    });
-    // code to end test if that checkAllCorrect evaluates to true
-    if (checkAllCorrect) {
-      showResultSession();
     }
   });
+  // current error element handling and current accuracy element handling
+  currentErrorElem.textContent = totalErrors + currentErrors;
+  // accuracy text
+  let correctCharacterCount = typedCharsInput - (totalErrors + currentErrors);
+  // 100 to make accuracy a percentage value
+  let accuracy = (correctCharacterCount / typedCharsInput) * 100;
+  accuracyCurrentElem.textContent = Math.round(accuracy) + "%";
+  // now writing function to return TRUE if characters are all entered correctly
+  // so user doesn't have to wait for timer to complete unnecessarily
+  // using the function .every() with callback function
+  let checkAllCorrect = arrPromptCharacters.every((element) => {
+    return element.classList.contains("correct-character");
+  });
+  // code to end test if that checkAllCorrect evaluates to true
+  if (checkAllCorrect) {
+    showResultSession();
+  } else if (typedCharsInput.length === arrPromptCharacters.length) {
+    showResultSession();
+  }
 };
 
 // now working on time variables
 // timerEndSession function allows timer to end session if time runs out
 const timerEndSession = () => {
-  // let timeElapsedElem = document.querySelector("#time-elapsed");
   // let timeElapsed = 0;
   // let timeRemaining = timeLimit;
-  if (timeRemaining === 0) {
+  // if is time left, following things will happen:
+  if (timeRemaining > 0) {
+    // decrement ---> timeRemaining = 60 - timeElapsed
+    timeRemaining--;
+    // increment timeElapsed
+    timeElapsed++;
+    // display the timeRemaining through DOM manipulation
+    timeRemainingElem.textContent = timeRemaining + "sec";
+  } else {
     // ends test by running following function
     showResultSession();
-  } else {
-    timeRemaining--;
-    timeElapsedElem.textContent = timeRemaining + "sec";
   }
 };
 
@@ -481,6 +482,17 @@ const showResultSession = () => {
   clearInterval(timerInterval);
   // stops user from restarting test by accident
   textInputArea.disabled = true;
+  // time variables for results after session is ended
+  // textInputArea.value.length is the number of characters per minute typed
+  let currentUserInput = textInputArea.value.length;
+  // wpm **
+  // words per minute is characters per minute divided by 5, so an average
+  wpm = Math.round((currentUserInput / 5 / timeElapsed) * 60);
+  userSpeedCurrentElem.textContent = wpm + "wpm";
+  accuracy = numberQuotes++;
+  // career stats
+
+  totalHeists++;
 };
 
 // instead of button, going to have it be when user starts typing in text
@@ -492,7 +504,7 @@ const showResultSession = () => {
 textInputArea.addEventListener("input", () => {
   // fetchPrompt();
   // updatePromptQuote();
-  handleUserTypingInput();
+  // handleUserTypingInput();
 });
 
 // let promptElem = document.querySelector("#prompt");
@@ -500,3 +512,5 @@ textInputArea.addEventListener("input", () => {
 // let promptsUsedArray = [];
 // promptElem.textContent = promptsUsedArray[0].prompt
 // promptAuthorElem.textContent = promptsUsedArray[0].author
+
+updatePromptQuote();
