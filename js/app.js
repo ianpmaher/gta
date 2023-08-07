@@ -391,7 +391,7 @@ const updatePromptQuote = () => {
 
 const handleUserTypingInput = () => {
   // this line will reset the currentError (prompt) each time
-  currentErrors = 0;
+  // currentErrors = 0;
   let promptCharacters = document.querySelectorAll(".prompt-text");
   let arrPromptCharacters = Array.from(promptCharacters);
   // let textInputArea = document.querySelector(".text-input");
@@ -449,9 +449,7 @@ const handleUserTypingInput = () => {
 
 // now working on time variables
 // timerEndSession function allows timer to end session if time runs out
-const timerEndSession = () => {
-  // let timeElapsed = 0;
-  // let timeRemaining = timeLimit;
+const timerUpdateSession = () => {
   // if is time left, following things will happen:
   if (timeRemaining > 0) {
     // decrement ---> timeRemaining = 60 - timeElapsed
@@ -469,9 +467,8 @@ const timerEndSession = () => {
 // timer function with INTERVAL syntax like my Pomodoro one
 const timerTickTockFunction = () => {
   // even though global variable defines timeLimit = 60, I am putting this here to reset timer
-  timeLimit = 60;
-  // let timerVariable = "";
-  timerInterval = setInterval(timerEndSession, 1000);
+  timeRemaining = 60;
+  timerInterval = setInterval(timerUpdateSession, 1000);
 };
 
 // results of session, DOM manipulation of necessary stats
@@ -484,10 +481,10 @@ const showResultSession = () => {
   textInputArea.disabled = true;
   // time variables for results after session is ended
   // textInputArea.value.length is the number of characters per minute typed
-  let currentUserInput = textInputArea.value.length;
+  let currentUserCharacters = textInputArea.value.length;
   // wpm **
   // words per minute is characters per minute divided by 5, so an average
-  wpm = Math.round((currentUserInput / 5 / timeElapsed) * 60);
+  wpm = Math.round((currentUserCharacters / 5 / timeElapsed) * 60);
   userSpeedCurrentElem.textContent = wpm + "wpm";
   accuracy = numberQuotes++;
   // career stats
@@ -502,15 +499,33 @@ const showResultSession = () => {
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
 
 textInputArea.addEventListener("input", () => {
-  // fetchPrompt();
-  // updatePromptQuote();
-  // handleUserTypingInput();
+  handleUserTypingInput();
 });
 
-// let promptElem = document.querySelector("#prompt");
-// let promptAuthorElem = document.querySelector("#prompt-author");
-// let promptsUsedArray = [];
-// promptElem.textContent = promptsUsedArray[0].prompt
-// promptAuthorElem.textContent = promptsUsedArray[0].author
 
-updatePromptQuote();
+// RESET THE GAME'S CURRENT VALUES
+const resetCurrentValues = () => {
+  timeRemaining = timeLimit
+  timeElapsed = 0
+  quoteElem.textContent = "Click on the area below to start a new crime with reset time."
+  textInputArea.disabled = false;
+  currentErrors = 0
+  currentErrorElem.textContent = 0;
+  accuracy = 0
+  typedCharsInput = 0
+  accuracyCurrentElem.textContent = 100;
+  timeRemainingElem.textContent = timeRemaining + "sec"
+  userSpeedCurrentElem.textContent = ""
+}
+
+// START THE GAME WRAPPER FUNCTION
+const startSession = () => {
+  resetCurrentValues()
+  updatePromptQuote()
+  // clear Interval on timer functions
+  clearInterval(timerInterval)
+  timerTickTockFunction()
+}
+
+const startButton = document.querySelector("#start-button")
+startButton.addEventListener("click", startSession)
