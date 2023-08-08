@@ -1,7 +1,7 @@
 body {
   background-color: #355C7D;
   width: 99vw;;
-  height: 100vh;
+  height: 95vh;
 }
 header {
   text-align: center;
@@ -14,34 +14,32 @@ main {
 .hidden {
   display: none;
 }
-.intro {
-  width: 99%;
+#flex-container-page {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid cadetblue;
+  gap: 0.5rem;
+  height: 80%;
 }
-#intro-button1, #intro-button2, #intro-button3 {
-  font-size: 2rem;
-  background-color: fuchsia;
-  border-radius: 20%;
-}
-.intro-text {
-  font-size: 2rem;
-  text-align: center;
-  animation: tracking-in-expand 1.1s ease-in-out both;
-  -webkit-animation: tracking-in-expand 1.1s ease-in-out both;
+aside {
+  display: flex;
+  flex-basis: 0;
+  flex-shrink: 1;
+  height: 100%;
 }
 .sidebar {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  background-color: #6C5B7B;
+  margin: 0.5rem;
+  flex-direction: column;  
 }
 .user-stats {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  flex-basis: 1;
+}
+#user-vehicle {
+  width: 200px;
+  height: 200px;
 }
 .top-row {
   border: solid coral 2px;
@@ -53,6 +51,27 @@ main {
   justify-content: space-evenly;
   
 }
+.intro {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#intro-button1, #intro-button2, #intro-button3, #no-intro-button {
+  font-size: 2rem;
+  background-color: fuchsia;
+  border-radius: 20%;
+  padding: 1rem;
+  margin: 1rem;
+}
+.intro-text {
+  font-size: 2rem;
+  text-align: center;
+  animation: tracking-in-expand 1.1s ease-in-out both;
+  -webkit-animation: tracking-in-expand 1.1s ease-in-out both;
+}
+
 #prompt-container {
   display: flex;
   flex-direction: column;

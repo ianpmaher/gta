@@ -2,6 +2,9 @@
 
 function introSequence() {
   let introButton1Elem = document.querySelector("#intro-button1");
+  let introButton2Elem = document.querySelector("#intro-button2");
+  let introButton3Elem = document.querySelector("#intro-button3");
+  let noIntroButton = document.querySelector("#no-intro-button")
   let introContainerElem = document.querySelector(".intro-container");
 
   // when user clicks button on page, proceed to show rest of intro sequence/game
@@ -19,9 +22,7 @@ function introSequence() {
     let newTextElem2 = document.createElement("p");
     newTextElem2.classList.add("intro-text");
     newTextElem2.innerText = "You interested in learning more?";
-
     // intro button, initially hidden
-    let introButton2Elem = document.querySelector("#intro-button2");
     // shows the second button
     introButton2Elem.classList.remove("hidden");
     introButton2Elem.addEventListener("click", () => {
@@ -29,7 +30,7 @@ function introSequence() {
       introContainerElem.appendChild(newTextElem2);
       // getting rid of second button element
       introButton2Elem.remove();
-      let introButton3Elem = document.querySelector("#intro-button3");
+      // showing third button element
       introButton3Elem.classList.remove("hidden");
       introButton3Elem.addEventListener("click", () => {
         introContainerElem.classList.add("hidden");
@@ -41,6 +42,17 @@ function introSequence() {
       });
     });
   });
+  // when user clicks on the no-intro-button, will stop intro and unhide good stuff
+  noIntroButton.addEventListener("click", () => {
+    introButton1Elem.remove()
+    introButton2Elem.remove()
+    introButton3Elem.remove()
+    introContainerElem.classList.add("hidden")
+    noIntroButton.remove()
+    let mainElem = document.querySelector("main").classList.remove("hidden");
+    let asideElem = document.querySelector("aside").classList.remove("hidden");
+
+  })
 }
 introSequence();
 
@@ -278,6 +290,7 @@ vehicles = [
   },
 ];
 
+
 const userPlayer = new Player("Bob", "", "", vehicles[0]);
 // userPlayer.getVehicle();
 
@@ -296,11 +309,14 @@ let currentErrorElem = document.querySelector("#current-errors");
 // let promptElem = document.querySelector("#prompt");
 // let promptAuthorElem = document.querySelector("#prompt-author");
 let textInputArea = document.querySelector(".text-input");
-let restartButtonElem = document.querySelector(".restart-button");
 
 // defining "career" area variables
 // going to change src of this element
 let userVehiclePicElem = document.querySelector("#user-vehicle");
+// trying to set it to display pic initially 
+// userVehiclePicElem.src = `"${userPlayer.vehicles.pic}"` 
+
+
 // will define health as 100 and subtract from it errors
 let userHealthElem = document.querySelector("#user-health");
 let totalHeistsCountElem = document.querySelector("#total-heists");
@@ -314,7 +330,6 @@ let totalHeists = 0;
 let userHealth = 100;
 // will add cumulatively
 let totalErrors = 0;
-
 // needed basic variables for the logic --> "current"
 // initialize timeElapsed as 0, this will be used as difference in calculations
 let timeElapsed = 0;
@@ -322,7 +337,9 @@ let timeElapsed = 0;
 let timeRemaining = timeLimit;
 // user's current errors, accuracy, keystrokes typed all start at 0
 let currentErrors = 0;
+let avgAccuracy = 0;
 let accuracy = 0;
+let avgSpeedVariable = 0;
 // typedCharsInput starts at 0, will use to count user input
 let typedCharsInput = 0;
 // will initialize timer on below function, likely an anonymous function
@@ -487,10 +504,53 @@ const showResultSession = () => {
   wpm = Math.round((currentUserCharacters / 5 / timeElapsed) * 60);
   userSpeedCurrentElem.textContent = wpm + "wpm";
   accuracy = numberQuotes++;
-  // career stats
-
-  totalHeists++;
+  updateCareerStats()
 };
+
+// update career stats, not sure if I should put inside the function showResultSession?
+const updateCareerStats = () => {
+  // update career heists
+  totalHeists++;
+  totalHeistsCountElem.textContent = totalHeists;
+  for (let i=0; i<vehicles.length; i++) {
+    // health for each session is logged
+    userHealth = userHealth - (totalErrors + currentErrors);
+    userHealthElem.textContent = userHealth;
+    // average accuracy career
+    avgAccuracyElem.textContent = (avgAccuracy + accuracy) / 2
+    // average wpm speed per minute
+    
+    avgSpeedVariable = avgSpeedVariable + wpm
+    avgSpeedElem.textContent = avgSpeedVariable
+    // vehicles update ! 
+    userPlayer.vehicle = vehicles[i]
+    // userVehiclePicElem.src = userPlayer.vehicle.pic
+  }
+}
+
+const updateVehiclePic = () => {
+  userVehiclePicElem.src = userPlayer.vehicle.pic
+}
+
+
+// RESET THE GAME'S CURRENT VALUES
+const resetCurrentValues = () => {
+  timeRemaining = timeLimit
+  timeElapsed = 0
+  // quoteElem.textContent = "Click on the area below to start a new crime with reset time."
+  textInputArea.disabled = false;
+  currentErrors = 0
+  currentErrorElem.textContent = 0;
+  accuracy = 0
+  typedCharsInput = 0
+  accuracyCurrentElem.textContent = 100;
+  timeRemainingElem.textContent = timeRemaining + "sec"
+  userSpeedCurrentElem.textContent = ""
+}
+
+// reset button you can hit "tab" to get to, like 10FastFingers
+let restartButtonElem = document.querySelector(".restart-button");
+restartButtonElem.addEventListener("click", resetCurrentValues)
 
 // instead of button, going to have it be when user starts typing in text
 // area, OR when user clicks into text input area
@@ -502,21 +562,7 @@ textInputArea.addEventListener("input", () => {
   handleUserTypingInput();
 });
 
-
-// RESET THE GAME'S CURRENT VALUES
-const resetCurrentValues = () => {
-  timeRemaining = timeLimit
-  timeElapsed = 0
-  quoteElem.textContent = "Click on the area below to start a new crime with reset time."
-  textInputArea.disabled = false;
-  currentErrors = 0
-  currentErrorElem.textContent = 0;
-  accuracy = 0
-  typedCharsInput = 0
-  accuracyCurrentElem.textContent = 100;
-  timeRemainingElem.textContent = timeRemaining + "sec"
-  userSpeedCurrentElem.textContent = ""
-}
+updateVehiclePic()
 
 // START THE GAME WRAPPER FUNCTION
 const startSession = () => {
@@ -529,3 +575,4 @@ const startSession = () => {
 
 const startButton = document.querySelector("#start-button")
 startButton.addEventListener("click", startSession)
+

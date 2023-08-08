@@ -13,50 +13,56 @@
   <article class="intro">  
     <div class="intro-container">
       <p class="intro-text">Hey there, kid.</p>
+      <p class="intro-text">Want to hear how this works?</p>
     </div>
-    <button id="intro-button1">proceed...</button>
+    <div id="intro-button-container">
+      <button id="no-intro-button">No, I know what I'm doing.</button>
+      <button id="intro-button1">proceed...</button>
+    </div>
     <button id="intro-button2" class="hidden">proceed...</button>
     <button id="intro-button3" class="hidden">proceed...</button>
   </article>
-  <aside class="hidden">
-    <div class="sidebar">
-      <h4>Career Stats</h4>
-      <p>Vehicle:</p>
-      <img id="user-vehicle" src="" />
-      <ul class="user-stats">
-        <li>Health: <span id="user-health"></span></li>
-        <li>Successful Heists: <span id="total-heists"></span></li>
-        <li>Average Accuracy: <span id="avg-accuracy"></span></li>
-        <li>Average Speed: <span id="avg-speed"></span></li>
-      </ul>
+  <div id="flex-container-page">
+    <aside class="hidden">
+      <div class="sidebar">
+        <h4>Career Stats</h4>
+        <p>Vehicle:</p>
+        <img id="user-vehicle" src="" />
+        <ul class="user-stats">
+          <li>Health: <span id="user-health"></span></li>
+          <li>Successful Heists: <span id="total-heists"></span></li>
+          <li>Average Accuracy: <span id="avg-accuracy"></span></li>
+          <li>Average Speed: <span id="avg-speed"></span></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="hidden">
+      <section class="top-row">
+        <div class="flex-container" id="top-row-container">
+          <p>Time Remaining: <span id="time-remaining"></span></p>
+          <p>Accuracy: <span id="accuracy"></span></p>
+          <p>Errors: <span id="current-errors"></span></p>
+        </div>
+      </section>
+      <div id="quote">
+      </div>
+      <section id="input-field">
+        <textarea class="text-input" placeholder="Type here!" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" rows="3"></textarea> 
+        <button class="restart-button">Restart</button>
+      </section>
+      <section>
+        <button id="start-button">Start</button>
+        <div class="flex-container" id="speed-container">
+          <p>Current Speed: <span id="user-speed"></span></p>
+          <p>Police Speed: <span id="police-speed"></span></p>
+        </div>
+      </section>
+      <section id="graphics">
+        <div class="flex-container">
+          
+        </div>
+      </section>
     </div>
-  </aside>
-  <main class="hidden">
-    <section class="top-row">
-      <div class="flex-container" id="top-row-container">
-        <p>Time Remaining: <span id="time-remaining"></span></p>
-        <p>Accuracy: <span id="accuracy"></span></p>
-        <p>Errors: <span id="current-errors"></span></p>
-      </div>
-    </section>
-    <div id="quote">
-    </div>
-    <section id="input-field">
-      <textarea class="text-input" placeholder="Type here!" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" rows="3"></textarea> 
-      <button class="restart-button">Restart</button>
-    </section>
-    <section>
-      <button id="start-button">Start</button>
-      <div class="flex-container" id="speed-container">
-        <p>Current Speed: <span id="user-speed"></span></p>
-        <p>Police Speed: <span id="police-speed"></span></p>
-      </div>
-    </section>
-    <section id="graphics">
-      <div class="flex-container">
-        
-      </div>
-    </section>
   </main>
   <footer>
   </footer>
