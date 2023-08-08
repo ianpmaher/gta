@@ -4,18 +4,23 @@ function introSequence() {
   let introButton1Elem = document.querySelector("#intro-button1");
   let introButton2Elem = document.querySelector("#intro-button2");
   let introButton3Elem = document.querySelector("#intro-button3");
+  let introButton4Elem = document.querySelector("#intro-button4");
+  let introButton5Elem = document.querySelector("#intro-button5");
   let noIntroButton = document.querySelector("#no-intro-button");
   let introContainerElem = document.querySelector(".intro-container");
 
   // when user clicks button on page, proceed to show rest of intro sequence/game
   introButton1Elem.addEventListener("click", () => {
+    // hides the site's main contents!
+    let mainElem = document.querySelector("main").classList.add("hidden");
+    let asideElem = document.querySelector("aside").classList.add("hidden");
     // remove the no intro button
     noIntroButton.remove();
     // adding each element in dynamically through DOM
     let newTextElem1 = document.createElement("p");
     // allows style to match and have animation
     newTextElem1.classList.add("intro-text");
-    newTextElem1.innerText =
+    newTextElem1.textContent =
       "We need someone to run some jobs for us. If you want to make a name for yourself, you gotta start now.";
     introContainerElem.appendChild(newTextElem1);
     // also getting rid of first button
@@ -23,7 +28,7 @@ function introSequence() {
     // next string of text to be added in
     let newTextElem2 = document.createElement("p");
     newTextElem2.classList.add("intro-text");
-    newTextElem2.innerText = "You interested in learning more?";
+    newTextElem2.textContent = "You interested in learning more?";
     // intro button, initially hidden
     // shows the second button
     introButton2Elem.classList.remove("hidden");
@@ -35,12 +40,37 @@ function introSequence() {
       // showing third button element
       introButton3Elem.classList.remove("hidden");
       introButton3Elem.addEventListener("click", () => {
-        introContainerElem.classList.add("hidden");
-        // showing the full website
-        let mainElem = document.querySelector("main").classList.remove("hidden");
-        let asideElem = document.querySelector("aside").classList.remove("hidden");
-        // also removing last button
-        introButton3Elem.remove();
+        // add in next string of text to instructions
+        introButton3Elem.remove()
+        let newTextElem3 = document.createElement("p")
+        newTextElem3.classList.add("intro-text")
+        newTextElem3.textContent = "You will have to steal some cars for us."
+        introContainerElem.appendChild(newTextElem3)
+        let newTextElem4 = document.createElement("p")
+        newTextElem4.classList.add("intro-text")
+        newTextElem4.textContent = "You gotta TYPE as FAST as you can to outrun those cops. A leisurely 30 words per minute ought to be enough for the first junker car."
+        introContainerElem.appendChild(newTextElem4)
+        introButton4Elem.classList.remove("hidden")
+        introButton4Elem.addEventListener("click", () => {
+          introButton4Elem.remove()
+          let newTextElem5 = document.createElement("p")
+          newTextElem5.classList.add("intro-text")
+          newTextElem5.textContent = "Yes, typing. You'll see a prompt. Type in each letter. Gotta be quick, but MISTAKES will cost you." 
+          introContainerElem.appendChild(newTextElem5)
+          let newTextElem6 = document.createElement("p")
+          newTextElem6.classList.add("intro-text")
+          newTextElem6.textContent = "You'll lose 1 health for every 2 typos. Got it? Each prompt will get more difficult, too. But each prompt will mean more money."
+          introContainerElem.appendChild(newTextElem6)
+          introButton5Elem.classList.remove("hidden")
+          introButton5Elem.addEventListener("click", () => {
+            introContainerElem.classList.add("hidden");
+            // showing the full website
+            let mainElem = document.querySelector("main").classList.remove("hidden");
+            let asideElem = document.querySelector("aside").classList.remove("hidden");
+            // also removing last button
+            introButton5Elem.remove();    
+          })
+        })  
       });
     });
   });
@@ -51,8 +81,6 @@ function introSequence() {
     introButton3Elem.remove();
     introContainerElem.classList.add("hidden");
     noIntroButton.remove();
-    let mainElem = document.querySelector("main").classList.remove("hidden");
-    let asideElem = document.querySelector("aside").classList.remove("hidden");
   });
 }
 introSequence();
@@ -295,6 +323,7 @@ let avgSpeedElem = document.querySelector("#avg-speed");
 let totalHeists = 0;
 // user starts at 100 health, will subtract some # based on # errors
 let userHealth = 100;
+userHealthElem.textContent = userHealth;
 // will add cumulatively
 let totalErrors = 0;
 // needed basic variables for the logic --> "current"
@@ -525,8 +554,6 @@ const showResultSession = () => {
   wpm = Math.round((currentUserCharacters / 5 / timeElapsed) * 60);
   userSpeedCurrentElem.textContent = wpm + "wpm";
 
-  // trying to save accuracy for use in career variable
-
   updateCareerStats();
 };
 
@@ -536,31 +563,31 @@ const updateCareerStats = () => {
   totalHeists++;
   totalHeistsCountElem.textContent = totalHeists;
   totalErrors += currentErrors
-  // health for each session is logged
-  userHealth = userHealth - totalErrors;
-  userHealthElem.textContent = userHealth;
   // vehicles update !
   userPlayer.vehicle = vehicles[totalHeists];
   // update picture of vehicle (removed bugs of duplicate .jpg)
-  updateVehiclePic()
+  updateVehicleStats()
   // first heist completed --->
   if (totalHeists === 1) {
     // update health
-    userHealth = userHealth - totalErrors
+    userHealth = userHealth - Math.round(totalErrors /2)
     userHealthElem.textContent = userHealth;
     // update average speed per minute
-    avgSpeedElem.textContent = wpm
+    avgSpeedElem.textContent = `${wpm} wpm`
     // average accuracy career
     avgAccuracyElem.textContent = (accuracySaved * 100) + "%"
-    updateVehiclePic()
+    updateVehicleStats()
   }
   else if (totalHeists > 1) {
     avgSpeedVariable = avgSpeedVariable + wpm;
     avgSpeedElem.textContent = avgSpeedVariable;  
+    // health for each session is logged
+    userHealth = userHealth - Math.round(currentErrors / 2);
+    userHealthElem.textContent = userHealth;
     // average accuracy career
     avgAccuracy = (userPlayer.accuracyArray[0] + userPlayer.accuracyArray[totalHeists]) / totalHeists
     avgAccuracyElem.textContent = ((avgAccuracy/totalHeists) * 100) + "%";
-    updateVehiclePic()
+    updateVehicleStats()
   }
   else if (totalHeists === vehicles.length) {
     displayWinningScreen()
@@ -568,9 +595,14 @@ const updateCareerStats = () => {
 
 };
 
-const updateVehiclePic = () => {
-  userVehiclePicElem.src = userPlayer.vehicle.pic;
+const userVehicleNameElem = document.querySelector("#vehicle-name")
 
+const userVehicleCostElem = document.querySelector("#vehicle-worth")
+
+const updateVehicleStats = () => {
+  userVehiclePicElem.src = userPlayer.vehicle.pic;
+  userVehicleNameElem.textContent = `${userPlayer.vehicle.year} ${userPlayer.vehicle.make} ${userPlayer.vehicle.model}`
+  userVehicleCostElem.textContent = `$ ${userPlayer.vehicle.price}`
 };
 
 // RESET THE GAME'S CURRENT VALUES
@@ -600,7 +632,7 @@ restartButtonElem.addEventListener("click", resetCurrentValues);
 // from MDN, this works with <textarea> element (as well as <input> and <select>)
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
 
-updateVehiclePic();
+updateVehicleStats();
 
 // START THE GAME WRAPPER FUNCTION
 const startSession = () => {

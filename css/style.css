@@ -58,20 +58,27 @@ aside {
   align-items: center;
   justify-content: center;
 }
-#intro-button1, #intro-button2, #intro-button3, #no-intro-button {
-  font-size: 2rem;
+.intro-buttons {
+  font-size: 1.2rem;
   background-color: fuchsia;
   border-radius: 20%;
   padding: 1rem;
-  margin: 1rem;
+  margin: 0.5rem 0.2rem;
+}
+#intro-button1, #intro-button2, #intro-button3, #no-intro-button {
+  font-size: 1.2rem;
+  background-color: fuchsia;
+  border-radius: 20%;
+  padding: 1rem;
+  margin: 0.5rem 0.2rem;
 }
 .intro-text {
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   animation: tracking-in-expand 1.1s ease-in-out both;
   -webkit-animation: tracking-in-expand 1.1s ease-in-out both;
+  line-height: 1
 }
-
 #prompt-container {
   display: flex;
   flex-direction: column;
