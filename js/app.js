@@ -301,7 +301,7 @@ let timeRemainingElem = document.querySelector("#time-remaining");
 let accuracyCurrentElem = document.querySelector("#accuracy");
 let userSpeedCurrentElem = document.querySelector("#user-speed");
 let currentErrorElem = document.querySelector("#current-errors");
-// from above Fetch() :
+// from below Fetch() :
 // let promptElem = document.querySelector("#prompt");
 // let promptAuthorElem = document.querySelector("#prompt-author");
 let textInputArea = document.querySelector(".text-input");
@@ -323,7 +323,7 @@ let avgSpeedElem = document.querySelector("#avg-speed");
 let totalHeists = 0;
 // user starts at 100 health, will subtract some # based on # errors
 let userHealth = 100;
-userHealthElem.textContent = userHealth;
+userHealthElem.textContent = `${userHealth} health`;
 // will add cumulatively
 let totalErrors = 0;
 // needed basic variables for the logic --> "current"
@@ -585,8 +585,10 @@ const updateCareerStats = () => {
     userHealth = userHealth - Math.round(currentErrors / 2);
     userHealthElem.textContent = userHealth;
     // average accuracy career
-    avgAccuracy = (userPlayer.accuracyArray[0] + userPlayer.accuracyArray[totalHeists]) / totalHeists
-    avgAccuracyElem.textContent = ((avgAccuracy/totalHeists) * 100) + "%";
+    for (let i=0; i<userPlayer.accuracyArray.length; i++) {
+      avgAccuracy = (userPlayer.accuracyArray[0] + userPlayer.accuracyArray[i]) / totalHeists
+      avgAccuracyElem.textContent = ((avgAccuracy/totalHeists) * 100) + "%";
+    }
     updateVehicleStats()
   }
   else if (totalHeists === vehicles.length) {
@@ -610,7 +612,8 @@ const resetCurrentValues = () => {
   clearInterval(timerInterval);
   timeRemaining = timeLimit;
   timeElapsed = 0;
-  // quoteElem.textContent = "Click on the area below to start a new crime with reset time."
+  quoteElem.textContent = ""
+  textInputArea.value = ""
   textInputArea.disabled = false;
   currentErrors = 0;
   currentErrorElem.textContent = 0;
@@ -649,14 +652,13 @@ textInputArea.addEventListener("click", () => {
   startSession(), 
   timerTickTockFunction()
 },
-{ once:true } )
+// { once:true } 
+)
 
 // going to have prompt timer start when user clicks into the text area
 textInputArea.addEventListener("input", () => {
   handleUserTypingInput();
 });
-
-
 
 
 const startButton = document.querySelector("#start-button");
