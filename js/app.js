@@ -4,11 +4,13 @@ function introSequence() {
   let introButton1Elem = document.querySelector("#intro-button1");
   let introButton2Elem = document.querySelector("#intro-button2");
   let introButton3Elem = document.querySelector("#intro-button3");
-  let noIntroButton = document.querySelector("#no-intro-button")
+  let noIntroButton = document.querySelector("#no-intro-button");
   let introContainerElem = document.querySelector(".intro-container");
 
   // when user clicks button on page, proceed to show rest of intro sequence/game
   introButton1Elem.addEventListener("click", () => {
+    // remove the no intro button
+    noIntroButton.remove();
     // adding each element in dynamically through DOM
     let newTextElem1 = document.createElement("p");
     // allows style to match and have animation
@@ -44,50 +46,16 @@ function introSequence() {
   });
   // when user clicks on the no-intro-button, will stop intro and unhide good stuff
   noIntroButton.addEventListener("click", () => {
-    introButton1Elem.remove()
-    introButton2Elem.remove()
-    introButton3Elem.remove()
-    introContainerElem.classList.add("hidden")
-    noIntroButton.remove()
+    introButton1Elem.remove();
+    introButton2Elem.remove();
+    introButton3Elem.remove();
+    introContainerElem.classList.add("hidden");
+    noIntroButton.remove();
     let mainElem = document.querySelector("main").classList.remove("hidden");
     let asideElem = document.querySelector("aside").classList.remove("hidden");
-
-  })
+  });
 }
 introSequence();
-
-// by default, will fetch quote
-// fetchPrompt();
-
-// random paragraph API
-// http://metaphorpsum.com/
-const fetchRandomPrompt = () => {
-  const url =
-    // 1 randomly generated paragraph, containing 6 sentences!
-    "http://metaphorpsum.com/paragraphs/1/6";
-
-  fetch(url, {
-    headers: {},
-  })
-    .then((response) => {
-      // since API returns just the text, no object, I needed to do
-      // response.text()
-      return response.text();
-    })
-    .then(
-      (data) => {
-        // api returns just the text, not as JSON
-        quotesData1 = JSON.stringify(data);
-        // quote itself is content of one element
-        // quoteElem.textContent = quotesData1;
-        let promptObj = { prompt: quotesData1 };
-        promptsUsedArray.push(promptObj);
-      },
-      (err) => console.log(err)
-    );
-};
-
-// fetchRandomPrompt();
 
 // making a CLASS for user, so can make one for police later if two player
 class Player {
@@ -97,6 +65,7 @@ class Player {
     this.criminal = true;
     this.police = false;
     this.vehicle = vehicle;
+    this.accuracyArray = []
   }
   // methods
   getVehicle() {
@@ -125,7 +94,7 @@ vehicles = [
     model: "Fiesta",
     price: 400,
     saying: "That paint job doesn't mask the cigarette smell.",
-    pic: "/assets/fordFiesta.jpg.jpg",
+    pic: "/assets/fordFiesta.jpg",
   },
   {
     year: 2004,
@@ -133,7 +102,7 @@ vehicles = [
     model: "Caravan",
     price: 600,
     saying: "You can fit so many friends in there, and safely, too!",
-    pic: "/assets/dodgeCaravan.jpg.jpg",
+    pic: "/assets/dodgeCaravan.jpg",
   },
   {
     year: 2008,
@@ -198,7 +167,7 @@ vehicles = [
     model: "RAV-4",
     price: 6100,
     saying: "Looking slick, jack!",
-    pic: "/assets/toyotaRav4.jpg.jpg",
+    pic: "/assets/toyotaRav4.jpg",
   },
   {
     year: 2018,
@@ -290,7 +259,6 @@ vehicles = [
   },
 ];
 
-
 const userPlayer = new Player("Bob", "", "", vehicles[0]);
 // userPlayer.getVehicle();
 
@@ -313,9 +281,8 @@ let textInputArea = document.querySelector(".text-input");
 // defining "career" area variables
 // going to change src of this element
 let userVehiclePicElem = document.querySelector("#user-vehicle");
-// trying to set it to display pic initially 
-// userVehiclePicElem.src = `"${userPlayer.vehicles.pic}"` 
-
+// trying to set it to display pic initially
+// userVehiclePicElem.src = `"${userPlayer.vehicles.pic}"`
 
 // will define health as 100 and subtract from it errors
 let userHealthElem = document.querySelector("#user-health");
@@ -339,6 +306,8 @@ let timeRemaining = timeLimit;
 let currentErrors = 0;
 let avgAccuracy = 0;
 let accuracy = 0;
+// initializing here?
+let accuracySaved = 0
 let avgSpeedVariable = 0;
 // typedCharsInput starts at 0, will use to count user input
 let typedCharsInput = 0;
@@ -382,7 +351,7 @@ const updatePromptQuote = () => {
         currentPrompt = quotesData1.content;
         let splitPrompt = currentPrompt.split("");
         let arrSplitPrompt = splitPrompt.map((value) => {
-          // necessary to split each character into an individual HTML span 
+          // necessary to split each character into an individual HTML span
           // putting the characters into a HTML span tag element
           // I chose span because lack of inline-level styling and lack of inherent styling
           // I had issues with createElement before this attempt
@@ -401,6 +370,53 @@ const updatePromptQuote = () => {
   // https://stackoverflow.com/questions/35213147/difference-between-textcontent-vs-innertext
   // https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
 };
+
+// **RANDOM PROMPT QUOTE**
+// there have been issues documented in the GitHub for the Quotable API
+// with server being down, so temporarily going to do this and 
+// figure out if I can do a failsafe later...
+// https://github.com/lukePeavey/quotable/issues
+// dated 8/7 https://github.com/lukePeavey/quotable/issues/193
+
+// random paragraph API
+// http://metaphorpsum.com/
+
+const updateRandomPromptQuote = () => {
+  const url =
+    // 1 randomly generated paragraph, containing 6 sentences!
+    "http://metaphorpsum.com/paragraphs/1/1";
+
+  fetch(url, {
+    headers: {},
+  })
+    .then((response) => {
+      // since API returns just the text, no object, I needed to do
+      // response.text()
+      return response.text();
+    })
+    .then(
+      (data) => {
+        // api returns just the text, not as JSON
+        quotesData1 = JSON.stringify(data);
+        let splitPromptRandom = quotesData1.split("")
+        let arrSplitPromptRandom = splitPromptRandom.map((value) => {
+          // as stated in updatePromptQuote(), need to split each character 
+          // into individual HTML span tag element
+          return `<span class="prompt-text">${value}</span>`
+        })
+        // the API quote had quotation marks, so removing first and last element of the 
+        // span array will remove those quotation marks (since they are now span elements)
+        arrSplitPromptRandom.shift()
+        arrSplitPromptRandom.pop()
+        quoteElem.innerHTML += arrSplitPromptRandom.join("")
+        // quote itself is content of one element
+        // let promptObj = { prompt: quotesData1 };
+        // promptsUsedArray.push(promptObj);
+      },
+      (err) => console.log(err)
+    );
+};
+// fetchRandomPrompt();
 
 // ***
 // function to handle USER INPUT
@@ -444,12 +460,17 @@ const handleUserTypingInput = () => {
     }
   });
   // current error element handling and current accuracy element handling
-  currentErrorElem.textContent = totalErrors + currentErrors;
+  currentErrorElem.textContent = currentErrors;
   // accuracy text
-  let correctCharacterCount = typedCharsInput - (totalErrors + currentErrors);
+  let correctCharacterCount = typedCharsInput - (currentErrors);
+  let accuracy = (correctCharacterCount / typedCharsInput)
   // 100 to make accuracy a percentage value
-  let accuracy = (correctCharacterCount / typedCharsInput) * 100;
-  accuracyCurrentElem.textContent = Math.round(accuracy) + "%";
+  let accuracyText = (accuracy) * 100;
+  accuracyCurrentElem.textContent = Math.round(accuracyText) + "%";
+  // maybe store accuracy as something else ??
+  accuracySaved = accuracy
+  userPlayer.accuracyArray.push(accuracySaved)
+  
   // now writing function to return TRUE if characters are all entered correctly
   // so user doesn't have to wait for timer to complete unnecessarily
   // using the function .every() with callback function
@@ -503,8 +524,10 @@ const showResultSession = () => {
   // words per minute is characters per minute divided by 5, so an average
   wpm = Math.round((currentUserCharacters / 5 / timeElapsed) * 60);
   userSpeedCurrentElem.textContent = wpm + "wpm";
-  accuracy = numberQuotes++;
-  updateCareerStats()
+
+  // trying to save accuracy for use in career variable
+
+  updateCareerStats();
 };
 
 // update career stats, not sure if I should put inside the function showResultSession?
@@ -512,45 +535,64 @@ const updateCareerStats = () => {
   // update career heists
   totalHeists++;
   totalHeistsCountElem.textContent = totalHeists;
-  for (let i=0; i<vehicles.length; i++) {
-    // health for each session is logged
-    userHealth = userHealth - (totalErrors + currentErrors);
+  totalErrors += currentErrors
+  // health for each session is logged
+  userHealth = userHealth - totalErrors;
+  userHealthElem.textContent = userHealth;
+  // vehicles update !
+  userPlayer.vehicle = vehicles[totalHeists];
+  // update picture of vehicle (removed bugs of duplicate .jpg)
+  updateVehiclePic()
+  // first heist completed --->
+  if (totalHeists === 1) {
+    // update health
+    userHealth = userHealth - totalErrors
     userHealthElem.textContent = userHealth;
+    // update average speed per minute
+    avgSpeedElem.textContent = wpm
     // average accuracy career
-    avgAccuracyElem.textContent = (avgAccuracy + accuracy) / 2
-    // average wpm speed per minute
-    
-    avgSpeedVariable = avgSpeedVariable + wpm
-    avgSpeedElem.textContent = avgSpeedVariable
-    // vehicles update ! 
-    userPlayer.vehicle = vehicles[i]
-    // userVehiclePicElem.src = userPlayer.vehicle.pic
+    avgAccuracyElem.textContent = (accuracySaved * 100) + "%"
+    updateVehiclePic()
   }
-}
+  else if (totalHeists > 1) {
+    avgSpeedVariable = avgSpeedVariable + wpm;
+    avgSpeedElem.textContent = avgSpeedVariable;  
+    // average accuracy career
+    avgAccuracy = (userPlayer.accuracyArray[0] + userPlayer.accuracyArray[totalHeists]) / totalHeists
+    avgAccuracyElem.textContent = ((avgAccuracy/totalHeists) * 100) + "%";
+    updateVehiclePic()
+  }
+  else if (totalHeists === vehicles.length) {
+    displayWinningScreen()
+  }
+
+};
 
 const updateVehiclePic = () => {
-  userVehiclePicElem.src = userPlayer.vehicle.pic
-}
+  userVehiclePicElem.src = userPlayer.vehicle.pic;
 
+};
 
 // RESET THE GAME'S CURRENT VALUES
 const resetCurrentValues = () => {
-  timeRemaining = timeLimit
-  timeElapsed = 0
+  clearInterval(timerInterval);
+  timeRemaining = timeLimit;
+  timeElapsed = 0;
   // quoteElem.textContent = "Click on the area below to start a new crime with reset time."
   textInputArea.disabled = false;
-  currentErrors = 0
+  currentErrors = 0;
   currentErrorElem.textContent = 0;
-  accuracy = 0
-  typedCharsInput = 0
+  accuracy = 0;
+  accuracySaved = 0;
+  typedCharsInput = 0;
   accuracyCurrentElem.textContent = 100;
-  timeRemainingElem.textContent = timeRemaining + "sec"
-  userSpeedCurrentElem.textContent = ""
-}
+  timeRemainingElem.textContent = timeRemaining + "sec";
+  userSpeedCurrentElem.textContent = "";
+};
 
 // reset button you can hit "tab" to get to, like 10FastFingers
 let restartButtonElem = document.querySelector(".restart-button");
-restartButtonElem.addEventListener("click", resetCurrentValues)
+restartButtonElem.addEventListener("click", resetCurrentValues);
 
 // instead of button, going to have it be when user starts typing in text
 // area, OR when user clicks into text input area
@@ -558,21 +600,32 @@ restartButtonElem.addEventListener("click", resetCurrentValues)
 // from MDN, this works with <textarea> element (as well as <input> and <select>)
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
 
+updateVehiclePic();
+
+// START THE GAME WRAPPER FUNCTION
+const startSession = () => {
+  resetCurrentValues();
+  // commenting out normal Quotable API ******
+  // updatePromptQuote();
+  // putting in Random API function *****
+  updateRandomPromptQuote()
+  // clear Interval on timer functions
+};
+
+// going to have prompt timer start when user clicks into the text area
+textInputArea.addEventListener("click", () => {
+  startSession(), 
+  timerTickTockFunction()
+},
+{ once:true } )
+
+// going to have prompt timer start when user clicks into the text area
 textInputArea.addEventListener("input", () => {
   handleUserTypingInput();
 });
 
-updateVehiclePic()
 
-// START THE GAME WRAPPER FUNCTION
-const startSession = () => {
-  resetCurrentValues()
-  updatePromptQuote()
-  // clear Interval on timer functions
-  clearInterval(timerInterval)
-  timerTickTockFunction()
-}
 
-const startButton = document.querySelector("#start-button")
-startButton.addEventListener("click", startSession)
 
+const startButton = document.querySelector("#start-button");
+startButton.addEventListener("click", startSession);

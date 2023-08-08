@@ -13,7 +13,7 @@ vehicles = [
     model: "Fiesta",
     price: 400,
     saying: "That paint job doesn't mask the cigarette smell.",
-    pic: "/assets/fordFiesta.jpg.jpg"
+    pic: "/assets/fordFiesta.jpg"
   },
   {
     year: 2004,
@@ -21,7 +21,7 @@ vehicles = [
     model: "Caravan",
     price: 600,
     saying: "You can fit so many friends in there, and safely, too!",
-    pic: "/assets/dodgeCaravan.jpg.jpg"
+    pic: "/assets/dodgeCaravan.jpg"
   },
   {
     year: 2008,
@@ -86,7 +86,7 @@ vehicles = [
     model: "RAV-4",
     price: 6100,
     saying: "Looking slick, jack!",
-    pic: "/assets/toyotaRav4.jpg.jpg"
+    pic: "/assets/toyotaRav4.jpg"
   },
   {
     year: 2018,
