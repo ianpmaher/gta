@@ -10,6 +10,7 @@ header {
 main {
   background-color: bisque;
   width: 99%;
+  flex-basis: auto;
 }
 .hidden {
   display: none;
@@ -21,15 +22,17 @@ main {
 }
 aside {
   display: flex;
-  flex-basis: 0;
-  flex-shrink: 1;
+  flex-basis: content;
   height: 100%;
 }
 .sidebar {
   display: flex;
+  flex-basis: content;
   background-color: #6C5B7B;
-  margin: 0.5rem;
+  /* margin: 0.5rem; */
   flex-direction: column;  
+  text-align: center;
+  align-items: center;
 }
 .user-stats {
   list-style-type: none;
@@ -37,9 +40,12 @@ aside {
   margin: 0;
   flex-basis: 1;
 }
+.stat-inject {
+  font-weight: 600;
+}
 #user-vehicle {
-  width: 200px;
-  height: 200px;
+  max-width: 250px;
+  max-height: 250px;
 }
 .top-row {
   border: solid coral 2px;
@@ -58,13 +64,6 @@ aside {
   justify-content: center;
 }
 .intro-buttons {
-  font-size: 1.2rem;
-  background-color: fuchsia;
-  border-radius: 20%;
-  padding: 1rem;
-  margin: 0.5rem 0.2rem;
-}
-#intro-button1, #intro-button2, #intro-button3, #no-intro-button {
   font-size: 1.2rem;
   background-color: fuchsia;
   border-radius: 20%;
@@ -122,11 +121,57 @@ label {
   border: solid 2px rgba(246,114,128,1);
 }
 
-/* @media screen and (min-width: 40rem) and (orientation: landscape) {
+@media screen and (max-width: 800px) {
   body {
     background-color: rgba(0,0,0,0.3);
   }
-} */
+  main {
+    margin-top: 0rem;
+  }
+  #flex-container-page {
+    flex-direction: column-reverse;
+    align-items:center;
+    justify-content: center;
+    margin-top: -1rem;
+    /* height: 85%; */
+  }
+  .aside {
+    flex-flow: row wrap;
+    flex-direction: row;
+    justify-self: auto;
+    margin: 0 auto;
+  }
+  .sidebar {
+    margin: 0 auto;
+    flex-direction: inherit;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .user-stats {
+    padding: auto;
+    font-size: 0.8rem;
+  }
+  #user-vehicle {
+    max-width: 150px;
+    max-height: 150px;
+  }
+  label {
+    font-size: 0.7rem;
+  }
+  .intro {
+    align-items: center;
+  }
+  .intro-itext {
+    font-size: 1rem;
+  }
+  .intro-buttons {
+    font-size: 0.8em;
+    padding: 0.5rem;
+  }
+} 
 
 
 @-webkit-keyframes tracking-in-expand {

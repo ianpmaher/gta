@@ -1,5 +1,8 @@
 // user opens webpage, gets greeting/intro text as below
 
+// defining up here for the sake of debugging and control flow
+let textInputArea = document.querySelector(".text-input");
+
 function introSequence() {
   let introButton1Elem = document.querySelector("#intro-button1");
   let introButton2Elem = document.querySelector("#intro-button2");
@@ -14,6 +17,7 @@ function introSequence() {
     // hides the site's main contents!
     let mainElem = document.querySelector("main").classList.add("hidden");
     let asideElem = document.querySelector("aside").classList.add("hidden");
+    textInputArea.disabled = true;
     // remove the no intro button
     noIntroButton.remove();
     // adding each element in dynamically through DOM
@@ -67,6 +71,7 @@ function introSequence() {
             // showing the full website
             let mainElem = document.querySelector("main").classList.remove("hidden");
             let asideElem = document.querySelector("aside").classList.remove("hidden");
+            textInputArea.disabled = false;
             // also removing last button
             introButton5Elem.remove();    
           })
@@ -76,6 +81,7 @@ function introSequence() {
   });
   // when user clicks on the no-intro-button, will stop intro and unhide good stuff
   noIntroButton.addEventListener("click", () => {
+    textInputArea.disabled = false;
     introButton1Elem.remove();
     introButton2Elem.remove();
     introButton3Elem.remove();
@@ -304,7 +310,7 @@ let currentErrorElem = document.querySelector("#current-errors");
 // from below Fetch() :
 // let promptElem = document.querySelector("#prompt");
 // let promptAuthorElem = document.querySelector("#prompt-author");
-let textInputArea = document.querySelector(".text-input");
+// let textInputArea = document.querySelector(".text-input");
 
 // defining "career" area variables
 // going to change src of this element
@@ -575,7 +581,7 @@ const updateCareerStats = () => {
     // update average speed per minute
     avgSpeedElem.textContent = `${wpm} wpm`
     // average accuracy career
-    avgAccuracyElem.textContent = (accuracySaved * 100) + "%"
+    avgAccuracyElem.textContent = Math.round(accuracySaved * 100) + "%"
     updateVehicleStats()
   }
   else if (totalHeists > 1) {
@@ -586,7 +592,7 @@ const updateCareerStats = () => {
     userHealthElem.textContent = userHealth;
     // average accuracy career
     for (let i=0; i<userPlayer.accuracyArray.length; i++) {
-      avgAccuracy = (userPlayer.accuracyArray[0] + userPlayer.accuracyArray[i]) / totalHeists
+      avgAccuracy = Math.round(userPlayer.accuracyArray[0] + userPlayer.accuracyArray[i]) / totalHeists
       avgAccuracyElem.textContent = ((avgAccuracy/totalHeists) * 100) + "%";
     }
     updateVehicleStats()
