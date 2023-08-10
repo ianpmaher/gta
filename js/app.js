@@ -16,7 +16,6 @@ function introSequence() {
   introButton1Elem.addEventListener("click", () => {
     // hides the site's main contents!
     let mainElem = document.querySelector("main").classList.add("hidden");
-    let asideElem = document.querySelector("aside").classList.add("hidden");
     textInputArea.disabled = true;
     // remove the no intro button
     noIntroButton.remove();
@@ -67,13 +66,12 @@ function introSequence() {
           introContainerElem.appendChild(newTextElem6)
           introButton5Elem.classList.remove("hidden")
           introButton5Elem.addEventListener("click", () => {
+            introButton5Elem.remove();    
             introContainerElem.classList.add("hidden");
             // showing the full website
             let mainElem = document.querySelector("main").classList.remove("hidden");
-            let asideElem = document.querySelector("aside").classList.remove("hidden");
-            textInputArea.disabled = false;
             // also removing last button
-            introButton5Elem.remove();    
+            textInputArea.disabled = false;
           })
         })  
       });
@@ -294,7 +292,9 @@ vehicles = [
 ];
 
 const userPlayer = new Player("Bob", "", "", vehicles[0]);
-// userPlayer.getVehicle();
+
+
+
 
 // ACTUAL CODE FOR TYPING TEST
 // 60 seconds for user to type
@@ -419,7 +419,7 @@ const updatePromptQuote = () => {
 const updateRandomPromptQuote = () => {
   const url =
     // 1 randomly generated paragraph, containing 6 sentences!
-    "http://metaphorpsum.com/paragraphs/1/1";
+    "http://metaphorpsum.com/paragraphs/1/2";
 
   fetch(url, {
     headers: {},
@@ -563,6 +563,17 @@ const showResultSession = () => {
   updateCareerStats();
 };
 
+
+// since CSS animations only play once (per MDN) if iteration-count set to "infinite," which would look silly here,
+// necessary to add animation this way and then remove it afterwards, so it can be added again
+
+const makeCarFlipAnimation = () => {
+  userVehiclePicElem.style.cssText += `animation:rotate-and-scale 0.8s linear both`
+}
+const removeCarFlipAnimation = () => {
+  userVehiclePicElem.style.cssText -= `animation:rotate-and-scale 0.8s linear both`
+}
+
 // update career stats, not sure if I should put inside the function showResultSession?
 const updateCareerStats = () => {
   // update career heists
@@ -571,7 +582,9 @@ const updateCareerStats = () => {
   totalErrors += currentErrors
   // vehicles update !
   userPlayer.vehicle = vehicles[totalHeists];
-  // update picture of vehicle (removed bugs of duplicate .jpg)
+  // update picture of vehicle 
+  // adding css animation style here!!! with function defined above. will iteratively remove later on
+  makeCarFlipAnimation()
   updateVehicleStats()
   // first heist completed --->
   if (totalHeists === 1) {
@@ -604,7 +617,6 @@ const updateCareerStats = () => {
 };
 
 const userVehicleNameElem = document.querySelector("#vehicle-name")
-
 const userVehicleCostElem = document.querySelector("#vehicle-worth")
 
 const updateVehicleStats = () => {
@@ -612,6 +624,7 @@ const updateVehicleStats = () => {
   userVehicleNameElem.textContent = `${userPlayer.vehicle.year} ${userPlayer.vehicle.make} ${userPlayer.vehicle.model}`
   userVehicleCostElem.textContent = `$ ${userPlayer.vehicle.price}`
 };
+
 
 // RESET THE GAME'S CURRENT VALUES
 const resetCurrentValues = () => {
@@ -651,6 +664,7 @@ const startSession = () => {
   // putting in Random API function *****
   updateRandomPromptQuote()
   // clear Interval on timer functions
+  removeCarFlipAnimation()
 };
 
 // going to have prompt timer start when user clicks into the text area
