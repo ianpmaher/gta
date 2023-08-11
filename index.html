@@ -41,7 +41,10 @@
         <div id="quote-container">
           <div id="quote"></div>
         </div>
-        <label for="text-input">Type in the area below to start the heist!</label>
+        <div class="time-container">
+          <label for="text-input">Type in the area below to start the heist!</label>
+          <p class="shaped-time">Time Remaining: <span id="time-remaining"></span></p>
+        </div>
         <section id="input-field">
           <!--I learned you can make cursor go into text field with autofocus property-->
           <textarea class="text-input" id="text-input" placeholder="Type here!" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" rows="3">

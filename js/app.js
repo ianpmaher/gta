@@ -530,7 +530,7 @@ const timerUpdateSession = () => {
     // increment timeElapsed
     timeElapsed++;
     // display the timeRemaining through DOM manipulation
-    timeRemainingElem.textContent = timeRemaining + "sec";
+    timeRemainingElem.textContent = timeRemaining + " s";
   } else {
     // ends test by running following function
     showResultSession();
