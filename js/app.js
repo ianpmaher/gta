@@ -734,3 +734,13 @@ textInputArea.addEventListener("input", () => {
 
 const nextButton = document.querySelector("#next-button");
 nextButton.addEventListener("click", startSession);
+nextButtonFunction = () => {
+  if (totalHeists == 0) {
+    nextButton.disabled = true;
+  }
+  else if (totalHeists == 1) {
+    nextButton.disabled = false;
+  }
+}
+
+nextButtonFunction()

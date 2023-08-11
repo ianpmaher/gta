@@ -5,7 +5,8 @@ vehicles = [
     model: "Eighty Eight",
     price: 200,
     saying: "Hey, it's a car right?",
-    pic: "/assets/oldsmobile.jpg"
+    pic: "/assets/oldsmobile.jpg",
+    policeDifficulty: 30,
   },
   {
     year: 2001,
@@ -13,7 +14,8 @@ vehicles = [
     model: "Fiesta",
     price: 400,
     saying: "That paint job doesn't mask the cigarette smell.",
-    pic: "/assets/fordFiesta.jpg"
+    pic: "/assets/fordFiesta.jpg",
+    policeDifficulty: 30,
   },
   {
     year: 2004,
@@ -21,7 +23,8 @@ vehicles = [
     model: "Caravan",
     price: 600,
     saying: "You can fit so many friends in there, and safely, too!",
-    pic: "/assets/dodgeCaravan.jpg"
+    pic: "/assets/dodgeCaravan.jpg",
+    policeDifficulty: 30,
   },
   {
     year: 2008,
@@ -29,7 +32,8 @@ vehicles = [
     model: "PT Cruiser",
     price: 750,
     saying: "Why were these things so popular, anyways?",
-    pic: "/assets/ChryslerPTCruiser.jpg"
+    pic: "/assets/ChryslerPTCruiser.jpg",
+    policeDifficulty: 35,
   },
   {
     year: 2011,
@@ -37,7 +41,8 @@ vehicles = [
     model: "2500 Regular Cab",
     price: 900,
     saying: "Maybe I oughta get myself a truck.",
-    pic: "/assets/ramTruck.jpg"
+    pic: "/assets/ramTruck.jpg",
+    policeDifficulty: 35,
   },
   {
     year: 2015,
@@ -45,16 +50,18 @@ vehicles = [
     model: "Outback",
     price: 1900,
     saying: "WOW. Your first car less than a decade old!",
-    pic: "/assets/subaruOutback.jpg"
+    pic: "/assets/subaruOutback.jpg",
+    policeDifficulty: 35,
   },
-  
+
   {
     year: 2006,
     make: "Jeep",
     model: "Commander",
     price: 2600,
     saying: "That thing has SO MUCH cargo space.",
-    pic: "/assets/jeepCommander.jpg"
+    pic: "/assets/jeepCommander.jpg",
+    policeDifficulty: 40,
   },
   {
     year: 2015,
@@ -62,7 +69,8 @@ vehicles = [
     model: "Focus",
     price: 3500,
     saying: "How does that thing make it over curbs?",
-    pic: "/assets/fordFocus.jpg"
+    pic: "/assets/fordFocus.jpg",
+    policeDifficulty: 40,
   },
   {
     year: 2017,
@@ -70,7 +78,8 @@ vehicles = [
     model: "Mirage",
     price: 4300,
     saying: "Well isn't that a car, huh?",
-    pic: "/assets/mitsubishiMirage.JPG"
+    pic: "/assets/mitsubishiMirage.JPG",
+    policeDifficulty: 45,
   },
   {
     year: 2019,
@@ -78,7 +87,8 @@ vehicles = [
     model: "Beetle",
     price: 5000,
     saying: "I can't believe you fit in that thing.",
-    pic: "/assets/vWNewBeetle.jpg"
+    pic: "/assets/vWNewBeetle.jpg",
+    policeDifficulty: 45,
   },
   {
     year: 2016,
@@ -86,7 +96,8 @@ vehicles = [
     model: "RAV-4",
     price: 6100,
     saying: "Looking slick, jack!",
-    pic: "/assets/toyotaRav4.jpg"
+    pic: "/assets/toyotaRav4.jpg",
+    policeDifficulty: 45,
   },
   {
     year: 2018,
@@ -94,7 +105,8 @@ vehicles = [
     model: "Sonata",
     price: 6900,
     saying: "Nice. I guess used car prices really HAVE inflated since Covid.",
-    pic: "/assets/hyundaiSonata.jpg"
+    pic: "/assets/hyundaiSonata.jpg",
+    policeDifficulty: 50,
   },
   {
     year: 2015,
@@ -102,7 +114,8 @@ vehicles = [
     model: "MKZ Hybrid",
     price: 10000,
     saying: "Hybrid? You're not charging that thing off MY electric bill.",
-    pic: "/assets/lincolnMKZHybrid.jpg"
+    pic: "/assets/lincolnMKZHybrid.jpg",
+    policeDifficulty: 55,
   },
   {
     year: 2018,
@@ -110,7 +123,8 @@ vehicles = [
     model: "Bolt LS",
     price: 14000,
     saying: "WHAT DID I JUST SAY ABOUT ELECTRIC CARS?",
-    pic: "/assets/chevyBolt.jpg"
+    pic: "/assets/chevyBolt.jpg",
+    policeDifficulty: 60,
   },
   {
     year: 2019,
@@ -118,7 +132,8 @@ vehicles = [
     model: "Insight",
     price: 19000,
     saying: "So you got a knock-off Prius?",
-    pic: "/assets/hondaInsight.jpg"
+    pic: "/assets/hondaInsight.jpg",
+    policeDifficulty: 65,
   },
   {
     year: 2023,
@@ -126,7 +141,8 @@ vehicles = [
     model: "Soul",
     price: 21000,
     saying: "Isn't Kia Soul that car from the hamster commercial?",
-    pic: "/assets/kiaSoul.jpg"
+    pic: "/assets/kiaSoul.jpg",
+    policeDifficulty: 70,
   },
   {
     year: 2021,
@@ -134,7 +150,8 @@ vehicles = [
     model: "Discovery Sport",
     price: 30000,
     saying: "Now THAT is a vehicle worth my time.",
-    pic: "/assets/landRoverDiscovery.jpg"
+    pic: "/assets/landRoverDiscovery.jpg",
+    policeDifficulty: 75,
   },
   {
     year: 2021,
@@ -142,7 +159,8 @@ vehicles = [
     model: "A200 AMG",
     price: 36000,
     saying: "I would seriously count your blessings now, kid. The owner will want this one back.",
-    pic: "/assets/mercedesAclass.jpg"
+    pic: "/assets/mercedesAclass.jpg",
+    policeDifficulty: 80,
   },
   {
     year: 2020,
@@ -150,7 +168,8 @@ vehicles = [
     model: "m340i xDrive",
     price: 43000,
     saying: "Hold your horses, now, son. You don't want to get caught now.",
-    pic: "/assets/bMWm340i.jpg"
+    pic: "/assets/bMWm340i.jpg",
+    policeDifficulty: 85,
   },
   {
     year: 2022,
@@ -158,7 +177,8 @@ vehicles = [
     model: "Model Y",
     price: 55000,
     saying: "Okay, you realize how much Teslas stand out, right?",
-    pic: "/assets/teslaModelY.jpg"
+    pic: "/assets/teslaModelY.jpg",
+    policeDifficulty: 90,
   },
   {
     year: 1963,
@@ -166,7 +186,8 @@ vehicles = [
     model: "E-Type Series 1 Coupe",
     price: 83000,
     saying: "Classic Jags really do age like fine wine.",
-    pic: "/assets/mercedesAclass.jpg"
+    pic: "/assets/mercedesAclass.jpg",
+    policeDifficulty: 95,
   },
   {
     year: 2021,
@@ -174,6 +195,7 @@ vehicles = [
     model: "911",
     price: 150000,
     saying: "I'm nervous you even drove around in that thing.",
-    pic: "/assets/porsche911.jpg"
+    pic: "/assets/porsche911.jpg",
+    policeDifficulty: 100,
   },
-]
+];
