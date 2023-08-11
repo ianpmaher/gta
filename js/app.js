@@ -329,7 +329,7 @@ let avgSpeedElem = document.querySelector("#avg-speed");
 let totalHeists = 0;
 // user starts at 100 health, will subtract some # based on # errors
 let userHealth = 100;
-userHealthElem.textContent = `${userHealth} health`;
+userHealthElem.textContent = `${userHealth} hit points`;
 // will add cumulatively
 let totalErrors = 0;
 // needed basic variables for the logic --> "current"
