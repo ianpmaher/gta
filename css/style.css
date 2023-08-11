@@ -82,7 +82,28 @@ main {
 }
 /* ================ */
 /* GRAPHICS SECTION */
-
+#graphics {
+  width: 300px;
+  text-align: center;
+  margin: 1rem 0;
+}
+.progress-container {
+  display: block;
+  background-color: springgreen;
+  height: 25px;
+}
+.user-progress {
+  background-color: aquamarine;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s;
+}
+.police-progress {
+  background-color: red;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s;
+}
 
 
 #quote-container {
@@ -128,39 +149,11 @@ label {
   font-size: 1.2rem;
   background-color: aqua;
 }
-.table-container {
-  max-width: 30rem;
-  margin: 0 auto;
-  max-height: 20rem;
-  background-color: rgba(232, 118, 168,1);
-  display: flex;
-  border-radius: 5%;
-}
-table {
-  text-align: center;
-  margin: 0.5rem auto;
-  font-family: 'IBM Plex Mono', sans-serif, monospace;
-  font-size: 0.8rem;
-}
-.left {
-  width: 15rem;
-}
-td, th {
-  border: 2px solid rgba(115,61,161,0.9);
-  width: 19rem;
-}
-.table-element {
-  /* letter-spacing: 0.8px; */
-  line-height: 0.9;
-}
+
 #time-remaining {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
-/* #speed-container {
-  flex-direction: row;
-  justify-content: space-evenly;
-  
-} */
+
 .statblock {
   display: flex;
   /* flex-basis: content; */
@@ -190,7 +183,7 @@ td, th {
 .stat-inject {
   color: black;
   background-color: rgba(243,93,29,1);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 #user-vehicle {
   max-width: 250px;

@@ -31,7 +31,12 @@
     <div id="flex-container-page">
       <main>
         <section id="graphics">
-          <div class="flex-container"></div>
+          <div class="progress-container">
+            <div class="user-progress"></div>
+          </div>
+          <div class="progress-container">
+            <div class="police-progress"></div>
+          </div>
         </section>
         <div id="quote-container">
           <div id="quote"></div>
@@ -45,54 +50,14 @@
         </section>
         <section>
           <button id="start-button">Start</button>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th colspan="2">
-                    <h3 class="table-element" style="font-size: 1rem;">Time Remaining: <span id="time-remaining" class="stat-inject">60</span></h3>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="left">
-                    <h3 class="table-element">Accuracy: </h3>
-                  </td>
-                  <td><h3 class="table-element"><span id="accuracy" class="stat-inject">100%</span></h3></td>
-                </tr>
-                <tr>
-                  <td class="left">
-                    <h3 class="table-element">Errors: </h3>
-                  </td>
-                  <td><h3 class="table-element"><span id="current-errors" class="stat-inject">0</span></h3></td>
-                </tr>
-                <tr>
-                  <td class="left">
-                    <h3 class="table-element">Current Speed: </h3>
-                  </td>
-                  <td><h3 class="table-element"><span id="user-speed" class="stat-inject">.</span></h3></td>
-                </tr>
-                <tr>
-                  <td class="left">
-                    <h3 class="table-element">Police Speed: </h3>
-                  </td>
-                  <td><h3 class="table-element"><span id="police-speed" class="stat-inject"></span></h3></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="flex-container">
+            <p class="cool-stat">Accuracy: <span id="accuracy" class="stat-inject">100%</span></p>
+            <p class="cool-stat">Errors: <span id="current-errors" class="stat-inject">0</span></p>
           </div>
-          <!-- <section class="top-row">
-            <div class="flex-container" id="time-row-container">
-              <p>Time Remaining: <span id="time-remaining" class="stat-inject"></span></p>
-              <p>Accuracy: <span id="accuracy" class="stat-inject"></span></p>
-              <p>Errors: <span id="current-errors" class="stat-inject"></span></p>
-            </div>
-          </section> -->
-          <!-- <div class="flex-container" id="speed-container">
-            <p>Current Speed: <span id="user-speed" class="stat-inject"></span></p>
-            <p>Police Speed: <span id="police-speed" class="stat-inject"></span></p>
-          </div> -->
+          <div class="flex-container" id="speed-container">
+            <p class="cool-stat">Current Speed: <span id="user-speed" class="stat-inject">.</span></p>
+            <p class="cool-stat">Police Speed: <span id="police-speed" class="stat-inject">.</span></p>
+          </div>
         </section>
         <section class="statblock">
           <img id="user-vehicle" src="" />
