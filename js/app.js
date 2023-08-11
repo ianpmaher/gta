@@ -588,7 +588,7 @@ const timerTickTockFunction = () => {
 
 // show Difficulty for police
 const displayPoliceDifficulty = () => {
-  policeSpeedElem.textContent = userPlayer.vehicle.policeDifficulty;
+  policeSpeedElem.textContent = userPlayer.vehicle.policeDifficulty + " wpm";
 };
 
 // results of session, DOM manipulation of necessary stats

@@ -1,8 +1,8 @@
 body {
-  background-image:url("/assets/palms.png");
+  background-image: url("/assets/palms.png");
   background-size: cover;
   background-position: center;
-  width: 99vw;;
+  width: 99vw;
   height: 95vh;
   overflow-x: hidden;
 }
@@ -60,7 +60,7 @@ main {
 }
 .intro-buttons {
   font-size: 1rem;
-  background-color: rgba(117,251,204,1);
+  background-color: rgba(117, 251, 204, 1);
   border-radius: 20%;
   padding: 0.5rem;
   margin: 1rem;
@@ -71,10 +71,10 @@ main {
   margin-top: -10rem;
 }
 .intro-text {
-  font-family: 'Caprasimo', monospace;
+  font-family: "Caprasimo", monospace;
   color: white;
   font-size: 1rem;
-  text-align:left;  
+  text-align: left;
   animation: tracking-in-expand 0.8s ease-in-out both;
   -webkit-animation: tracking-in-expand 0.8s ease-in-out both;
   line-height: 1;
@@ -100,7 +100,7 @@ main {
   -webkit-animation: move-right 5s linear both;
 }
 #quote-container {
-  background-color: rgb(246,246,246);
+  background-color: rgb(246, 246, 246);
   width: 100%;
   height: 14%;
   align-items: center;
@@ -116,45 +116,56 @@ main {
   background-color: rgba(54, 125, 54, 0.2);
 }
 .incorrect-character {
-  background-color: rgba(246,114,128,0.4);
-  text-decoration: underline rgba(246,114,128,1);
+  background-color: rgba(246, 114, 128, 0.4);
+  text-decoration: underline rgba(246, 114, 128, 1);
 }
 .current-character {
-  background-color: rgba(0,0,0,0.3);
-  border: solid 2px rgba(1,1,1,0.5);
+  background-color: rgba(0, 0, 0, 0.3);
+  border: solid 2px rgba(1, 1, 1, 0.5);
 }
 #input-field {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 4rem;
+  height: 3.5rem;
   outline: none;
-}
-label {
-  font-family: 'Caprasimo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
 }
 .time-container {
   display: flex;
-  flex-flow: row wrap;
-  font-family: 'Caprasimo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  flex-flow: row nowrap;
+  font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: white;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+}
+label {
+  font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  font-size: 0.9rem;
+  width: 13rem;
+  text-align: center;
+}
+#next-button {
+  font-size: 1.4rem;
+  border-radius: 20%;
+  background-color: rgba(116, 248, 201, 1);
+  font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  animation: shake 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 #time-remaining {
   font-size: 1rem;
-  font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
-  color: black;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  color: ghostwhite;
 }
 .shaped-time {
-  height: 1.9rem;
-  width: 15rem;
+  height: 2.3rem;
+  width: 13rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 30%;
-  background-color: rgba(232,117,79,1);
+  background-color: rgba(232, 117, 79, 1);
   text-align: center;
 }
 .text-input {
@@ -164,10 +175,6 @@ label {
 .text-input:focus {
   font-size: 1.1rem;
 }
-#start-button {
-  font-size: 1rem;
-  background-color: aqua;
-}
 .super-container {
   display: flex;
   justify-content: space-evenly;
@@ -175,15 +182,16 @@ label {
 }
 .current-container {
   background-color: darkorange;
-  border-radius: 30%;
-  width: 22rem;
-  height: 3rem;
+  border-radius: 10%;
+  width: 18rem;
+  padding: 0 1.5rem;
+  height: 2.6rem;
   display: flex;
   flex-flow: row wrap;
-  align-self: center;
-  align-items: center;
+  align-items: normal;
   justify-content: space-evenly;
-  font-family: 'Caprasimo', Monaco, sans-serif;
+  font-family: "Caprasimo", Monaco, sans-serif;
+  font-size: 0.9rem;
 }
 .statblock {
   display: flex;
@@ -192,12 +200,13 @@ label {
   padding: 0 2rem;
   gap: 1rem;
   border-radius: 20rem;
-  background: linear-gradient(45deg, rgba(159,65,172,1) 0%, rgba(115,61,161,1) 45%, rgba(157,43,142,1)80%);
+  background: linear-gradient(45deg, rgba(159, 65, 172, 1) 0%, rgba(115, 61, 161, 1) 45%, rgba(157, 43, 142, 1) 80%);
   border-radius: 0.5rem;
-  /* margin: 0.5rem; */
+  margin: 0.5rem;
   text-align: center;
-  font-family: 'Caprasimo', 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-family: "Caprasimo", "Segoe UI", Arial, Helvetica, sans-serif;
   font-size: 0.9rem;
+  width: 80%;
   align-items: center;
   justify-content: space-around;
   color: ghostwhite;
@@ -216,24 +225,20 @@ label {
 }
 .stat-inject {
   color: black;
-  background-color: rgba(243,93,29,1);
-  font-family: 'IBM Plex Mono', monospace;
+  background-color: rgba(243, 93, 29, 1);
+  font-family: "IBM Plex Mono", monospace;
   font-size: 1rem;
 }
 #user-vehicle {
   max-width: 250px;
   max-height: 225px;
   transition: scale 1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-}  
+}
 #user-vehicle:hover {
   scale: 1.8;
 }
 
-@media only screen 
-  and (min-device-width: 377px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3) {
-  
+@media only screen and (min-device-width: 377px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   header {
     width: 100%;
     margin-bottom: 5rem;
@@ -244,7 +249,6 @@ label {
     background-size: 8rem;
     margin-top: 1rem;
     height: 7rem;
-
   }
   .logo:active {
     background-size: 7rem;
@@ -253,7 +257,7 @@ label {
   }
   #flex-container-page {
     flex-direction: column-reverse;
-    align-items:center;
+    align-items: center;
     justify-content: center;
     margin-top: 3rem;
     /* height: 85%; */
@@ -272,7 +276,7 @@ label {
     font-size: 0.8rem;
   }
   label {
-    display: none;  
+    display: none;
   }
   #time-remaining {
     font-size: 0.6rem;
@@ -291,14 +295,15 @@ label {
     height: 0.8rem;
     width: fit-content;
   }
-  .restart-button, #next-button {
+  .restart-button,
+  #next-button {
     font-size: 0.5rem;
   }
   .current-container {
     font-size: 0.5rem;
     height: 1.5rem;
     padding: 0.1rem 0.5rem;
-    margin-top: 0.5rem;    
+    margin-top: 0.5rem;
     width: 8rem;
     flex-flow: row nowrap;
     justify-content: space-evenly;
@@ -353,18 +358,14 @@ label {
   .car-images {
     width: 56px;
     height: 36px;
-    animation: mobile-move-right 30s linear both
+    animation: mobile-move-right 30s linear both;
   }
   .progress-container {
     margin-top: -4rem;
   }
-} 
+}
 
-@media only screen 
-  and (min-device-width: 250px) 
-  and (max-device-width: 376px) 
-   {
-  
+@media only screen and (min-device-width: 250px) and (max-device-width: 376px) {
   header {
     width: 100%;
     margin-bottom: 2rem;
@@ -375,7 +376,6 @@ label {
     background-size: 4rem;
     margin-top: 1rem;
     height: 4rem;
-
   }
   .logo:active {
     background-size: 7rem;
@@ -384,7 +384,7 @@ label {
   }
   #flex-container-page {
     flex-direction: column-reverse;
-    align-items:center;
+    align-items: center;
     justify-content: center;
     margin-top: 3rem;
     /* height: 85%; */
@@ -403,7 +403,7 @@ label {
     font-size: 0.8rem;
   }
   label {
-    display: none;  
+    display: none;
   }
   #time-remaining {
     font-size: 0.6rem;
@@ -422,14 +422,15 @@ label {
     height: 0.8rem;
     width: fit-content;
   }
-  .restart-button, #next-button {
+  .restart-button,
+  #next-button {
     font-size: 0.5rem;
   }
   .current-container {
     font-size: 0.5rem;
     height: 1.5rem;
     padding: 0.1rem 0.5rem;
-    margin-top: 0.5rem;    
+    margin-top: 0.5rem;
     width: 8rem;
     flex-flow: row nowrap;
     justify-content: space-evenly;
@@ -484,12 +485,17 @@ label {
   .car-images {
     width: 56px;
     height: 36px;
-    animation: mobile-move-right 30s linear both
+    animation: mobile-move-right 30s linear both;
   }
   .progress-container {
     margin-top: 0rem;
   }
-} 
+}
+
+/* ===============
+=== ANIMATIONS ===
+================*/
+/* https://animista.net/ extremely helpful */
 
 @-webkit-keyframes tracking-in-expand {
   0% {
@@ -545,34 +551,14 @@ label {
   }
 }
 
-@keyframes scale-down {
-  0% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
-  100% {
-    transform: scale(0.5);
-    -webkit-transform: scale(0.5);
-  }
-}
-@-webkit-keyframes scale-down {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  100% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-}
 @keyframes move-right {
   0% {
     transform: translateX(0);
     -webkit-transform: translateX(0);
   }
   100% {
-    transform: translateX(800px);
-    -webkit-transform: translateX(800px)
+    transform: translateX(900px);
+    -webkit-transform: translateX(900px);
   }
 }
 @-webkit-keyframes move-right {
@@ -581,8 +567,8 @@ label {
     -webkit-transform: translateX(0);
   }
   100% {
-    transform: translateX(800px);
-    -webkit-transform: translateX(800px)
+    transform: translateX(900px);
+    -webkit-transform: translateX(900px);
   }
 }
 @keyframes mobile-move-right {
@@ -592,6 +578,40 @@ label {
   }
   100% {
     transform: translateX(350px);
-    -webkit-transform: translateX(350px)
+    -webkit-transform: translateX(350px);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+  10% {
+    -webkit-transform: rotate(8deg);
+            transform: rotate(8deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  }
+  80% {
+    -webkit-transform: rotate(-8deg);
+            transform: rotate(-8deg);
+  }
+  90% {
+    -webkit-transform: rotate(8deg);
+            transform: rotate(8deg);
   }
 }

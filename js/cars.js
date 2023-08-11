@@ -24,7 +24,7 @@ vehicles = [
     price: 600,
     saying: "You can fit so many friends in there, and safely, too!",
     pic: "/assets/dodgeCaravan.jpg",
-    policeDifficulty: 30,
+    policeDifficulty: 35,
   },
   {
     year: 2008,
@@ -42,7 +42,7 @@ vehicles = [
     price: 900,
     saying: "Maybe I oughta get myself a truck.",
     pic: "/assets/ramTruck.jpg",
-    policeDifficulty: 35,
+    policeDifficulty: 40,
   },
   {
     year: 2015,
@@ -51,7 +51,7 @@ vehicles = [
     price: 1900,
     saying: "WOW. Your first car less than a decade old!",
     pic: "/assets/subaruOutback.jpg",
-    policeDifficulty: 35,
+    policeDifficulty: 45,
   },
 
   {
@@ -61,7 +61,7 @@ vehicles = [
     price: 2600,
     saying: "That thing has SO MUCH cargo space.",
     pic: "/assets/jeepCommander.jpg",
-    policeDifficulty: 40,
+    policeDifficulty: 45,
   },
   {
     year: 2015,
@@ -70,7 +70,7 @@ vehicles = [
     price: 3500,
     saying: "How does that thing make it over curbs?",
     pic: "/assets/fordFocus.jpg",
-    policeDifficulty: 40,
+    policeDifficulty: 50,
   },
   {
     year: 2017,
@@ -79,7 +79,7 @@ vehicles = [
     price: 4300,
     saying: "Well isn't that a car, huh?",
     pic: "/assets/mitsubishiMirage.JPG",
-    policeDifficulty: 45,
+    policeDifficulty: 55,
   },
   {
     year: 2019,
@@ -88,7 +88,7 @@ vehicles = [
     price: 5000,
     saying: "I can't believe you fit in that thing.",
     pic: "/assets/vWNewBeetle.jpg",
-    policeDifficulty: 45,
+    policeDifficulty: 55,
   },
   {
     year: 2016,
@@ -97,7 +97,7 @@ vehicles = [
     price: 6100,
     saying: "Looking slick, jack!",
     pic: "/assets/toyotaRav4.jpg",
-    policeDifficulty: 45,
+    policeDifficulty: 60,
   },
   {
     year: 2018,
@@ -106,7 +106,7 @@ vehicles = [
     price: 6900,
     saying: "Nice. I guess used car prices really HAVE inflated since Covid.",
     pic: "/assets/hyundaiSonata.jpg",
-    policeDifficulty: 50,
+    policeDifficulty: 60,
   },
   {
     year: 2015,
@@ -115,7 +115,7 @@ vehicles = [
     price: 10000,
     saying: "Hybrid? You're not charging that thing off MY electric bill.",
     pic: "/assets/lincolnMKZHybrid.jpg",
-    policeDifficulty: 55,
+    policeDifficulty: 65,
   },
   {
     year: 2018,
@@ -124,7 +124,7 @@ vehicles = [
     price: 14000,
     saying: "WHAT DID I JUST SAY ABOUT ELECTRIC CARS?",
     pic: "/assets/chevyBolt.jpg",
-    policeDifficulty: 60,
+    policeDifficulty: 70,
   },
   {
     year: 2019,
@@ -133,7 +133,7 @@ vehicles = [
     price: 19000,
     saying: "So you got a knock-off Prius?",
     pic: "/assets/hondaInsight.jpg",
-    policeDifficulty: 65,
+    policeDifficulty: 75,
   },
   {
     year: 2023,
@@ -142,7 +142,7 @@ vehicles = [
     price: 21000,
     saying: "Isn't Kia Soul that car from the hamster commercial?",
     pic: "/assets/kiaSoul.jpg",
-    policeDifficulty: 70,
+    policeDifficulty: 75,
   },
   {
     year: 2021,
@@ -151,7 +151,7 @@ vehicles = [
     price: 30000,
     saying: "Now THAT is a vehicle worth my time.",
     pic: "/assets/landRoverDiscovery.jpg",
-    policeDifficulty: 75,
+    policeDifficulty: 80,
   },
   {
     year: 2021,
@@ -178,7 +178,7 @@ vehicles = [
     price: 55000,
     saying: "Okay, you realize how much Teslas stand out, right?",
     pic: "/assets/teslaModelY.jpg",
-    policeDifficulty: 90,
+    policeDifficulty: 85,
   },
   {
     year: 1963,
@@ -187,7 +187,7 @@ vehicles = [
     price: 83000,
     saying: "Classic Jags really do age like fine wine.",
     pic: "/assets/mercedesAclass.jpg",
-    policeDifficulty: 95,
+    policeDifficulty: 90,
   },
   {
     year: 2021,
@@ -196,6 +196,6 @@ vehicles = [
     price: 150000,
     saying: "I'm nervous you even drove around in that thing.",
     pic: "/assets/porsche911.jpg",
-    policeDifficulty: 100,
+    policeDifficulty: 95,
   },
 ];
