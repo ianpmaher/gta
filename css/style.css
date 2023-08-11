@@ -1,6 +1,7 @@
 body {
   background-image:url("/assets/palms.png");
   background-size: cover;
+  background-position: center;
   width: 99vw;;
   height: 95vh;
   overflow-x: hidden;
@@ -14,14 +15,19 @@ header {
   margin-bottom: 0.5rem;
 }
 .logo {
-  height: 15rem;
+  height: 13rem;
   width: 23rem;
   background-image: url(/assets/gtaLogoCircleGradientNew.png);
   background-position: center;
-  background-size: 18rem;
+  background-size: 15rem;
   background-repeat: no-repeat;
   margin-top: -0.5rem;
-  z-index: 2;
+  z-index: 1;
+  transition: 0.5s;
+}
+.logo:active {
+  background-size: 20rem;
+  height: 17rem;
 }
 #flex-container-page {
   display: flex;
@@ -54,7 +60,7 @@ main {
 }
 .intro-buttons {
   font-size: 1rem;
-  background-color: fuchsia;
+  background-color: rgba(117,251,204,1);
   border-radius: 20%;
   padding: 0.5rem;
   margin: 1rem;
@@ -69,8 +75,8 @@ main {
   color: white;
   font-size: 1rem;
   text-align:left;  
-  animation: tracking-in-expand 1.1s ease-in-out both;
-  -webkit-animation: tracking-in-expand 1.1s ease-in-out both;
+  animation: tracking-in-expand 0.8s ease-in-out both;
+  -webkit-animation: tracking-in-expand 0.8s ease-in-out both;
   line-height: 1;
 }
 /* ================ */
@@ -83,6 +89,7 @@ main {
   background-image: url("/assets/roadProgress.png");
   background-position: bottom;
   background-size: contain;
+  z-index: 2;
 }
 /* #car-player {
   animation: move-right 5s linear both;
@@ -234,8 +241,8 @@ label {
     background-color: rgba(9,23,58,1);
   }
   .logo {
-    height: 6rem;
-    width: 11rem;
+    background-size: 6rem;
+    margin-top: -1.5rem;
   }
   #flex-container-page {
     flex-direction: column-reverse;

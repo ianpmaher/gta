@@ -44,36 +44,39 @@ function introSequence() {
       introButton3Elem.classList.remove("hidden");
       introButton3Elem.addEventListener("click", () => {
         // add in next string of text to instructions
-        introButton3Elem.remove()
-        let newTextElem3 = document.createElement("p")
-        newTextElem3.classList.add("intro-text")
-        newTextElem3.textContent = "You will have to steal some cars for us."
-        introContainerElem.appendChild(newTextElem3)
-        let newTextElem4 = document.createElement("p")
-        newTextElem4.classList.add("intro-text")
-        newTextElem4.textContent = "You gotta TYPE as FAST as you can to outrun those cops. A leisurely 30 words per minute ought to be enough for the first junker car."
-        introContainerElem.appendChild(newTextElem4)
-        introButton4Elem.classList.remove("hidden")
+        introButton3Elem.remove();
+        let newTextElem3 = document.createElement("p");
+        newTextElem3.classList.add("intro-text");
+        newTextElem3.textContent = "You will have to steal some cars for us.";
+        introContainerElem.appendChild(newTextElem3);
+        let newTextElem4 = document.createElement("p");
+        newTextElem4.classList.add("intro-text");
+        newTextElem4.textContent =
+          "You gotta TYPE as FAST as you can to outrun those cops. A leisurely 30 words per minute ought to be enough for the first junker car.";
+        introContainerElem.appendChild(newTextElem4);
+        introButton4Elem.classList.remove("hidden");
         introButton4Elem.addEventListener("click", () => {
-          introButton4Elem.remove()
-          let newTextElem5 = document.createElement("p")
-          newTextElem5.classList.add("intro-text")
-          newTextElem5.textContent = "Yes, typing. You'll see a prompt. Type in each letter. Gotta be quick, but MISTAKES will cost you." 
-          introContainerElem.appendChild(newTextElem5)
-          let newTextElem6 = document.createElement("p")
-          newTextElem6.classList.add("intro-text")
-          newTextElem6.textContent = "You'll lose 1 health for every 2 typos. Got it? Each prompt will get more difficult, too. But each prompt will mean more money."
-          introContainerElem.appendChild(newTextElem6)
-          introButton5Elem.classList.remove("hidden")
+          introButton4Elem.remove();
+          let newTextElem5 = document.createElement("p");
+          newTextElem5.classList.add("intro-text");
+          newTextElem5.textContent =
+            "Yes, typing. You'll see a prompt. Type in each letter. Gotta be quick, but MISTAKES will cost you.";
+          introContainerElem.appendChild(newTextElem5);
+          let newTextElem6 = document.createElement("p");
+          newTextElem6.classList.add("intro-text");
+          newTextElem6.textContent =
+            "You'll lose 1 health for every 2 typos. Got it? Each prompt will get more difficult, too. But each prompt will mean more money.";
+          introContainerElem.appendChild(newTextElem6);
+          introButton5Elem.classList.remove("hidden");
           introButton5Elem.addEventListener("click", () => {
-            introButton5Elem.remove();    
+            introButton5Elem.remove();
             introContainerElem.classList.add("hidden");
             // showing the full website
             let mainElem = document.querySelector("main").classList.remove("hidden");
             // also removing last button
             textInputArea.disabled = false;
-          })
-        })  
+          });
+        });
       });
     });
   });
@@ -97,7 +100,7 @@ class Player {
     this.criminal = true;
     this.police = false;
     this.vehicle = vehicle;
-    this.accuracyArray = []
+    this.accuracyArray = [];
   }
   // methods
   getVehicle() {
@@ -119,6 +122,7 @@ vehicles = [
     price: 200,
     saying: "Hey, it's a car right?",
     pic: "/assets/oldsmobile.jpg",
+    policeDifficulty: 30,
   },
   {
     year: 2001,
@@ -127,6 +131,7 @@ vehicles = [
     price: 400,
     saying: "That paint job doesn't mask the cigarette smell.",
     pic: "/assets/fordFiesta.jpg",
+    policeDifficulty: 30,
   },
   {
     year: 2004,
@@ -135,6 +140,7 @@ vehicles = [
     price: 600,
     saying: "You can fit so many friends in there, and safely, too!",
     pic: "/assets/dodgeCaravan.jpg",
+    policeDifficulty: 30,
   },
   {
     year: 2008,
@@ -143,6 +149,7 @@ vehicles = [
     price: 750,
     saying: "Why were these things so popular, anyways?",
     pic: "/assets/ChryslerPTCruiser.jpg",
+    policeDifficulty: 35,
   },
   {
     year: 2011,
@@ -151,6 +158,7 @@ vehicles = [
     price: 900,
     saying: "Maybe I oughta get myself a truck.",
     pic: "/assets/ramTruck.jpg",
+    policeDifficulty: 35,
   },
   {
     year: 2015,
@@ -159,6 +167,7 @@ vehicles = [
     price: 1900,
     saying: "WOW. Your first car less than a decade old!",
     pic: "/assets/subaruOutback.jpg",
+    policeDifficulty: 35,
   },
 
   {
@@ -168,6 +177,7 @@ vehicles = [
     price: 2600,
     saying: "That thing has SO MUCH cargo space.",
     pic: "/assets/jeepCommander.jpg",
+    policeDifficulty: 40,
   },
   {
     year: 2015,
@@ -176,6 +186,7 @@ vehicles = [
     price: 3500,
     saying: "How does that thing make it over curbs?",
     pic: "/assets/fordFocus.jpg",
+    policeDifficulty: 40,
   },
   {
     year: 2017,
@@ -184,6 +195,7 @@ vehicles = [
     price: 4300,
     saying: "Well isn't that a car, huh?",
     pic: "/assets/mitsubishiMirage.JPG",
+    policeDifficulty: 45,
   },
   {
     year: 2019,
@@ -192,6 +204,7 @@ vehicles = [
     price: 5000,
     saying: "I can't believe you fit in that thing.",
     pic: "/assets/vWNewBeetle.jpg",
+    policeDifficulty: 45,
   },
   {
     year: 2016,
@@ -200,6 +213,7 @@ vehicles = [
     price: 6100,
     saying: "Looking slick, jack!",
     pic: "/assets/toyotaRav4.jpg",
+    policeDifficulty: 45,
   },
   {
     year: 2018,
@@ -208,6 +222,7 @@ vehicles = [
     price: 6900,
     saying: "Nice. I guess used car prices really HAVE inflated since Covid.",
     pic: "/assets/hyundaiSonata.jpg",
+    policeDifficulty: 50,
   },
   {
     year: 2015,
@@ -216,6 +231,7 @@ vehicles = [
     price: 10000,
     saying: "Hybrid? You're not charging that thing off MY electric bill.",
     pic: "/assets/lincolnMKZHybrid.jpg",
+    policeDifficulty: 55,
   },
   {
     year: 2018,
@@ -224,6 +240,7 @@ vehicles = [
     price: 14000,
     saying: "WHAT DID I JUST SAY ABOUT ELECTRIC CARS?",
     pic: "/assets/chevyBolt.jpg",
+    policeDifficulty: 60,
   },
   {
     year: 2019,
@@ -232,6 +249,7 @@ vehicles = [
     price: 19000,
     saying: "So you got a knock-off Prius?",
     pic: "/assets/hondaInsight.jpg",
+    policeDifficulty: 65,
   },
   {
     year: 2023,
@@ -240,6 +258,7 @@ vehicles = [
     price: 21000,
     saying: "Isn't Kia Soul that car from the hamster commercial?",
     pic: "/assets/kiaSoul.jpg",
+    policeDifficulty: 70,
   },
   {
     year: 2021,
@@ -248,6 +267,7 @@ vehicles = [
     price: 30000,
     saying: "Now THAT is a vehicle worth my time.",
     pic: "/assets/landRoverDiscovery.jpg",
+    policeDifficulty: 75,
   },
   {
     year: 2021,
@@ -256,6 +276,7 @@ vehicles = [
     price: 36000,
     saying: "I would seriously count your blessings now, kid. The owner will want this one back.",
     pic: "/assets/mercedesAclass.jpg",
+    policeDifficulty: 80,
   },
   {
     year: 2020,
@@ -264,6 +285,7 @@ vehicles = [
     price: 43000,
     saying: "Hold your horses, now, son. You don't want to get caught now.",
     pic: "/assets/bMWm340i.jpg",
+    policeDifficulty: 85,
   },
   {
     year: 2022,
@@ -272,6 +294,7 @@ vehicles = [
     price: 55000,
     saying: "Okay, you realize how much Teslas stand out, right?",
     pic: "/assets/teslaModelY.jpg",
+    policeDifficulty: 90,
   },
   {
     year: 1963,
@@ -280,6 +303,7 @@ vehicles = [
     price: 83000,
     saying: "Classic Jags really do age like fine wine.",
     pic: "/assets/mercedesAclass.jpg",
+    policeDifficulty: 95,
   },
   {
     year: 2021,
@@ -288,11 +312,11 @@ vehicles = [
     price: 150000,
     saying: "I'm nervous you even drove around in that thing.",
     pic: "/assets/porsche911.jpg",
+    policeDifficulty: 100,
   },
 ];
 
 const userPlayer = new Player("Bob", "", "", vehicles[0]);
-
 
 // ACTUAL CODE FOR TYPING TEST
 // 60 seconds for user to type
@@ -304,6 +328,7 @@ const timeLimit = 60;
 let timeRemainingElem = document.querySelector("#time-remaining");
 let accuracyCurrentElem = document.querySelector("#accuracy");
 let userSpeedCurrentElem = document.querySelector("#user-speed");
+let policeSpeedElem = document.querySelector("#police-speed");
 let currentErrorElem = document.querySelector("#current-errors");
 // from below Fetch() :
 // let promptElem = document.querySelector("#prompt");
@@ -340,7 +365,7 @@ let currentErrors = 0;
 let avgAccuracy = 0;
 let accuracy = 0;
 // initializing here?
-let accuracySaved = 0
+let accuracySaved = 0;
 let avgSpeedVariable = 0;
 // typedCharsInput starts at 0, will use to count user input
 let typedCharsInput = 0;
@@ -406,7 +431,7 @@ const updatePromptQuote = () => {
 
 // **RANDOM PROMPT QUOTE**
 // there have been issues documented in the GitHub for the Quotable API
-// with server being down, so temporarily going to do this and 
+// with server being down, so temporarily going to do this and
 // figure out if I can do a failsafe later...
 // https://github.com/lukePeavey/quotable/issues
 // dated 8/7 https://github.com/lukePeavey/quotable/issues/193
@@ -416,8 +441,8 @@ const updatePromptQuote = () => {
 
 const updateRandomPromptQuote = () => {
   const url =
-    // 1 randomly generated paragraph, containing 6 sentences!
-    "http://metaphorpsum.com/paragraphs/1/2";
+    // 1 randomly generated paragraph, containing 3 sentences!
+    "http://metaphorpsum.com/paragraphs/1/3";
 
   fetch(url, {
     headers: {},
@@ -431,17 +456,17 @@ const updateRandomPromptQuote = () => {
       (data) => {
         // api returns just the text, not as JSON
         quotesData1 = JSON.stringify(data);
-        let splitPromptRandom = quotesData1.split("")
+        let splitPromptRandom = quotesData1.split("");
         let arrSplitPromptRandom = splitPromptRandom.map((value) => {
-          // as stated in updatePromptQuote(), need to split each character 
+          // as stated in updatePromptQuote(), need to split each character
           // into individual HTML span tag element
-          return `<span class="prompt-text">${value}</span>`
-        })
-        // the API quote had quotation marks, so removing first and last element of the 
+          return `<span class="prompt-text">${value}</span>`;
+        });
+        // the API quote had quotation marks, so removing first and last element of the
         // span array will remove those quotation marks (since they are now span elements)
-        arrSplitPromptRandom.shift()
-        arrSplitPromptRandom.pop()
-        quoteElem.innerHTML += arrSplitPromptRandom.join("")
+        arrSplitPromptRandom.shift();
+        arrSplitPromptRandom.pop();
+        quoteElem.innerHTML += arrSplitPromptRandom.join("");
         // quote itself is content of one element
         // let promptObj = { prompt: quotesData1 };
         // promptsUsedArray.push(promptObj);
@@ -450,6 +475,25 @@ const updateRandomPromptQuote = () => {
     );
 };
 // fetchRandomPrompt();
+
+// Vanilla JavaScript solution to move the cars
+// moving is just translateX CSS animation, so going to add and remove that CSS property
+const carPlayerElem = document.querySelector("#car-player");
+const carPoliceElem = document.querySelector("#car-police");
+
+const addPlayerCarMove = () => {
+  carPlayerElem.style.cssText += `animation: move-right 30s linear both`;
+};
+const removePlayerCarMove = () => {
+  carPlayerElem.style.cssText -= `animation: move-right 30s linear both`;
+};
+
+const addPoliceCarMove = () => {
+  carPoliceElem.style.cssText += `animation: move-right 60s linear both`;
+};
+const removePoliceCarMove = () => {
+  carPoliceElem.style.cssText -= `animation: move-right 60s linear both`;
+};
 
 // ***
 // function to handle USER INPUT
@@ -495,15 +539,15 @@ const handleUserTypingInput = () => {
   // current error element handling and current accuracy element handling
   currentErrorElem.textContent = currentErrors;
   // accuracy text
-  let correctCharacterCount = typedCharsInput - (currentErrors);
-  let accuracy = (correctCharacterCount / typedCharsInput)
+  let correctCharacterCount = typedCharsInput - currentErrors;
+  let accuracy = correctCharacterCount / typedCharsInput;
   // 100 to make accuracy a percentage value
-  let accuracyText = (accuracy) * 100;
+  let accuracyText = accuracy * 100;
   accuracyCurrentElem.textContent = Math.round(accuracyText) + "%";
   // maybe store accuracy as something else ??
-  accuracySaved = accuracy
-  userPlayer.accuracyArray.push(accuracySaved)
-  
+  accuracySaved = accuracy;
+  userPlayer.accuracyArray.push(accuracySaved);
+
   // now writing function to return TRUE if characters are all entered correctly
   // so user doesn't have to wait for timer to complete unnecessarily
   // using the function .every() with callback function
@@ -542,6 +586,11 @@ const timerTickTockFunction = () => {
   timerInterval = setInterval(timerUpdateSession, 1000);
 };
 
+// show Difficulty for police
+const displayPoliceDifficulty = () => {
+  policeSpeedElem.textContent = userPlayer.vehicle.policeDifficulty;
+};
+
 // results of session, DOM manipulation of necessary stats
 // also this function serves to end the typing session
 const showResultSession = () => {
@@ -559,88 +608,75 @@ const showResultSession = () => {
   userSpeedCurrentElem.textContent = wpm + "wpm";
 
   updateCareerStats();
+  removePlayerCarMove();
+  removePoliceCarMove();
 };
-
-
-// Vanilla JavaScript solution to move the cars
-// moving is just translateX CSS animation, so going to add and remove that CSS property
-const carPlayerElem = document.querySelector("#car-player");
-const carPoliceElem = document.querySelector("#car-police");
-
-const movePlayerCar = () => {
-  carPlayerElem.style
-}
-
 
 // since CSS animations only play once (per MDN) if iteration-count set to "infinite," which would look silly here,
 // necessary to add animation this way and then remove it afterwards, so it can be added again
 
 const makeCarFlipAnimation = () => {
-  userVehiclePicElem.style.cssText += `animation:rotate-and-scale 0.8s linear both`
-}
+  userVehiclePicElem.style.cssText += `animation:rotate-and-scale 0.8s linear both`;
+};
 const removeCarFlipAnimation = () => {
-  userVehiclePicElem.style.cssText -= `animation:rotate-and-scale 0.8s linear both`
-}
+  userVehiclePicElem.style.cssText -= `animation:rotate-and-scale 0.8s linear both`;
+};
 
 // update career stats, not sure if I should put inside the function showResultSession?
 const updateCareerStats = () => {
   // update career heists
   totalHeists++;
   totalHeistsCountElem.textContent = totalHeists;
-  totalErrors += currentErrors
+  totalErrors += currentErrors;
   // vehicles update !
   userPlayer.vehicle = vehicles[totalHeists];
-  // update picture of vehicle 
+  // update picture of vehicle
   // adding css animation style here!!! with function defined above. will iteratively remove later on
-  makeCarFlipAnimation()
-  updateVehicleStats()
+  makeCarFlipAnimation();
+  updateVehicleStats();
   // first heist completed --->
   if (totalHeists === 1) {
     // update health
-    userHealth = userHealth - Math.round(totalErrors /2)
+    userHealth = userHealth - Math.round(totalErrors / 2);
     userHealthElem.textContent = userHealth;
     // update average speed per minute
-    avgSpeedElem.textContent = `${wpm} wpm`
+    avgSpeedElem.textContent = `${wpm} wpm`;
     // average accuracy career
-    avgAccuracyElem.textContent = Math.round(accuracySaved * 100) + "%"
-    updateVehicleStats()
-  }
-  else if (totalHeists > 1) {
+    avgAccuracyElem.textContent = Math.round(accuracySaved * 100) + "%";
+    updateVehicleStats();
+  } else if (totalHeists > 1) {
     avgSpeedVariable = avgSpeedVariable + wpm;
-    avgSpeedElem.textContent = avgSpeedVariable;  
+    avgSpeedElem.textContent = avgSpeedVariable;
     // health for each session is logged
     userHealth = userHealth - Math.round(currentErrors / 2);
     userHealthElem.textContent = userHealth;
     // average accuracy career
-    for (let i=0; i<userPlayer.accuracyArray.length; i++) {
-      avgAccuracy = Math.round(userPlayer.accuracyArray[0] + userPlayer.accuracyArray[i]) / totalHeists
-      avgAccuracyElem.textContent = ((avgAccuracy/totalHeists) * 100) + "%";
+    for (let i = 0; i < userPlayer.accuracyArray.length; i++) {
+      avgAccuracy = Math.round(userPlayer.accuracyArray[0] + userPlayer.accuracyArray[i]) / totalHeists;
+      avgAccuracyElem.textContent = (avgAccuracy / totalHeists) * 100 + "%";
     }
-    updateVehicleStats()
+    updateVehicleStats();
+  } else if (totalHeists === vehicles.length) {
+    displayWinningScreen();
   }
-  else if (totalHeists === vehicles.length) {
-    displayWinningScreen()
-  }
-
 };
 
-const userVehicleNameElem = document.querySelector("#vehicle-name")
-const userVehicleCostElem = document.querySelector("#vehicle-worth")
+const userVehicleNameElem = document.querySelector("#vehicle-name");
+const userVehicleCostElem = document.querySelector("#vehicle-worth");
 
 const updateVehicleStats = () => {
   userVehiclePicElem.src = userPlayer.vehicle.pic;
-  userVehicleNameElem.textContent = `${userPlayer.vehicle.year} ${userPlayer.vehicle.make} ${userPlayer.vehicle.model}`
-  userVehicleCostElem.textContent = `$ ${userPlayer.vehicle.price}`
+  userVehicleNameElem.textContent = `${userPlayer.vehicle.year} ${userPlayer.vehicle.make} ${userPlayer.vehicle.model}`;
+  userVehicleCostElem.textContent = `$ ${userPlayer.vehicle.price}`;
 };
-
 
 // RESET THE GAME'S CURRENT VALUES
 const resetCurrentValues = () => {
   clearInterval(timerInterval);
   timeRemaining = timeLimit;
   timeElapsed = 0;
-  quoteElem.textContent = ""
-  textInputArea.value = ""
+  quoteElem.textContent = "";
+  textInputArea.value = "";
   textInputArea.disabled = false;
   currentErrors = 0;
   currentErrorElem.textContent = 0;
@@ -654,7 +690,11 @@ const resetCurrentValues = () => {
 
 // reset button you can hit "tab" to get to, like 10FastFingers
 let restartButtonElem = document.querySelector(".restart-button");
-restartButtonElem.addEventListener("click", resetCurrentValues);
+restartButtonElem.addEventListener("click", () => {
+  resetCurrentValues();
+  removePlayerCarMove();
+  removePoliceCarMove();
+});
 
 // instead of button, going to have it be when user starts typing in text
 // area, OR when user clicks into text input area
@@ -667,27 +707,30 @@ updateVehicleStats();
 // START THE GAME WRAPPER FUNCTION
 const startSession = () => {
   resetCurrentValues();
+  displayPoliceDifficulty();
   // commenting out normal Quotable API ******
   // updatePromptQuote();
   // putting in Random API function *****
-  updateRandomPromptQuote()
+  updateRandomPromptQuote();
   // clear Interval on timer functions
-  removeCarFlipAnimation()
+  removeCarFlipAnimation();
+  addPlayerCarMove();
+  addPoliceCarMove()
 };
 
 // going to have prompt timer start when user clicks into the text area
-textInputArea.addEventListener("click", () => {
-  startSession(), 
-  timerTickTockFunction()
-},
-// { once:true } 
-)
+textInputArea.addEventListener(
+  "click",
+  () => {
+    startSession(), timerTickTockFunction();
+  }
+  // { once:true }
+);
 
 // going to have prompt timer start when user clicks into the text area
 textInputArea.addEventListener("input", () => {
   handleUserTypingInput();
 });
 
-
-const startButton = document.querySelector("#start-button");
-startButton.addEventListener("click", startSession);
+const nextButton = document.querySelector("#next-button");
+nextButton.addEventListener("click", startSession);
