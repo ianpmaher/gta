@@ -294,8 +294,6 @@ vehicles = [
 const userPlayer = new Player("Bob", "", "", vehicles[0]);
 
 
-
-
 // ACTUAL CODE FOR TYPING TEST
 // 60 seconds for user to type
 const timeLimit = 60;
@@ -562,6 +560,16 @@ const showResultSession = () => {
 
   updateCareerStats();
 };
+
+
+// Vanilla JavaScript solution to move the cars
+// moving is just translateX CSS animation, so going to add and remove that CSS property
+const carPlayerElem = document.querySelector("#car-player");
+const carPoliceElem = document.querySelector("#car-police");
+
+const movePlayerCar = () => {
+  carPlayerElem.style
+}
 
 
 // since CSS animations only play once (per MDN) if iteration-count set to "infinite," which would look silly here,

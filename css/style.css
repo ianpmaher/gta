@@ -76,28 +76,26 @@ main {
 /* ================ */
 /* GRAPHICS SECTION */
 #graphics {
-  width: 300px;
-  text-align: center;
-  margin: 1rem 0;
+  width: 100%;
+  margin: 0.5rem 0;
 }
 .progress-container {
-  display: block;
-  background-color: springgreen;
-  height: 25px;
+  background-image: url("/assets/roadProgress.png");
+  background-position: bottom;
+  background-size: contain;
 }
-.user-progress {
-  background-color: aquamarine;
-  height: 100%;
-  width: 0%;
-  transition: width 0.5s;
+/* #car-player {
+  animation: move-right 5s linear both;
+  -webkit-animation: move-right 5s linear both;
 }
-.police-progress {
-  background-color: red;
-  height: 100%;
-  width: 0%;
-  transition: width 0.5s;
+#car-police {
+  animation: move-right 20s linear both;
+  -webkit-animation: move-right 10s linear both;
+} */
+.move-animation-fast {
+  animation: move-right 5s linear both;
+  -webkit-animation: move-right 5s linear both;
 }
-
 
 #quote-container {
   background-color: rgb(246,246,246);
@@ -113,12 +111,11 @@ main {
   font-size: 1.2rem;
 }
 .correct-character {
-  background-color: rgba(54, 125, 54, 0.6);
-  border: rgba(54, 125, 54, 1);
+  background-color: rgba(54, 125, 54, 0.2);
 }
 .incorrect-character {
-  background-color: rgba(246,114,128,0.6);
-  border: solid 2px rgba(246,114,128,1);
+  background-color: rgba(246,114,128,0.4);
+  text-decoration: underline rgba(246,114,128,1);
 }
 .current-character {
   background-color: rgba(0,0,0,0.3);
@@ -178,7 +175,7 @@ label {
 .current-container {
   background-color: darkorange;
   border-radius: 20%;
-  width: 25rem;
+  width: 22rem;
   height: 3.5rem;
   display: flex;
   flex-flow: row wrap;
@@ -192,9 +189,10 @@ label {
 .statblock {
   display: flex;
   /* flex-basis: content; */
-  min-width: 60rem;
+  padding: 0 2rem;
+  gap: 1rem;
   border-radius: 20rem;
-  flex-direction: row;  
+  flex-flow: row wrap;
   background: linear-gradient(45deg, rgba(159,65,172,1) 0%, rgba(115,61,161,1) 45%, rgba(157,43,142,1)80%);
   border-radius: 0.5rem;
   /* margin: 0.5rem; */
@@ -352,8 +350,8 @@ label {
     padding: auto;
   }
   #user-vehicle {
-    max-width: 200;
-    max-height: 200;
+    max-width: 200px;
+    max-height: 200px;
   }
   label {
     font-size: 0.9rem;
@@ -442,5 +440,25 @@ label {
   100% {
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
+  }
+}
+@keyframes move-right {
+  0% {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    transform: translateX(800px);
+    -webkit-transform: translateX(800px)
+  }
+}
+@-webkit-keyframes move-right {
+  0% {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    transform: translateX(800px);
+    -webkit-transform: translateX(800px)
   }
 }
