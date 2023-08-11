@@ -442,7 +442,7 @@ const updatePromptQuote = () => {
 const updateRandomPromptQuote = () => {
   const url =
     // 1 randomly generated paragraph, containing 3 sentences!
-    "http://metaphorpsum.com/paragraphs/1/3";
+    "http://metaphorpsum.com/paragraphs/1/1";
 
   fetch(url, {
     headers: {},
@@ -734,13 +734,3 @@ textInputArea.addEventListener("input", () => {
 
 const nextButton = document.querySelector("#next-button");
 nextButton.addEventListener("click", startSession);
-nextButtonFunction = () => {
-  if (totalHeists == 0) {
-    nextButton.disabled = true;
-  }
-  else if (totalHeists == 1) {
-    nextButton.disabled = false;
-  }
-}
-
-nextButtonFunction()
