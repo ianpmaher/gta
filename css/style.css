@@ -71,9 +71,9 @@ main {
   margin-top: -10rem;
 }
 .intro-text {
-  font-family: "Caprasimo", monospace;
+  font-family: "IBM Plex Mono", monospace;
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-align: left;
   animation: tracking-in-expand 0.8s ease-in-out both;
   -webkit-animation: tracking-in-expand 0.8s ease-in-out both;
@@ -119,10 +119,6 @@ main {
   background-color: rgba(246, 114, 128, 0.4);
   text-decoration: underline rgba(246, 114, 128, 1);
 }
-.current-character {
-  background-color: rgba(0, 0, 0, 0.3);
-  border: solid 2px rgba(1, 1, 1, 0.5);
-}
 #input-field {
   display: flex;
   flex-direction: row;
@@ -141,7 +137,7 @@ main {
 label {
   font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: white;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   width: 13rem;
   text-align: center;
 }
@@ -150,7 +146,6 @@ label {
   border-radius: 20%;
   background-color: rgba(116, 248, 201, 1);
   font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  animation: shake 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 #time-remaining {
   font-size: 1rem;
@@ -183,15 +178,15 @@ label {
 .current-container {
   background-color: darkorange;
   border-radius: 10%;
-  width: 18rem;
+  width: 24rem;
   padding: 0 1.5rem;
   height: 2.6rem;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   align-items: normal;
   justify-content: space-evenly;
   font-family: "Caprasimo", Monaco, sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 .statblock {
   display: flex;
@@ -211,6 +206,12 @@ label {
   justify-content: space-around;
   color: ghostwhite;
 }
+.stat-inject {
+  color: whitesmoke;
+  background-color: rgba(243, 93, 29, 0.5);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+}
 .user-stats {
   list-style: none;
   display: flex;
@@ -223,12 +224,6 @@ label {
   align-items: center;
   justify-content: space-evenly;
 }
-.stat-inject {
-  color: black;
-  background-color: rgba(243, 93, 29, 1);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 1rem;
-}
 #user-vehicle {
   max-width: 250px;
   max-height: 225px;
@@ -236,6 +231,22 @@ label {
 }
 #user-vehicle:hover {
   scale: 1.8;
+}
+.wasted-div {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/wastedPic.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.busted-div {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/bustedScreenPic.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 @media only screen and (min-device-width: 377px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {

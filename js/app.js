@@ -610,6 +610,7 @@ const showResultSession = () => {
   updateCareerStats();
   removePlayerCarMove();
   removePoliceCarMove();
+  checkWin()
 };
 
 // since CSS animations only play once (per MDN) if iteration-count set to "infinite," which would look silly here,
@@ -620,6 +621,15 @@ const makeCarFlipAnimation = () => {
 };
 const removeCarFlipAnimation = () => {
   userVehiclePicElem.style.cssText -= `animation:rotate-and-scale 0.8s linear both`;
+};
+
+const nextButton = document.querySelector("#next-button");
+
+const addNextButtonAnim = () => {
+  nextButton.style.cssText += `animation:shake 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+};
+const removeNextButtonAnim = () => {
+  nextButton.style.cssText -= `animation:shake 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
 };
 
 // update career stats, not sure if I should put inside the function showResultSession?
@@ -633,7 +643,9 @@ const updateCareerStats = () => {
   // update picture of vehicle
   // adding css animation style here!!! with function defined above. will iteratively remove later on
   makeCarFlipAnimation();
+  addNextButtonAnim();
   updateVehicleStats();
+  checkWin();
   // first heist completed --->
   if (totalHeists === 1) {
     // update health
@@ -645,22 +657,17 @@ const updateCareerStats = () => {
     avgAccuracyElem.textContent = Math.round(accuracySaved * 100) + "%";
     updateVehicleStats();
   } else if (totalHeists > 1) {
-    avgSpeedVariable = avgSpeedVariable + wpm;
-    avgSpeedElem.textContent = avgSpeedVariable;
+    avgSpeedElem.textContent = `${wpm} wpm`;
     // health for each session is logged
     userHealth = userHealth - Math.round(currentErrors / 2);
     userHealthElem.textContent = userHealth;
-    // average accuracy career
-    for (let i = 0; i < userPlayer.accuracyArray.length; i++) {
-      avgAccuracy = Math.round(userPlayer.accuracyArray[0] + userPlayer.accuracyArray[i]) / totalHeists;
-      avgAccuracyElem.textContent = (avgAccuracy / totalHeists) * 100 + "%";
-    }
+    // most recent accuracy career
+    avgAccuracyElem.textContent = Math.round(accuracySaved * 100) + "%";
     updateVehicleStats();
-  } else if (totalHeists === vehicles.length) {
-    displayWinningScreen();
   }
 };
 
+// update vehicle attributes and player progress
 const userVehicleNameElem = document.querySelector("#vehicle-name");
 const userVehicleCostElem = document.querySelector("#vehicle-worth");
 
@@ -668,6 +675,36 @@ const updateVehicleStats = () => {
   userVehiclePicElem.src = userPlayer.vehicle.pic;
   userVehicleNameElem.textContent = `${userPlayer.vehicle.year} ${userPlayer.vehicle.make} ${userPlayer.vehicle.model}`;
   userVehicleCostElem.textContent = `$ ${userPlayer.vehicle.price}`;
+};
+
+const flexContainerPageElem = document.querySelector("#flex-container-page");
+
+// ========= //
+// CHECK WIN //
+// ========= //
+const checkWin = () => {
+  if (totalHeists === vehicles.length && userHealth > 0) {
+    displayWinningScreen();
+  } else if (userHealth <= 0) {
+    let mainElem = document.querySelector("main").classList.add("hidden");
+    // display WASTED screen
+    let wastedDiv = document.createElement("div");
+    flexContainerPageElem.appendChild(wastedDiv);
+    wastedDiv.classList.add("wasted-div");
+  } else if (wpm < userPlayer.vehicle.policeDifficulty) {
+    let mainElem = document.querySelector("main").classList.add("hidden");
+    // display BUSTED screen
+    let bustedDiv = document.createElement("div");
+    flexContainerPageElem.appendChild(bustedDiv);
+    bustedDiv.classList.add("busted-div");
+  }
+};
+
+// display winning screen if user reaches end of vehicles array successfully
+
+const displayWinningScreen = () => {
+  let mainElem = document.querySelector("main").classList.add("hidden");
+  // show succcess thing
 };
 
 // RESET THE GAME'S CURRENT VALUES
@@ -686,6 +723,9 @@ const resetCurrentValues = () => {
   accuracyCurrentElem.textContent = 100;
   timeRemainingElem.textContent = timeRemaining + "sec";
   userSpeedCurrentElem.textContent = "";
+  removePlayerCarMove();
+  removePoliceCarMove();
+  removeNextButtonAnim();
 };
 
 // reset button you can hit "tab" to get to, like 10FastFingers
@@ -714,15 +754,14 @@ const startSession = () => {
   updateRandomPromptQuote();
   // clear Interval on timer functions
   removeCarFlipAnimation();
-  addPlayerCarMove();
-  addPoliceCarMove()
 };
 
 // going to have prompt timer start when user clicks into the text area
 textInputArea.addEventListener(
   "click",
   () => {
-    startSession(), timerTickTockFunction();
+    startSession();
+    timerTickTockFunction();
   }
   // { once:true }
 );
@@ -730,7 +769,8 @@ textInputArea.addEventListener(
 // going to have prompt timer start when user clicks into the text area
 textInputArea.addEventListener("input", () => {
   handleUserTypingInput();
+  addPlayerCarMove();
+  addPoliceCarMove();
 });
 
-const nextButton = document.querySelector("#next-button");
 nextButton.addEventListener("click", startSession);
