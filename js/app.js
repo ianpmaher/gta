@@ -11,6 +11,7 @@ function introSequence() {
   let introButton5Elem = document.querySelector("#intro-button5");
   let noIntroButton = document.querySelector("#no-intro-button");
   let introContainerElem = document.querySelector(".intro-container");
+  let introPopContainerElem = document.querySelector("#intro-pop-container");
   let introArticleElem = document.querySelector(".intro")
   let introTextElem = document.querySelector(".intro-text")
 
@@ -22,12 +23,16 @@ function introSequence() {
     // remove the no intro button
     noIntroButton.remove();
     // adding each element in dynamically through DOM
+    let newTextElem0 = document.createElement("p");
+    newTextElem0.classList.add("intro-text")
+    newTextElem0.textContent = "Hey there, kid. Want to hear how this works?"
+    introPopContainerElem.appendChild(newTextElem0)
     let newTextElem1 = document.createElement("p");
     // allows style to match and have animation
     newTextElem1.classList.add("intro-text");
     newTextElem1.textContent =
       "We need someone to run some jobs for us. If you want to make a name for yourself, you gotta start now.";
-    introContainerElem.appendChild(newTextElem1);
+    introPopContainerElem.appendChild(newTextElem1);
     // also getting rid of first button
     introButton1Elem.remove();
     // next string of text to be added in
@@ -39,7 +44,7 @@ function introSequence() {
     introButton2Elem.classList.remove("hidden");
     introButton2Elem.addEventListener("click", () => {
       // add in the second string of text
-      introContainerElem.appendChild(newTextElem2);
+      introPopContainerElem.appendChild(newTextElem2);
       // getting rid of second button element
       introButton2Elem.remove();
       // showing third button element
@@ -50,12 +55,12 @@ function introSequence() {
         let newTextElem3 = document.createElement("p");
         newTextElem3.classList.add("intro-text");
         newTextElem3.textContent = "You will have to steal some cars for us.";
-        introContainerElem.appendChild(newTextElem3);
+        introPopContainerElem.appendChild(newTextElem3);
         let newTextElem4 = document.createElement("p");
         newTextElem4.classList.add("intro-text");
         newTextElem4.textContent =
           "You gotta TYPE as FAST as you can to outrun those cops. A leisurely 30 words per minute ought to be enough for the first junker.";
-        introContainerElem.appendChild(newTextElem4);
+        introPopContainerElem.appendChild(newTextElem4);
         introButton4Elem.classList.remove("hidden");
         introButton4Elem.addEventListener("click", () => {
           introButton4Elem.remove();
@@ -63,16 +68,17 @@ function introSequence() {
           newTextElem5.classList.add("intro-text");
           newTextElem5.textContent =
             "Yes, typing. You'll see a prompt to type in, but be quick. MISTAKES will cost you. You lose 1 health for every 2 typos.";
-          introContainerElem.appendChild(newTextElem5);
+          introPopContainerElem.appendChild(newTextElem5);
           let newTextElem6 = document.createElement("p");
           newTextElem6.classList.add("intro-text");
           newTextElem6.textContent =
             "Remember this: Autocorrect won't save you in the real world. Now, what do you say?";
-          introContainerElem.appendChild(newTextElem6);
+          introPopContainerElem.appendChild(newTextElem6);
           introButton5Elem.classList.remove("hidden");
           introButton5Elem.addEventListener("click", () => {
             introButton5Elem.remove();
             introContainerElem.classList.add("hidden");
+            introPopContainerElem.classList.add("hidden");
             // showing the full website
             let mainElem = document.querySelector("main").classList.remove("hidden");
             // also removing last button
@@ -89,8 +95,8 @@ function introSequence() {
     // introButton2Elem.classList.add("hidden");
     // introButton3Elem.classList.add("hidden");
     introContainerElem.classList.add("hidden");
+    introPopContainerElem.classList.add("hidden");
     introArticleElem.classList.add("hidden")
-    introTextElem.classList.add("hidden")
     noIntroButton.remove();
   });
 }
@@ -330,7 +336,7 @@ let promptsUsedArray = [];
 const updatePromptQuote = () => {
   const url =
     // random 3 quotes fetched with between 150 and 200 characters
-    "https://api.quotable.io/quotes/random?limit=3&minLength=150&maxLength=200";
+    "https://api.quotable.io/quotes/random?limit=2&minLength=100&maxLength=150";
 
   fetch(url, {
     headers: {},
@@ -549,6 +555,7 @@ const showResultSession = () => {
   removePlayerCarMove();
   removePoliceCarMove();
   checkWin();
+
 };
 
 // since CSS animations only play once (per MDN) if iteration-count set to "infinite," which would look silly here,
@@ -768,6 +775,8 @@ const startSession = () => {
   // updateRandomPromptQuote();
   // clear Interval on timer functions
   removeCarFlipAnimation();
+
+  textInputArea.setAttribute("autofocus", "autofocus")
 };
 
 // going to have prompt timer start when user clicks into the text area
@@ -787,8 +796,13 @@ textInputArea.addEventListener("input", () => {
   addPoliceCarMove();
 });
 
-nextButton.addEventListener("click", startSession);
+nextButton.addEventListener("click", () => {
+  startSession();
+  textInputArea.click()
+  textInputArea.focus()
+})
 
+// demonstration purposes
 // displayBustedScreen()
 // displayWastedScreen()
 // displayWinningScreen()
