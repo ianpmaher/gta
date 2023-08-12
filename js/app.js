@@ -611,6 +611,25 @@ const updateVehicleStats = () => {
   userVehicleCostElem.textContent = `$ ${userPlayer.vehicle.price}`;
 };
 
+// ============ //
+// RESTART GAME //
+// ============ //
+
+const resetWholeGame = () => {
+  // running resetCurrentValues
+  resetCurrentValues();
+  // reset global variables
+  userPlayer.vehicle = vehicles[0];
+  let totalHeists = 0;
+  let userHealth = 100;
+  let totalErrors = 0;
+  let avgSpeedVariable = 0;
+  let typedCharsInput = 0;
+  let timerInterval = "";
+  let currentPrompt = "";
+  let promptsUsedArray = []; // just in case
+};
+
 const flexContainerPageElem = document.querySelector("#flex-container-page");
 
 // ========= //
@@ -625,6 +644,8 @@ const checkWin = () => {
     let wastedDiv = document.createElement("div");
     flexContainerPageElem.appendChild(wastedDiv);
     wastedDiv.classList.add("wasted-div");
+    let resetGameButton = document.createElement("button")
+    resetGameButton.setAttribute("class", )
   } else if (wpm < userPlayer.vehicle.policeDifficulty) {
     let mainElem = document.querySelector("main").classList.add("hidden");
     // display BUSTED screen
@@ -639,6 +660,9 @@ const checkWin = () => {
 const displayWinningScreen = () => {
   let mainElem = document.querySelector("main").classList.add("hidden");
   // show succcess thing
+  let successDiv = document.createElement("div");
+  flexContainerPageElem.appendChild(successDiv);
+  successDiv.classList.add("success-div");
 };
 
 // RESET THE GAME'S CURRENT VALUES
@@ -708,3 +732,4 @@ textInputArea.addEventListener("input", () => {
 });
 
 nextButton.addEventListener("click", startSession);
+

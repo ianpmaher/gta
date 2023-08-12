@@ -46,7 +46,7 @@
         </div>
         <section id="input-field">
           <!--I learned you can make cursor go into text field with autofocus property-->
-          <textarea class="text-input" id="text-input" placeholder="Type here!" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" rows="3">
+          <textarea class="text-input" id="text-input" placeholder="Type here!" autofocus="autofocus" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" rows="3">
           </textarea>
           <button class="restart-button">Reset</button>
         </section>
@@ -54,10 +54,14 @@
           <div class="super-container">
             <div class="current-container">
               <p>Accuracy: <span id="accuracy" class="stat-inject">100%</span></p>
+            </div>
+            <div class="current-container">
               <p>Errors: <span id="current-errors" class="stat-inject">0</span></p>
             </div>
-            <div class="current-container" id="speed-container">
+            <div class="current-container">
               <p>Current Speed: <span id="user-speed" class="stat-inject"></span></p>
+            </div>
+            <div class="current-container">
               <p>Police Speed: <span id="police-speed" class="stat-inject"></span></p>
             </div>
           </div>
