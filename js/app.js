@@ -131,7 +131,7 @@ vehicles = [
     price: 400,
     saying: "That paint job doesn't mask the cigarette smell.",
     pic: "/assets/fordFiesta.jpg",
-    policeDifficulty: 30,
+    policeDifficulty: 35,
   },
   {
     year: 2004,
@@ -140,7 +140,7 @@ vehicles = [
     price: 600,
     saying: "You can fit so many friends in there, and safely, too!",
     pic: "/assets/dodgeCaravan.jpg",
-    policeDifficulty: 30,
+    policeDifficulty: 40,
   },
   {
     year: 2008,
@@ -149,7 +149,7 @@ vehicles = [
     price: 750,
     saying: "Why were these things so popular, anyways?",
     pic: "/assets/ChryslerPTCruiser.jpg",
-    policeDifficulty: 35,
+    policeDifficulty: 45,
   },
   {
     year: 2011,
@@ -158,18 +158,8 @@ vehicles = [
     price: 900,
     saying: "Maybe I oughta get myself a truck.",
     pic: "/assets/ramTruck.jpg",
-    policeDifficulty: 35,
+    policeDifficulty: 50,
   },
-  {
-    year: 2015,
-    make: "Subaru",
-    model: "Outback",
-    price: 1900,
-    saying: "WOW. Your first car less than a decade old!",
-    pic: "/assets/subaruOutback.jpg",
-    policeDifficulty: 35,
-  },
-
   {
     year: 2006,
     make: "Jeep",
@@ -177,25 +167,7 @@ vehicles = [
     price: 2600,
     saying: "That thing has SO MUCH cargo space.",
     pic: "/assets/jeepCommander.jpg",
-    policeDifficulty: 40,
-  },
-  {
-    year: 2015,
-    make: "Ford",
-    model: "Focus",
-    price: 3500,
-    saying: "How does that thing make it over curbs?",
-    pic: "/assets/fordFocus.jpg",
-    policeDifficulty: 40,
-  },
-  {
-    year: 2017,
-    make: "Mitsubishi",
-    model: "Mirage",
-    price: 4300,
-    saying: "Well isn't that a car, huh?",
-    pic: "/assets/mitsubishiMirage.JPG",
-    policeDifficulty: 45,
+    policeDifficulty: 55,
   },
   {
     year: 2019,
@@ -204,25 +176,7 @@ vehicles = [
     price: 5000,
     saying: "I can't believe you fit in that thing.",
     pic: "/assets/vWNewBeetle.jpg",
-    policeDifficulty: 45,
-  },
-  {
-    year: 2016,
-    make: "Toyota",
-    model: "RAV-4",
-    price: 6100,
-    saying: "Looking slick, jack!",
-    pic: "/assets/toyotaRav4.jpg",
-    policeDifficulty: 45,
-  },
-  {
-    year: 2018,
-    make: "Hyundai",
-    model: "Sonata",
-    price: 6900,
-    saying: "Nice. I guess used car prices really HAVE inflated since Covid.",
-    pic: "/assets/hyundaiSonata.jpg",
-    policeDifficulty: 50,
+    policeDifficulty: 60,
   },
   {
     year: 2015,
@@ -231,7 +185,7 @@ vehicles = [
     price: 10000,
     saying: "Hybrid? You're not charging that thing off MY electric bill.",
     pic: "/assets/lincolnMKZHybrid.jpg",
-    policeDifficulty: 55,
+    policeDifficulty: 65,
   },
   {
     year: 2018,
@@ -240,24 +194,6 @@ vehicles = [
     price: 14000,
     saying: "WHAT DID I JUST SAY ABOUT ELECTRIC CARS?",
     pic: "/assets/chevyBolt.jpg",
-    policeDifficulty: 60,
-  },
-  {
-    year: 2019,
-    make: "Honda",
-    model: "Insight",
-    price: 19000,
-    saying: "So you got a knock-off Prius?",
-    pic: "/assets/hondaInsight.jpg",
-    policeDifficulty: 65,
-  },
-  {
-    year: 2023,
-    make: "Kia",
-    model: "Soul",
-    price: 21000,
-    saying: "Isn't Kia Soul that car from the hamster commercial?",
-    pic: "/assets/kiaSoul.jpg",
     policeDifficulty: 70,
   },
   {
@@ -339,7 +275,6 @@ let currentErrorElem = document.querySelector("#current-errors");
 // going to change src of this element
 let userVehiclePicElem = document.querySelector("#user-vehicle");
 // trying to set it to display pic initially
-// userVehiclePicElem.src = `"${userPlayer.vehicles.pic}"`
 
 // will define health as 100 and subtract from it errors
 let userHealthElem = document.querySelector("#user-health");
