@@ -52,7 +52,7 @@ function introSequence() {
         let newTextElem4 = document.createElement("p");
         newTextElem4.classList.add("intro-text");
         newTextElem4.textContent =
-          "You gotta TYPE as FAST as you can to outrun those cops. A leisurely 30 words per minute ought to be enough for the first junker car.";
+          "You gotta TYPE as FAST as you can to outrun those cops. A leisurely 30 words per minute ought to be enough for the first junker.";
         introContainerElem.appendChild(newTextElem4);
         introButton4Elem.classList.remove("hidden");
         introButton4Elem.addEventListener("click", () => {
@@ -60,12 +60,12 @@ function introSequence() {
           let newTextElem5 = document.createElement("p");
           newTextElem5.classList.add("intro-text");
           newTextElem5.textContent =
-            "Yes, typing. You'll see a prompt. Type in each letter. Gotta be quick, but MISTAKES will cost you.";
+            "Yes, typing. You'll see a prompt to type in, but be quick. MISTAKES will cost you. You lose 1 health for every 2 typos.";
           introContainerElem.appendChild(newTextElem5);
           let newTextElem6 = document.createElement("p");
           newTextElem6.classList.add("intro-text");
           newTextElem6.textContent =
-            "You'll lose 1 health for every 2 typos. Got it? Each prompt will get more difficult, too. But each prompt will mean more money.";
+            "Remember this: Autocorrect won't save you in the real world. Now, what do you say?";
           introContainerElem.appendChild(newTextElem6);
           introButton5Elem.classList.remove("hidden");
           introButton5Elem.addEventListener("click", () => {
@@ -259,7 +259,6 @@ const userPlayer = new Player("Bob", "", "", vehicles[0]);
 const timeLimit = 60;
 
 // fetch quote as above in order to get prompt
-
 // defining variables for each DOM element
 let timeRemainingElem = document.querySelector("#time-remaining");
 let accuracyCurrentElem = document.querySelector("#accuracy");
@@ -545,7 +544,7 @@ const showResultSession = () => {
   updateCareerStats();
   removePlayerCarMove();
   removePoliceCarMove();
-  checkWin()
+  checkWin();
 };
 
 // since CSS animations only play once (per MDN) if iteration-count set to "infinite," which would look silly here,
