@@ -260,16 +260,14 @@ label {
   background-repeat: no-repeat;
 }
 
-@media only screen and (min-device-width: 377px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+@media only screen and (min-device-width: 377px) and (max-device-width: 602px) {
   header {
     width: 100%;
-    margin-bottom: 5rem;
     height: 8rem;
   }
   .logo {
     background-image: url("/assets/gtaLogoGradientNewSmaller.png");
     background-size: 8rem;
-    margin-top: 1rem;
     height: 7rem;
   }
   .logo:active {
@@ -278,15 +276,16 @@ label {
     margin-top: 0;
   }
   #flex-container-page {
-    flex-direction: column-reverse;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 3rem;
     /* height: 85%; */
   }
+  
   #quote-container {
-    height: 12%;
-    margin-top: 1.5rem;
+    width: auto;
+    height: auto;
   }
   #quote {
     font-size: 0.5rem;
@@ -297,7 +296,7 @@ label {
   .text-input:focus {
     font-size: 0.8rem;
   }
-  label {
+  label, .restart-button, .intro {
     display: none;
   }
   #time-remaining {
@@ -305,31 +304,30 @@ label {
   }
   #input-field {
     height: 2.5rem;
+    width: auto;
   }
   .super-container {
-    gap: 0.5rem;
+    display: flex;
+    justify-content: center;
   }
   .time-container {
     font-size: 0.6rem;
-    margin: 0.1rem auto;
+    width: auto;
   }
   .shaped-time {
-    height: 0.8rem;
-    width: fit-content;
+    height: auto;
+    width: auto;
   }
-  .restart-button,
   #next-button {
     font-size: 0.5rem;
   }
   .current-container {
     font-size: 0.5rem;
-    height: 1.5rem;
-    padding: 0.1rem 0.5rem;
-    margin-top: 0.5rem;
-    width: 8rem;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
     text-align: center;
+    width: 80vw;
+    padding: 0;
+    border-radius: 0;
+    height: auto;
   }
   .statblock {
     margin: 2rem auto;
@@ -345,75 +343,55 @@ label {
     font-size: 0.7rem;
   }
   .stat-inject {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
   #user-vehicle {
-    max-width: 150px;
-    max-height: 150px;
-  }
-  label {
-    font-size: 0.7rem;
-  }
-  .intro {
-    margin-top: 12rem;
-    width: 70%;
-    margin-bottom: -10rem;
-  }
-  .intro-container {
-    width: inherit;
-  }
-  .intro-text {
-    font-size: 0.7rem;
-  }
-  #intro-button-container {
-    display: flex;
-    position: absolute;
-    top: 8rem;
-    left: 0rem;
-  }
-  .intro-buttons {
-    font-size: 0.5em;
-    margin: 0;
-    padding: 0.5rem;
-    max-width: 4rem;
+    max-width: 125px;
+    max-height: 125px;
   }
   .car-images {
-    width: 56px;
-    height: 36px;
+    width: 45px;
+    height: 30px;
     animation: mobile-move-right 30s linear both;
   }
   .progress-container {
-    margin-top: -4rem;
+    width: auto;
   }
 }
 
 @media only screen and (min-device-width: 250px) and (max-device-width: 376px) {
   header {
     width: 100%;
-    margin-bottom: 2rem;
-    height: 3rem;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .logo {
     background-image: url("/assets/gtaLogoGradientNewSmaller.png");
-    background-size: 4rem;
+    background-size: 5rem;
     margin-top: 1rem;
     height: 4rem;
   }
   .logo:active {
     background-size: 7rem;
     height: 7rem;
-    margin-top: 0;
   }
   #flex-container-page {
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 3rem;
-    /* height: 85%; */
+    gap: 0.5rem;
+  }
+  main {
+    width: 80vw;
+  }
+  .progress-container {
+    width: 80vw;
   }
   #quote-container {
-    height: 15%;
-    margin-top: 1.5rem;
+    height: 10vh;
+    width: 80vw;
   }
   #quote {
     font-size: 0.5rem;
@@ -432,13 +410,17 @@ label {
   }
   #input-field {
     height: 2.5rem;
+    width: 80vw;
   }
   .super-container {
-    gap: 0.5rem;
+    width: 80vw;
   }
   .time-container {
     font-size: 0.6rem;
-    margin: 0.1rem auto;
+    width: fit-content;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
   .shaped-time {
     height: 0.8rem;
@@ -453,15 +435,15 @@ label {
     height: 1.5rem;
     padding: 0.1rem 0.5rem;
     margin-top: 0.5rem;
-    width: 8rem;
+    width: 3rem;
     flex-flow: row nowrap;
     justify-content: space-evenly;
     text-align: center;
   }
   .statblock {
     margin: 1rem auto;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    flex-wrap: wrap;
     padding: 0.5rem 0.2rem;
     font-size: 0.5rem;
   }
@@ -481,28 +463,120 @@ label {
   label {
     font-size: 0.7rem;
   }
-  .intro {
-    margin-top: 12rem;
-    width: 70%;
-    margin-bottom: -8rem;
+  .intro, .restart-button {
+    display: none;
   }
-  .intro-container {
-    width: inherit;
+  .car-images {
+    width: 56px;
+    height: 36px;
+    animation: mobile-move-right 30s linear both;
   }
-  .intro-text {
+  .progress-container {
+    margin-top: 0rem;
+  }
+}
+
+@media only screen and (min-device-width: 603px) and (max-device-width: 900px) {
+  header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo {
+    background-image: url("/assets/gtaLogoGradientNewSmaller.png");
+    background-size: 10rem;
+    height: 10rem;
+  }
+  #flex-container-page {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  main {
+    width: 80vw;
+  }
+  .progress-container {
+    width: 80vw;
+  }
+  #quote-container {
+    height: 10vh;
+    width: 80vw;
+  }
+  #quote {
     font-size: 0.5rem;
   }
-  #intro-button-container {
-    display: flex;
-    position: absolute;
-    top: 3rem;
-    left: 0rem;
+  .text-input {
+    font-size: 0.6rem;
   }
-  .intro-buttons {
-    font-size: 0.4em;
-    margin: 0;
+  .text-input:focus {
+    font-size: 0.8rem;
+  }
+  label {
+    display: none;
+  }
+  #time-remaining {
+    font-size: 0.6rem;
+  }
+  #input-field {
+    height: 2.5rem;
+    width: 80vw;
+  }
+  .super-container {
+    width: 80vw;
+  }
+  .time-container {
+    font-size: 0.6rem;
+    width: fit-content;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .shaped-time {
+    height: 0.8rem;
+    width: fit-content;
+  }
+  .restart-button,
+  #next-button {
+    font-size: 0.5rem;
+  }
+  .current-container {
+    font-size: 0.5rem;
+    height: 1.5rem;
+    padding: 0.1rem 0.5rem;
+    margin-top: 0.5rem;
+    width: 3rem;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    text-align: center;
+  }
+  .statblock {
+    margin: 1rem auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0.5rem 0.2rem;
+    font-size: 0.5rem;
+  }
+  .user-stats {
     padding: 0.4rem;
-    max-width: 4rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 0.5rem;
+  }
+  .stat-inject {
+    font-size: 0.5rem;
+  }
+  #user-vehicle {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  label {
+    font-size: 0.7rem;
+  }
+  .intro, .restart-button {
+    display: none;
   }
   .car-images {
     width: 56px;

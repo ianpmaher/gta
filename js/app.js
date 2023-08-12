@@ -11,6 +11,8 @@ function introSequence() {
   let introButton5Elem = document.querySelector("#intro-button5");
   let noIntroButton = document.querySelector("#no-intro-button");
   let introContainerElem = document.querySelector(".intro-container");
+  let introArticleElem = document.querySelector(".intro")
+  let introTextElem = document.querySelector(".intro-text")
 
   // when user clicks button on page, proceed to show rest of intro sequence/game
   introButton1Elem.addEventListener("click", () => {
@@ -83,10 +85,12 @@ function introSequence() {
   // when user clicks on the no-intro-button, will stop intro and unhide good stuff
   noIntroButton.addEventListener("click", () => {
     textInputArea.disabled = false;
-    introButton1Elem.remove();
-    introButton2Elem.remove();
-    introButton3Elem.remove();
+    introButton1Elem.classList.add("hidden");
+    // introButton2Elem.classList.add("hidden");
+    // introButton3Elem.classList.add("hidden");
     introContainerElem.classList.add("hidden");
+    introArticleElem.classList.add("hidden")
+    introTextElem.classList.add("hidden")
     noIntroButton.remove();
   });
 }
