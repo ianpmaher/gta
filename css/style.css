@@ -105,6 +105,7 @@ main {
   height: 14%;
   align-items: center;
   display: flex;
+  user-select: none;
 }
 #quote {
   font-weight: 400;

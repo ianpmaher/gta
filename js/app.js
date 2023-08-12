@@ -442,7 +442,7 @@ const updatePromptQuote = () => {
 const updateRandomPromptQuote = () => {
   const url =
     // 1 randomly generated paragraph, containing 3 sentences!
-    "http://metaphorpsum.com/paragraphs/1/1";
+    "http://metaphorpsum.com/paragraphs/1/3";
 
   fetch(url, {
     headers: {},
@@ -487,7 +487,7 @@ const addPlayerCarMove = () => {
 const removePlayerCarMove = () => {
   carPlayerElem.style.cssText -= `animation: move-right 30s linear both`;
 };
-
+// police car animation, going to have be slower
 const addPoliceCarMove = () => {
   carPoliceElem.style.cssText += `animation: move-right 60s linear both`;
 };
@@ -604,7 +604,7 @@ const showResultSession = () => {
   let currentUserCharacters = textInputArea.value.length;
   // wpm **
   // words per minute is characters per minute divided by 5, so an average
-  wpm = Math.round((currentUserCharacters / 5 / timeElapsed) * 60);
+  wpm = Math.round((currentUserCharacters / 4 / timeElapsed) * 60);
   userSpeedCurrentElem.textContent = wpm + "wpm";
 
   updateCareerStats();
