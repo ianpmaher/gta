@@ -615,22 +615,43 @@ const updateVehicleStats = () => {
 // RESTART GAME //
 // ============ //
 
+const flexContainerPageElem = document.querySelector("#flex-container-page");
+
 const resetWholeGame = () => {
   // running resetCurrentValues
   resetCurrentValues();
   // reset global variables
   userPlayer.vehicle = vehicles[0];
-  let totalHeists = 0;
-  let userHealth = 100;
-  let totalErrors = 0;
-  let avgSpeedVariable = 0;
-  let typedCharsInput = 0;
-  let timerInterval = "";
-  let currentPrompt = "";
-  let promptsUsedArray = []; // just in case
+  totalHeists = 0;
+  userHealth = 100;
+  totalErrors = 0;
+  avgSpeedVariable = 0;
+  typedCharsInput = 0;
+  timerInterval = "";
+  currentPrompt = "";
+  promptsUsedArray = []; // just in case
+  // DOM stuff reset
+  totalHeistsCountElem.textContent = totalHeists;
+  userHealthElem.textContent = userHealth;
+  avgSpeedElem.textContent = "";
+  avgAccuracyElem.textContent = ""
+  updateVehicleStats()
+  let mainElem = document.querySelector("main").classList.remove("hidden");
 };
 
-const flexContainerPageElem = document.querySelector("#flex-container-page");
+const createResetWholeGameButton = () => {
+  let resetGameButton = document.createElement("button");
+  resetGameButton.setAttribute("class", "intro-buttons");
+  resetGameButton.setAttribute("id", "reset-whole-game");
+  resetGameButton.style.alignSelf = "center";
+  resetGameButton.style.fontFamily = "'Caprasimo', monospace";
+  resetGameButton.style.fontSize = "1.5rem";
+  resetGameButton.style.margin = "5rem";
+  resetGameButton.style.width = "10rem";
+  resetGameButton.style.height = "10rem";
+  resetGameButton.textContent = "restart?";
+  flexContainerPageElem.appendChild(resetGameButton);
+};
 
 // ========= //
 // CHECK WIN //
@@ -639,30 +660,60 @@ const checkWin = () => {
   if (totalHeists === vehicles.length && userHealth > 0) {
     displayWinningScreen();
   } else if (userHealth <= 0) {
-    let mainElem = document.querySelector("main").classList.add("hidden");
-    // display WASTED screen
-    let wastedDiv = document.createElement("div");
-    flexContainerPageElem.appendChild(wastedDiv);
-    wastedDiv.classList.add("wasted-div");
-    let resetGameButton = document.createElement("button")
-    resetGameButton.setAttribute("class", )
-  } else if (wpm < userPlayer.vehicle.policeDifficulty) {
-    let mainElem = document.querySelector("main").classList.add("hidden");
-    // display BUSTED screen
-    let bustedDiv = document.createElement("div");
-    flexContainerPageElem.appendChild(bustedDiv);
-    bustedDiv.classList.add("busted-div");
+    // too many typos
+    displayWastedScreen();
+  } else if (wpm < userPlayer.vehicle.policeDifficulty && userHealth > 0) {
+    // BUSTED - if player's wpm count is lower than the police at the time
+    displayBustedScreen();
   }
 };
 
-// display winning screen if user reaches end of vehicles array successfully
+// WASTED - if player dies from too many errors
+const displayWastedScreen = () => {
+  let mainElem = document.querySelector("main").classList.add("hidden");
+  // display WASTED screen
+  let wastedDiv = document.createElement("div");
+  flexContainerPageElem.appendChild(wastedDiv);
+  wastedDiv.classList.add("wasted-div");
+  createResetWholeGameButton();
+  let resetGameButton = document.querySelector("#reset-whole-game");
+  resetGameButton.addEventListener("click", () => {
+    resetWholeGame();
+    wastedDiv.remove();
+    resetGameButton.remove();
+  });
+};
 
+// BUSTED - if player's wpm count is lower than the police at the time
+const displayBustedScreen = () => {
+  let mainElem = document.querySelector("main").classList.add("hidden");
+  // display BUSTED screen
+  let bustedDiv = document.createElement("div");
+  flexContainerPageElem.appendChild(bustedDiv);
+  bustedDiv.classList.add("busted-div");
+  createResetWholeGameButton();
+  let resetGameButton = document.querySelector("#reset-whole-game");
+  resetGameButton.addEventListener("click", () => {
+    resetWholeGame();
+    bustedDiv.remove();
+    resetGameButton.remove();
+  });
+};
+
+// display winning screen if user reaches end of vehicles array successfully
 const displayWinningScreen = () => {
   let mainElem = document.querySelector("main").classList.add("hidden");
   // show succcess thing
   let successDiv = document.createElement("div");
   flexContainerPageElem.appendChild(successDiv);
   successDiv.classList.add("success-div");
+  createResetWholeGameButton();
+  let resetGameButton = document.querySelector("#reset-whole-game");
+  resetGameButton.addEventListener("click", () => {
+    resetWholeGame();
+    successDiv.remove();
+    resetGameButton.remove();
+  });
 };
 
 // RESET THE GAME'S CURRENT VALUES
@@ -732,4 +783,3 @@ textInputArea.addEventListener("input", () => {
 });
 
 nextButton.addEventListener("click", startSession);
-
