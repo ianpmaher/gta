@@ -376,7 +376,7 @@ const updatePromptQuote = () => {
 const updateRandomPromptQuote = () => {
   const url =
     // 1 randomly generated paragraph, containing 3 sentences!
-    "http://metaphorpsum.com/paragraphs/1/3";
+    "https://metaphorpsum.com/paragraphs/1/3";
 
   fetch(url, {
     headers: {},
@@ -758,9 +758,9 @@ const startSession = () => {
   resetCurrentValues();
   displayPoliceDifficulty();
   // commenting out normal Quotable API ******
-  // updatePromptQuote();
+  updatePromptQuote();
   // putting in Random API function *****
-  updateRandomPromptQuote();
+  // updateRandomPromptQuote();
   // clear Interval on timer functions
   removeCarFlipAnimation();
 };
