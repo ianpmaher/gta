@@ -694,6 +694,7 @@ const displayBustedScreen = () => {
   createResetWholeGameButton();
   let resetGameButton = document.querySelector("#reset-whole-game");
   resetGameButton.addEventListener("click", () => {
+    window.location.reload()
     resetWholeGame();
     bustedDiv.remove();
     resetGameButton.remove();
