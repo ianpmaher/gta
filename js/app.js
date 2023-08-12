@@ -784,3 +784,7 @@ textInputArea.addEventListener("input", () => {
 });
 
 nextButton.addEventListener("click", startSession);
+
+// displayBustedScreen()
+// displayWastedScreen()
+// displayWinningScreen()
