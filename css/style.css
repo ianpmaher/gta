@@ -288,7 +288,10 @@ label {
     justify-content: center;
     /* height: 85%; */
   }
-  
+  .intro {
+    display: auto;
+  }
+
   #quote-container {
     width: auto;
     height: auto;
@@ -302,7 +305,7 @@ label {
   .text-input:focus {
     font-size: 0.8rem;
   }
-  label, .restart-button, .intro {
+  label, .restart-button {
     display: none;
   }
   #time-remaining {
@@ -469,7 +472,7 @@ label {
   label {
     font-size: 0.7rem;
   }
-  .intro, .restart-button {
+  .restart-button {
     display: none;
   }
   .car-images {
@@ -482,6 +485,7 @@ label {
   }
 }
 
+/* tablets */
 @media only screen and (min-device-width: 603px) and (max-device-width: 940px) {
   header {
     width: 100%;
@@ -512,10 +516,10 @@ label {
     width: 80vw;
   }
   #quote {
-    font-size: 0.5rem;
+    font-size: 1rem;
   }
   .text-input {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   .text-input:focus {
     font-size: 0.8rem;
@@ -524,7 +528,7 @@ label {
     display: none;
   }
   #time-remaining {
-    font-size: 0.6rem;
+    font-size: 1rem;
   }
   #input-field {
     height: 2.5rem;
@@ -534,7 +538,7 @@ label {
     width: 80vw;
   }
   .time-container {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     width: fit-content;
     display: flex;
     justify-content: space-around;
@@ -581,7 +585,7 @@ label {
   label {
     font-size: 0.7rem;
   }
-  .intro, .restart-button {
+  .restart-button {
     display: none;
   }
   .car-images {
