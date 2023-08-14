@@ -45,17 +45,19 @@ main {
   display: flex;
 }
 .intro {
-  width: 80%;
+  width: 99vw;
   display: flex;
   flex-direction: column;
   background: linear-gradient(90deg,rgb(85,141,199) 0%, rgb(119,76,133) 60%);
-  text-align: justify;
+  text-align: center;
+  justify-content: center;
 }
 #intro-button-container {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 5;
+  display: flex;
+  justify-content: center;
+  width: 99vw;
+  align-items: center;
+
 }
 .intro-buttons {
   font-size: 1.1rem;
@@ -65,16 +67,18 @@ main {
   margin: 3rem 1rem 3rem 3rem;
   max-width: 10rem;
 }
-
+#intro-button-1 {
+  align-self: center;
+}
 #intro-pop-container {
-  width: 70vw;
+  width: 99vw;
   align-self: center;
 }
 .intro-text {
   font-family: "IBM Plex Mono", monospace;
   color: white;
   font-size: 1.2rem;
-  text-align: justify;
+  text-align: center;
   animation: tracking-in-expand 0.8s ease-in-out both;
   -webkit-animation: tracking-in-expand 0.8s ease-in-out both;
   line-height: 1;

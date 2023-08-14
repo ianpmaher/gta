@@ -3,103 +3,63 @@
 // defining up here for the sake of debugging and control flow
 let textInputArea = document.querySelector(".text-input");
 
-function introSequence() {
-  let introButton1Elem = document.querySelector("#intro-button1");
-  let introButton2Elem = document.querySelector("#intro-button2");
-  let introButton3Elem = document.querySelector("#intro-button3");
-  let introButton4Elem = document.querySelector("#intro-button4");
-  let introButton5Elem = document.querySelector("#intro-button5");
-  let noIntroButton = document.querySelector("#no-intro-button");
-  let introContainerElem = document.querySelector(".intro-container");
+const introSequence = () => {
+  let introButton1Elem = document.querySelector("#intro-button-1");
+  introButton1Elem.classList.add("hidden")
   let introPopContainerElem = document.querySelector("#intro-pop-container");
   let introArticleElem = document.querySelector(".intro")
   let introTextElem = document.querySelector(".intro-text")
+  // hides the site's main contents!
+  let mainElem = document.querySelector("main").classList.add("hidden");
 
-  // when user clicks button on page, proceed to show rest of intro sequence/game
-  introButton1Elem.addEventListener("click", () => {
-    // hides the site's main contents!
-    let mainElem = document.querySelector("main").classList.add("hidden");
-    textInputArea.disabled = true;
-    // remove the no intro button
-    noIntroButton.remove();
-    // adding each element in dynamically through DOM
-    let newTextElem0 = document.createElement("p");
-    newTextElem0.classList.add("intro-text")
-    newTextElem0.textContent = "Hey there, kid. Want to hear how this works?"
-    introPopContainerElem.appendChild(newTextElem0)
-    let newTextElem1 = document.createElement("p");
+  let newTextElem0 = document.createElement("p");
     // allows style to match and have animation
-    newTextElem1.classList.add("intro-text");
+  newTextElem0.classList.add("intro-text");
+  newTextElem0.textContent =
+    "This is a typing test and a game all in one. We need someone to run some jobs for us.";
+  introPopContainerElem.appendChild(newTextElem0);
+  const newTextElem1Func = () => {
+    let newTextElem1 = document.createElement("p");
+    newTextElem1.setAttribute("class", "intro-text");
     newTextElem1.textContent =
-      "We need someone to run some jobs for us. If you want to make a name for yourself, you gotta start now.";
-    introPopContainerElem.appendChild(newTextElem1);
-    // also getting rid of first button
-    introButton1Elem.remove();
-    // next string of text to be added in
-    let newTextElem2 = document.createElement("p");
-    newTextElem2.classList.add("intro-text");
-    newTextElem2.textContent = "You interested in learning more?";
-    // intro button, initially hidden
-    // shows the second button
-    introButton2Elem.classList.remove("hidden");
-    introButton2Elem.addEventListener("click", () => {
-      // add in the second string of text
-      introPopContainerElem.appendChild(newTextElem2);
-      // getting rid of second button element
-      introButton2Elem.remove();
-      // showing third button element
-      introButton3Elem.classList.remove("hidden");
-      introButton3Elem.addEventListener("click", () => {
-        // add in next string of text to instructions
-        introButton3Elem.remove();
-        let newTextElem3 = document.createElement("p");
-        newTextElem3.classList.add("intro-text");
-        newTextElem3.textContent = "You will have to steal some cars for us.";
-        introPopContainerElem.appendChild(newTextElem3);
-        let newTextElem4 = document.createElement("p");
-        newTextElem4.classList.add("intro-text");
-        newTextElem4.textContent =
-          "You gotta TYPE as FAST as you can to outrun those cops. A leisurely 30 words per minute ought to be enough for the first junker.";
-        introPopContainerElem.appendChild(newTextElem4);
-        introButton4Elem.classList.remove("hidden");
-        introButton4Elem.addEventListener("click", () => {
-          introButton4Elem.remove();
-          let newTextElem5 = document.createElement("p");
-          newTextElem5.classList.add("intro-text");
-          newTextElem5.textContent =
-            "Yes, typing. You'll see a prompt to type in, but be quick. MISTAKES will cost you. You lose 1 health for every 2 typos.";
-          introPopContainerElem.appendChild(newTextElem5);
-          let newTextElem6 = document.createElement("p");
-          newTextElem6.classList.add("intro-text");
-          newTextElem6.textContent =
-            "Remember this: Autocorrect won't save you in the real world. Now, what do you say?";
-          introPopContainerElem.appendChild(newTextElem6);
-          introButton5Elem.classList.remove("hidden");
-          introButton5Elem.addEventListener("click", () => {
-            introButton5Elem.remove();
-            introContainerElem.classList.add("hidden");
-            introPopContainerElem.classList.add("hidden");
-            // showing the full website
-            let mainElem = document.querySelector("main").classList.remove("hidden");
-            // also removing last button
-            textInputArea.disabled = false;
-          });
-        });
-      });
-    });
-  });
-  // when user clicks on the no-intro-button, will stop intro and unhide good stuff
-  noIntroButton.addEventListener("click", () => {
-    textInputArea.disabled = false;
-    introButton1Elem.classList.add("hidden");
-    // introButton2Elem.classList.add("hidden");
-    // introButton3Elem.classList.add("hidden");
-    introContainerElem.classList.add("hidden");
-    introPopContainerElem.classList.add("hidden");
-    introArticleElem.classList.add("hidden")
-    noIntroButton.remove();
-  });
-}
+    "You gotta type in the provided quote as QUICKLY as you can. Your speed (words/minute) is compared to the speed of the cops. "
+    introPopContainerElem.appendChild(newTextElem1)
+  }
+  let timeoutIntro = setTimeout(newTextElem1Func, 1000)
+  const newTextElem2Func = () => {
+    let newTextElem2 = document.createElement("p")
+    newTextElem2.classList.add("intro-text")
+    newTextElem2.textContent = "Not only will typos DECREASE your words/minute speed, they'll also cost you HEALTH. You lose 1 health for every 2 typos.";
+    introPopContainerElem.appendChild(newTextElem2)
+  }
+  let timeoutIntro2 = setTimeout(newTextElem2Func, 3000)
+  const newTextElem3Func = () => {
+    let newTextElem3 = document.createElement("p")
+    newTextElem3.classList.add("intro-text")
+    newTextElem3.textContent = "Each quote means one more car to add to your collection. Also, remember this: Autocorrect won't save you in the real world.";
+    introPopContainerElem.appendChild(newTextElem3)
+  }
+  let timeoutIntro3 = setTimeout(newTextElem3Func, 5000)
+  // showing the full website
+  // let introButton1Elem = document.querySelector("#intro-button1");
+  introButton1Elem.classList.remove("hidden")
+  introButton1Elem.addEventListener("click", () => {
+    mainElem.classList.remove("hidden");
+  })
+}   
+
+// when user clicks on the no-intro-button, will stop intro and unhide good stuff
+let noIntroButton = document.querySelector("#no-intro-button");
+noIntroButton.addEventListener("click", () => {
+  textInputArea.disabled = false;
+  introButton1Elem.classList.add("hidden");
+  // introButton2Elem.classList.add("hidden");
+  // introButton3Elem.classList.add("hidden");
+  introContainerElem.classList.add("hidden");
+  introPopContainerElem.classList.add("hidden");
+  introArticleElem.classList.add("hidden")
+  noIntroButton.remove();
+});
 introSequence();
 
 // making a CLASS for user, so can make one for police later if two player
