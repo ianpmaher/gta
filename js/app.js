@@ -44,23 +44,31 @@ const introSequence = () => {
   // let introButton1Elem = document.querySelector("#intro-button1");
   introButton1Elem.classList.remove("hidden")
   introButton1Elem.addEventListener("click", () => {
-    mainElem.classList.remove("hidden");
+    textInputArea.disabled = false;
+    let introArticleElem = document.querySelector(".intro")
+    // let introTextElem = document.querySelectorAll(".intro-text").classList.add("hidden")
+    introButton1Elem.classList.add("hidden");
+    introArticleElem.classList.add("hidden")
+    noIntroButton.remove();
+    let introPopContainerElem = document.querySelector("#intro-pop-container").classList.add("hidden");
+    let mainElem = document.querySelector("main").classList.remove("hidden");
+
   })
 }   
+introSequence();
 
 // when user clicks on the no-intro-button, will stop intro and unhide good stuff
 let noIntroButton = document.querySelector("#no-intro-button");
 noIntroButton.addEventListener("click", () => {
+  let mainElem = document.querySelector("main").classList.remove("hidden");
   textInputArea.disabled = false;
-  introButton1Elem.classList.add("hidden");
+  let introButton1Elem = document.querySelector("#intro-button-1").classList.add("hidden");
   // introButton2Elem.classList.add("hidden");
   // introButton3Elem.classList.add("hidden");
-  introContainerElem.classList.add("hidden");
-  introPopContainerElem.classList.add("hidden");
-  introArticleElem.classList.add("hidden")
+  let introPopContainerElem = document.querySelector("#intro-pop-container").classList.add("hidden");
+  let introArticleElem = document.querySelector(".intro").classList.add("hidden")
   noIntroButton.remove();
 });
-introSequence();
 
 // making a CLASS for user, so can make one for police later if two player
 class Player {
