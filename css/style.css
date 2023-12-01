@@ -5,6 +5,7 @@ body {
   width: 99vw;
   height: 95vh;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 header {
   text-align: center;
@@ -15,18 +16,18 @@ header {
 }
 .logo {
   height: 14rem;
-  width: 22rem;
+  width: 15rem;
   background-image: url(/assets/gtaLogoCircleGradientNew.png);
   background-position: center;
-  background-size: 17rem;
+  background-size: contain;
   background-repeat: no-repeat;
-  margin-top: -0.5rem;
   z-index: 1;
   transition: 0.5s;
+  padding: 0 auto;
 }
 .logo:active {
-  background-size: 24rem;
   height: 20rem;
+  width: 24rem;
 }
 #flex-container-page {
   display: flex;
@@ -106,7 +107,7 @@ main {
 #quote-container {
   background-color: rgb(253, 244, 220);
   width: 100%;
-  height: 14%;
+  height: 16%;
   border-radius: 5%;
   align-items: center;
   display: flex;
@@ -116,7 +117,7 @@ main {
   font-weight: 400;
   text-align: justify;
   margin: 5% 5%;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 .correct-character {
   background-color: rgba(54, 125, 54, 0.2);
