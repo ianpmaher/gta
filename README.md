@@ -24,7 +24,7 @@ Room for Improvement:
 * Implement a two-player feature -- I have some of JavaScript set up with this in mind. Basically, Player One would be the criminal, while Player Two would be a new instance of the Player class. The highest words per minute rate in a best of three wins!
 * Improve the responsiveness of the website.  
 * I *love* the effect on TypeRacer of the car moving in accordance to how far into a prompt you have reached. Basically, the car moves in proportion to how quickly you type. My website does not do that currently, and I would need to figure out a proper way of doing so with fetched quotes. The alternative would be utilizing a fixed array of quotes and thereby assessing the length of each prompt, etc. 
-* I would love to have a soft chime or user-customizable sound play when a Pomodoro session is complete.
+* I would love to have a soft chime or user-customizable sound play when a session is complete.
 * More GTA flair!
 
 <img width="1505" alt="image" src="https://github.com/ianpmaher/gta/assets/120536234/673eb284-84fd-416d-96b5-d84da3da786d">
