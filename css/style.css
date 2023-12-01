@@ -13,10 +13,11 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 .logo {
   height: 14rem;
-  width: 15rem;
+  width: 14rem;
   background-image: url(/assets/gtaLogoCircleGradientNew.png);
   background-position: center;
   background-size: contain;
@@ -24,6 +25,7 @@ header {
   z-index: 1;
   transition: 0.5s;
   padding: 0 auto;
+  margin: 0;
 }
 .logo:active {
   height: 20rem;
@@ -46,26 +48,28 @@ main {
   display: flex;
 }
 .intro {
-  width: 99vw;
   display: flex;
   flex-direction: column;
   background: linear-gradient(90deg,rgb(85,141,199) 0%, rgb(119,76,133) 60%);
   text-align: center;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 0.5rem;
 }
 #intro-button-container {
   display: flex;
   justify-content: center;
-  width: 99vw;
+  /* width: 99vw; */
   align-items: center;
-
 }
 .intro-buttons {
   font-size: 1.1rem;
   background: linear-gradient(45deg,rgba(117, 251, 204, 1) 0%, rgba(94,204,215,1) 100%);
   border-radius: 20%;
   padding: 0.5rem;
-  margin: 3rem 1rem 3rem 3rem;
+  margin: 3rem;
   max-width: 10rem;
 }
 #intro-button-1 {
@@ -78,11 +82,12 @@ main {
 .intro-text {
   font-family: "IBM Plex Mono", monospace;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-align: center;
   animation: tracking-in-expand 0.8s ease-in-out both;
   -webkit-animation: tracking-in-expand 0.8s ease-in-out both;
-  line-height: 1;
+  line-height: 1.5;
+  margin: 0 auto;
 }
 /* ================ */
 /* GRAPHICS SECTION */
