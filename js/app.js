@@ -319,6 +319,18 @@ const updatePromptQuote = () => {
         // quote itself is content of one element
         // let promptObj = { prompt: quotesData1.content, author: quotesData1.author };
         currentPrompt = quotesData1.content;
+        // ===================== //
+        // 12/1/2023 
+        // RegEx to remove emdash and other less usual characters
+        // https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
+        currentPrompt = currentPrompt.replaceAll("\\p{Pd}", "-");
+        // ===================== //
+        // RegEx to fix instances of no space after punctuation
+        // currentPrompt = currentPrompt.replaceAll(/([.!?])([^\s])/g, "$1 $2");
+        currentPrompt = currentPrompt.replaceAll(/\.(\S)/g, ". $1"); // this worked!!!
+        // https://stackoverflow.com/questions/36408015/regex-for-adding-a-space-or-period-for-new-sentence-under-certain-conditions
+        // s/([^0-9.])\.([^0-9])/\1. \2/g
+        // ===================== //
         let splitPrompt = currentPrompt.split("");
         let arrSplitPrompt = splitPrompt.map((value) => {
           // necessary to split each character into an individual HTML span
