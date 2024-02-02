@@ -321,6 +321,7 @@ function getRandomIndices(arr, numElements) {
 }
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
 
+
 const updatePromptWords = () => {
     // https://www.mit.edu/~ecprice/wordlist.10000
     // "../assets/wordlist10000.txt";
@@ -338,7 +339,9 @@ const updatePromptWords = () => {
             // using getRandomIndices function to get 3 random quotes
             let randomIndices = getRandomIndices(quotes, 40);
             console.log(randomIndices);
-            currentPrompt = randomIndices.map(index => quotes[index]).join(' ');
+            // currentPrompt = randomIndices.map(index => quotes[index]).join(' ');
+            currentPrompt = randomIndices.join(" ");
+            console.log(`current prompt: ${currentPrompt}`)
             
             let splitPrompt = currentPrompt.split("");
             let arrSplitPrompt = splitPrompt.map((value) => {
