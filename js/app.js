@@ -306,6 +306,21 @@ let promptsUsedArray = [];
 // TODO - make this a function that can be called to update the prompt
 // 2024 update ==> reference the wordlist10000.txt file
 
+// function to generate random indices for the wordlist10000.txt file
+function getRandomIndices(arr, numElements) {
+    let randomIndices = new Set();
+    let result = [];
+    while (randomIndices.size < numElements) {
+        let randomIndex = Math.floor(Math.random() * arr.length);
+        randomIndices.add(randomIndex);
+    }
+    randomIndices.forEach((index) => {
+        result.push(arr[index]);
+    });
+    return result;
+}
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+
 const updatePromptWords = () => {
     // https://www.mit.edu/~ecprice/wordlist.10000
     // "../assets/wordlist10000.txt";
@@ -314,15 +329,17 @@ const updatePromptWords = () => {
         .then((response) => {
             return response.text();
         })
-        .then(
-            (data) => {
-                // Assuming the data is a string with each quote separated by a newline
-            const quotes = data.split('\n');
+        .then((data) => {
+            // Assuming the data is a string with each quote separated by a newline
+            const quotes = data.split("\n");
 
             // Select a random word from the array
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            currentPrompt = quotes[randomIndex];
-            console.log(currentPrompt);
+            // const randomIndex = Math.floor(Math.random() * quotes.length);
+            // using getRandomIndices function to get 3 random quotes
+            let randomIndices = getRandomIndices(quotes, 40);
+            console.log(randomIndices);
+            currentPrompt = randomIndices.map(index => quotes[index]).join(' ');
+            
             let splitPrompt = currentPrompt.split("");
             let arrSplitPrompt = splitPrompt.map((value) => {
                 // necessary to split each character into an individual HTML span
@@ -332,62 +349,63 @@ const updatePromptWords = () => {
                 return `<span class="prompt-text">${value}</span>`;
             });
             // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
-            quoteElem.innerHTML += arrSplitPrompt.join("");
             
-
+            // clearing existing words
+            quoteElem.innerHTML = "";
+            
+            // adding new words
+            quoteElem.innerHTML += arrSplitPrompt.join("");
         })
-        .catch(error => console.error('Error:', error));
+        .catch((error) => console.error("Error:", error));
 };
 // ===================== // ===================== // ===================== //
 
 const updatePromptQuote = () => {
-    
-    
     const url =
         // random 3 quotes fetched with between 150 and 200 characters
         // "https://api.quotable.io/quotes/random?limit=2&minLength=100&maxLength=150";
 
-    fetch(url, {
-        headers: {},
-    })
-        .then((response) => {
-            return response.json();
+        fetch(url, {
+            headers: {},
         })
-        .then(
-            (data) => {
-                // api returns an array of JSON objects with query parameters set as above, so selecting first one
-                quotesData1 = data[0];
-                // quote itself is content of one element
-                // let promptObj = { prompt: quotesData1.content, author: quotesData1.author };
-                currentPrompt = quotesData1.content;
-                // ===================== //
-                // 12/1/2023
-                // RegEx to remove emdash and other less usual characters
-                // https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
-                currentPrompt = currentPrompt.replaceAll("\\p{Pd}", "-");
-                // ===================== //
-                // RegEx to fix instances of no space after punctuation
-                // currentPrompt = currentPrompt.replaceAll(/([.!?])([^\s])/g, "$1 $2");
-                currentPrompt = currentPrompt.replaceAll(/\.(\S)/g, ". $1"); // this worked!!!
-                // https://stackoverflow.com/questions/36408015/regex-for-adding-a-space-or-period-for-new-sentence-under-certain-conditions
-                // s/([^0-9.])\.([^0-9])/\1. \2/g
-                // ===================== //
-                let splitPrompt = currentPrompt.split("");
-                let arrSplitPrompt = splitPrompt.map((value) => {
-                    // necessary to split each character into an individual HTML span
-                    // putting the characters into a HTML span tag element
-                    // I chose span because lack of inline-level styling and lack of inherent styling
-                    // I had issues with createElement before this attempt
-                    return `<span class="prompt-text">${value}</span>`;
-                });
-                // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
-                quoteElem.innerHTML += arrSplitPrompt.join("");
-                // promptsUsedArray.push(promptObj);
-                // quote's author populates different element
-                // promptAuthorElem.textContent = quotesData1.author;
-            },
-            (err) => console.log(err)
-        );
+            .then((response) => {
+                return response.json();
+            })
+            .then(
+                (data) => {
+                    // api returns an array of JSON objects with query parameters set as above, so selecting first one
+                    quotesData1 = data[0];
+                    // quote itself is content of one element
+                    // let promptObj = { prompt: quotesData1.content, author: quotesData1.author };
+                    currentPrompt = quotesData1.content;
+                    // ===================== //
+                    // 12/1/2023
+                    // RegEx to remove emdash and other less usual characters
+                    // https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
+                    currentPrompt = currentPrompt.replaceAll("\\p{Pd}", "-");
+                    // ===================== //
+                    // RegEx to fix instances of no space after punctuation
+                    // currentPrompt = currentPrompt.replaceAll(/([.!?])([^\s])/g, "$1 $2");
+                    currentPrompt = currentPrompt.replaceAll(/\.(\S)/g, ". $1"); // this worked!!!
+                    // https://stackoverflow.com/questions/36408015/regex-for-adding-a-space-or-period-for-new-sentence-under-certain-conditions
+                    // s/([^0-9.])\.([^0-9])/\1. \2/g
+                    // ===================== //
+                    let splitPrompt = currentPrompt.split("");
+                    let arrSplitPrompt = splitPrompt.map((value) => {
+                        // necessary to split each character into an individual HTML span
+                        // putting the characters into a HTML span tag element
+                        // I chose span because lack of inline-level styling and lack of inherent styling
+                        // I had issues with createElement before this attempt
+                        return `<span class="prompt-text">${value}</span>`;
+                    });
+                    // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
+                    quoteElem.innerHTML += arrSplitPrompt.join("");
+                    // promptsUsedArray.push(promptObj);
+                    // quote's author populates different element
+                    // promptAuthorElem.textContent = quotesData1.author;
+                },
+                (err) => console.log(err)
+            );
     // textContent rather than innerText
     // StackOverflow suggested innerText is more performance heavy
     // https://stackoverflow.com/questions/35213147/difference-between-textcontent-vs-innertext
@@ -531,23 +549,22 @@ const handleUserTypingInput = () => {
 // let textInputArea = document.querySelector(".text-input");
 
 // Assuming `inputElem` is the input field where the user is typing
-textInputArea.addEventListener('input', () => {
-    // Remove any leading/trailing whitespace from the user's input
-    const userInput = textInputArea.value.trim();
+// textInputArea.addEventListener('input', () => {
+//     // Remove any leading/trailing whitespace from the user's input
+//     const userInput = textInputArea.value.trim();
 
-    // If the user's input matches the current line of words, display a new line of words
-    if (userInput === currentPrompt) {
-        updatePromptWords();
+//     // If the user's input matches the current line of words, display a new line of words
+//     if (userInput === currentPrompt) {
+//         updatePromptWords();
 
-        // Clear the input field
-        textInputArea.value = '';
+//         // Clear the input field
+//         textInputArea.value = '';
 
-        // set the caret position to the start of the next word
-        const nextSpaceIndex = currentPrompt.indexOf(' ', 1);
-    }
-});
+//         // set the caret position to the start of the next word
+//         const nextSpaceIndex = currentPrompt.indexOf(' ', 1);
+//     }
+// });
 // ===================== // ===================== // ===================== //
-
 
 // now working on time variables
 // timerEndSession function allows timer to end session if time runs out
