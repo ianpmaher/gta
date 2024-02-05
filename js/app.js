@@ -589,7 +589,7 @@ const timerUpdateSession = () => {
 // timer function with INTERVAL syntax like my Pomodoro one
 const timerTickTockFunction = () => {
     // even though global variable defines timeLimit = 60, I am putting this here to reset timer
-    timeRemaining = 60;
+    timeRemaining = 30;
     timerInterval = setInterval(timerUpdateSession, 1000);
 };
 
