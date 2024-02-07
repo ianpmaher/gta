@@ -56,10 +56,16 @@ const introSequence = () => {
     });
 };
 
+let noIntroButton = document.querySelector("#no-intro-button");
 // introSequence();
+// clicking on the logo will restart the intro
+let logoElem = document.querySelector(".logo");
+logoElem.addEventListener("click", () => {
+    introSequence();
+    // noIntroButton.classList.add(".hidden");
+});
 
 // when user clicks on the no-intro-button, will stop intro and unhide good stuff
-let noIntroButton = document.querySelector("#no-intro-button");
 noIntroButton.addEventListener("click", () => {
     let mainElem = document.querySelector("main").classList.remove("hidden");
     textInputArea.disabled = false;
@@ -235,7 +241,7 @@ const userPlayer = new Player("Bob", "", "", vehicles[0]);
 
 // ACTUAL CODE FOR TYPING TEST
 // 60 seconds for user to type
-const timeLimit = 60;
+const timeLimit = 30;
 
 // fetch quote as above in order to get prompt
 // defining variables for each DOM element
@@ -353,67 +359,72 @@ const updatePromptWords = () => {
             });
             // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
             
+            let textInputArea = document.querySelector(".text-input");
             // clearing existing words
             quoteElem.innerHTML = "";
+            textInputArea.value = "";
             
             // adding new words
             quoteElem.innerHTML += arrSplitPrompt.join("");
+            textInputArea.innerHTML += arrSplitPrompt.join("");
+            // quoteElem.classList.add('text-input');
+            
         })
         .catch((error) => console.error("Error:", error));
 };
 // ===================== // ===================== // ===================== //
 
-const updatePromptQuote = () => {
-    const url =
-        // random 3 quotes fetched with between 150 and 200 characters
-        // "https://api.quotable.io/quotes/random?limit=2&minLength=100&maxLength=150";
+// const updatePromptQuote = () => {
+//     const url =
+//         // random 3 quotes fetched with between 150 and 200 characters
+//         // "https://api.quotable.io/quotes/random?limit=2&minLength=100&maxLength=150";
 
-        fetch(url, {
-            headers: {},
-        })
-            .then((response) => {
-                return response.json();
-            })
-            .then(
-                (data) => {
-                    // api returns an array of JSON objects with query parameters set as above, so selecting first one
-                    quotesData1 = data[0];
-                    // quote itself is content of one element
-                    // let promptObj = { prompt: quotesData1.content, author: quotesData1.author };
-                    currentPrompt = quotesData1.content;
-                    // ===================== //
-                    // 12/1/2023
-                    // RegEx to remove emdash and other less usual characters
-                    // https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
-                    currentPrompt = currentPrompt.replaceAll("\\p{Pd}", "-");
-                    // ===================== //
-                    // RegEx to fix instances of no space after punctuation
-                    // currentPrompt = currentPrompt.replaceAll(/([.!?])([^\s])/g, "$1 $2");
-                    currentPrompt = currentPrompt.replaceAll(/\.(\S)/g, ". $1"); // this worked!!!
-                    // https://stackoverflow.com/questions/36408015/regex-for-adding-a-space-or-period-for-new-sentence-under-certain-conditions
-                    // s/([^0-9.])\.([^0-9])/\1. \2/g
-                    // ===================== //
-                    let splitPrompt = currentPrompt.split("");
-                    let arrSplitPrompt = splitPrompt.map((value) => {
-                        // necessary to split each character into an individual HTML span
-                        // putting the characters into a HTML span tag element
-                        // I chose span because lack of inline-level styling and lack of inherent styling
-                        // I had issues with createElement before this attempt
-                        return `<span class="prompt-text">${value}</span>`;
-                    });
-                    // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
-                    quoteElem.innerHTML += arrSplitPrompt.join("");
-                    // promptsUsedArray.push(promptObj);
-                    // quote's author populates different element
-                    // promptAuthorElem.textContent = quotesData1.author;
-                },
-                (err) => console.log(err)
-            );
-    // textContent rather than innerText
-    // StackOverflow suggested innerText is more performance heavy
-    // https://stackoverflow.com/questions/35213147/difference-between-textcontent-vs-innertext
-    // https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
-};
+//         fetch(url, {
+//             headers: {},
+//         })
+//             .then((response) => {
+//                 return response.json();
+//             })
+//             .then(
+//                 (data) => {
+//                     // api returns an array of JSON objects with query parameters set as above, so selecting first one
+//                     quotesData1 = data[0];
+//                     // quote itself is content of one element
+//                     // let promptObj = { prompt: quotesData1.content, author: quotesData1.author };
+//                     currentPrompt = quotesData1.content;
+//                     // ===================== //
+//                     // 12/1/2023
+//                     // RegEx to remove emdash and other less usual characters
+//                     // https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
+//                     currentPrompt = currentPrompt.replaceAll("\\p{Pd}", "-");
+//                     // ===================== //
+//                     // RegEx to fix instances of no space after punctuation
+//                     // currentPrompt = currentPrompt.replaceAll(/([.!?])([^\s])/g, "$1 $2");
+//                     currentPrompt = currentPrompt.replaceAll(/\.(\S)/g, ". $1"); // this worked!!!
+//                     // https://stackoverflow.com/questions/36408015/regex-for-adding-a-space-or-period-for-new-sentence-under-certain-conditions
+//                     // s/([^0-9.])\.([^0-9])/\1. \2/g
+//                     // ===================== //
+//                     let splitPrompt = currentPrompt.split("");
+//                     let arrSplitPrompt = splitPrompt.map((value) => {
+//                         // necessary to split each character into an individual HTML span
+//                         // putting the characters into a HTML span tag element
+//                         // I chose span because lack of inline-level styling and lack of inherent styling
+//                         // I had issues with createElement before this attempt
+//                         return `<span class="prompt-text">${value}</span>`;
+//                     });
+//                     // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
+//                     quoteElem.innerHTML += arrSplitPrompt.join("");
+//                     // promptsUsedArray.push(promptObj);
+//                     // quote's author populates different element
+//                     // promptAuthorElem.textContent = quotesData1.author;
+//                 },
+//                 (err) => console.log(err)
+//             );
+//     // textContent rather than innerText
+//     // StackOverflow suggested innerText is more performance heavy
+//     // https://stackoverflow.com/questions/35213147/difference-between-textcontent-vs-innertext
+//     // https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
+// };
 
 // **RANDOM PROMPT QUOTE**
 // there have been issues documented in the GitHub for the Quotable API
@@ -425,41 +436,41 @@ const updatePromptQuote = () => {
 // random paragraph API
 // http://metaphorpsum.com/
 
-const updateRandomPromptQuote = () => {
-    const url =
-        // 1 randomly generated paragraph, containing 3 sentences!
-        "https://metaphorpsum.com/paragraphs/1/3";
+// const updateRandomPromptQuote = () => {
+//     const url =
+//         // 1 randomly generated paragraph, containing 3 sentences!
+//         "https://metaphorpsum.com/paragraphs/1/3";
 
-    fetch(url, {
-        headers: {},
-    })
-        .then((response) => {
-            // since API returns just the text, no object, I needed to do
-            // response.text()
-            return response.text();
-        })
-        .then(
-            (data) => {
-                // api returns just the text, not as JSON
-                quotesData1 = JSON.stringify(data);
-                let splitPromptRandom = quotesData1.split("");
-                let arrSplitPromptRandom = splitPromptRandom.map((value) => {
-                    // as stated in updatePromptQuote(), need to split each character
-                    // into individual HTML span tag element
-                    return `<span class="prompt-text">${value}</span>`;
-                });
-                // the API quote had quotation marks, so removing first and last element of the
-                // span array will remove those quotation marks (since they are now span elements)
-                arrSplitPromptRandom.shift();
-                arrSplitPromptRandom.pop();
-                quoteElem.innerHTML += arrSplitPromptRandom.join("");
-                // quote itself is content of one element
-                // let promptObj = { prompt: quotesData1 };
-                // promptsUsedArray.push(promptObj);
-            },
-            (err) => console.log(err)
-        );
-};
+//     fetch(url, {
+//         headers: {},
+//     })
+//         .then((response) => {
+//             // since API returns just the text, no object, I needed to do
+//             // response.text()
+//             return response.text();
+//         })
+//         .then(
+//             (data) => {
+//                 // api returns just the text, not as JSON
+//                 quotesData1 = JSON.stringify(data);
+//                 let splitPromptRandom = quotesData1.split("");
+//                 let arrSplitPromptRandom = splitPromptRandom.map((value) => {
+//                     // as stated in updatePromptQuote(), need to split each character
+//                     // into individual HTML span tag element
+//                     return `<span class="prompt-text">${value}</span>`;
+//                 });
+//                 // the API quote had quotation marks, so removing first and last element of the
+//                 // span array will remove those quotation marks (since they are now span elements)
+//                 arrSplitPromptRandom.shift();
+//                 arrSplitPromptRandom.pop();
+//                 quoteElem.innerHTML += arrSplitPromptRandom.join("");
+//                 // quote itself is content of one element
+//                 // let promptObj = { prompt: quotesData1 };
+//                 // promptsUsedArray.push(promptObj);
+//             },
+//             (err) => console.log(err)
+//         );
+// };
 // fetchRandomPrompt();
 
 // Vanilla JavaScript solution to move the cars
