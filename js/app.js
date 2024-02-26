@@ -367,6 +367,8 @@ const updatePromptWords = () => {
             // adding new words
             quoteElem.innerHTML += arrSplitPrompt.join("");
             textInputArea.innerHTML += arrSplitPrompt.join("");
+
+            console.log('finished updating prompt words');
             // quoteElem.classList.add('text-input');
             
         })
@@ -499,6 +501,7 @@ const removePoliceCarMove = () => {
 const handleUserTypingInput = () => {
     // this line will reset the currentError (prompt) each time
     // currentErrors = 0;
+    console.log("handleUserTypingInput function running")
     let promptCharacters = document.querySelectorAll(".prompt-text");
     let arrPromptCharacters = Array.from(promptCharacters);
     // let textInputArea = document.querySelector(".text-input");

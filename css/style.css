@@ -1,11 +1,14 @@
 body {
-    background-image: url("/assets/palms.png");
+    background-image: url("/assets/miamibaby.png");
     background-size: cover;
     background-position: center;
     width: 99vw;
     height: 99vh;
     overflow-x: hidden;
     box-sizing: border-box;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 header {
     text-align: center;
@@ -15,7 +18,7 @@ header {
     justify-content: center;
     margin: 0 auto;
 }
-.logo-container, .logo {
+.logo-container {
     background-image: url(/assets/gtaLogoNEWnoBG.png);
     background-position: center;
     background-size: contain;
@@ -24,6 +27,8 @@ header {
     transition: 0.5s;
     padding: 0 auto;
     margin: 0;
+    height: 15rem;
+    width: 15rem;
 }
 .logo:active {
     height: 15rem;
@@ -46,6 +51,7 @@ main {
     gap: 0.5rem;
     height: 100%;
     flex-basis: 85%;
+    margin: 5rem auto 0rem auto;
 }
 aside {
     display: flex;
@@ -62,27 +68,11 @@ aside {
 .flex-container {
     display: flex;
 }
-.statblock {
-    display: flex;
-    /* flex-basis: content; */
-    flex-flow: column wrap;
-    padding: 0 auto;
-    gap: 1rem;
-    width: 100%;
-    background: linear-gradient(0deg, rgba(115, 61, 161, 1) 0%, rgba(157, 43, 142, 1) 100%);
-    border-radius: 0.5rem;
-    margin: 0.25rem auto;
-    text-align: center;
-    font-family: "Caprasimo", "Segoe UI", Arial, Helvetica, sans-serif;
-    font-size: 0.9rem;
-    align-items: center;
-    justify-content: space-around;
-    color: ghostwhite;
-}
 .intro {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(90deg, rgb(85, 141, 199) 0%, rgb(119, 76, 133) 60%);
+    /* background: linear-gradient(90deg, rgb(85, 141, 199) 0%, rgb(119, 76, 133) 60%); */
+    background-color: black;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -125,6 +115,15 @@ aside {
 
 /* ================ */
 /* GRAPHICS SECTION */
+#graphics {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
 .progress-container {
     /* margin-top: 10rem; */
     background-image: url("/assets/roadProgress.png");
@@ -132,6 +131,7 @@ aside {
     background-size: contain;
     z-index: 2;
     width: 90%;
+    box-shadow: 0 0 1rem 0.5rem black;
 }
 .car-images {
     width: 112px;
@@ -142,15 +142,16 @@ aside {
     -webkit-animation: move-right 5s linear both;
 }
 #quote-container {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     color: black;
     font-family: "IBM Plex Mono", Courier, monospace;
-    height: 30vh;
-    width: 95%;
+    height: 20vh;
+    width: 90%;
     /* border-radius: 5%; */
     user-select: none;
     position: relative;
     margin: 0 auto;
+    outline: 5px solid chartreuse;
 }
 #quote-container,
 textarea,
@@ -203,9 +204,6 @@ textarea {
     font-size: 1.25rem;
     border: none;
 }
-#quote {
-    outline: 3px solid green;
-}
 .time-container {
     display: flex;
     flex-flow: row nowrap;
@@ -213,12 +211,27 @@ textarea {
     color: white;
     justify-content: space-between;
     align-items: center;
+    gap: 3rem;
+    padding: 0.25rem;
+}
+.shaped-time {
+    height: 5rem;
+    width: 12rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 30%;
+    background: linear-gradient(90deg, rgba(176, 51, 110, 1) 0%, rgba(209, 89, 90, 1) 100%);
+    text-align: center;
+    box-shadow: 0 0 1rem 0.5rem black;
 }
 label {
     font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     font-size: 1.1rem;
     width: 17rem;
+    border-radius: 0.25rem;
     text-align: center;
     background: linear-gradient(90deg, rgb(85, 141, 199) 0%, rgb(119, 76, 133) 60%);
 }
@@ -243,30 +256,23 @@ label {
     font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
     color: ghostwhite;
 }
-.shaped-time {
-    height: 3rem;
-    width: 17rem;
+.statblock {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    border-radius: 30%;
-    background: linear-gradient(90deg, rgba(176, 51, 110, 1) 0%, rgba(209, 89, 90, 1) 100%);
+    /* flex-basis: content; */
+    flex-flow: column wrap;
+    padding: 0.5rem;
     text-align: center;
-}
-.current-container {
-    /* background: linear-gradient(90deg, rgb(232, 117, 79, 1) 0%, rgb(235 197 97) 100%); */
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+    /* background: linear-gradient(0deg, rgba(115, 61, 161, 1) 0%, rgba(157, 43, 142, 1) 100%); */
     background-color: black;
-    border-radius: 10%;
-    width: 7rem;
-    padding: 0.5rem 1rem;
-    height: 2rem;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    font-family: "Caprasimo", Monaco, sans-serif;
-    font-size: 1rem;
+    border-radius: 0.5rem;
+    margin: 0.25rem auto;
+    font-family: "Caprasimo", "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    color: ghostwhite;
 }
 .stat-inject {
     color: whitesmoke;
@@ -275,16 +281,37 @@ label {
     font-size: 1rem;
 }
 .user-stats {
+    /* background: linear-gradient(90deg, rgb(232, 117, 79, 1) 0%, rgb(235 197 97) 100%); */
     list-style: none;
     display: flex;
     flex-flow: column wrap;
     gap: 0.5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
 }
 .user-stats li {
-    padding: auto;
-    margin: auto;
+    padding: 0;
+    margin: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.hud {
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column wrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    background-color: rgba(1,1,1,0.9);
+    border-radius: 0.5rem;
+}
+.speed {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 auto;
+    max-width: 20rem;
+    min-width: 10rem;
 }
 #user-vehicle {
     max-width: 250px;
