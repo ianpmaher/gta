@@ -875,6 +875,9 @@ const startSession = () => {
     textInputArea.setAttribute("autofocus", "autofocus");
 };
 
+// prompt displays this text by default and until session starts
+quoteElem.textContent = "Click here to start the typing test!";
+
 // going to have prompt timer start when user clicks into the text area
 textInputArea.addEventListener(
     "click",

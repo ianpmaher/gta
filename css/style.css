@@ -2,6 +2,7 @@ body {
     background-image: url("/assets/miamibaby.png");
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     /* width: 99vw; */
     min-height: 99vh;
     overflow-x: hidden;
@@ -55,7 +56,7 @@ main {
     align-self: center;
     gap: 0.5rem;
     height: 100%;
-    margin: 5rem auto 0rem auto;
+    margin: 3rem auto 0rem auto;
 }
 .nav, .sidebar {
     display: flex;
@@ -79,7 +80,7 @@ main {
     padding: 2rem;
     border-radius: 0.5rem;
     height: 30%;
-    margin: 0.25rem auto;
+    /* margin: 0.25rem auto; */
     background-color: black;
 }
 aside {
@@ -93,12 +94,27 @@ aside {
 .hidden {
     display: none;
 }
+
+/* card */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(1,1,1,0.8);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    /* margin: 0.5rem; */
+    width: 90%;
+    height: 100%;
+    box-shadow: 0 0 1rem 0.5rem black;
+}
+
 .intro {
     display: flex;
     flex-direction: column;
     /* background: linear-gradient(90deg, rgb(85, 141, 199) 0%, rgb(119, 76, 133) 60%); */
-    background-color: black;
-    text-align: center;
+    background-color: rgba(1,1,1,0.8);    text-align: center;
     justify-content: center;
     align-items: center;
     width: 70%;
@@ -135,14 +151,16 @@ button {
 #intro-pop-container {
     /* width: 99vw; */
     align-self: center;
+    height: 100%;
+    width: 100%;
 }
 .intro-text {
     font-family: "IBM Plex Mono", monospace;
     color: white;
     font-size: 1.1rem;
     text-align: center;
-    animation: tracking-in-expand 0.8s ease-in-out both;
-    -webkit-animation: tracking-in-expand 0.8s ease-in-out both;
+    /* animation: tracking-in-expand 0.8s ease-in-out both;
+    -webkit-animation: tracking-in-expand 0.8s ease-in-out both; */
     line-height: 1.5;
     margin: 0 auto;
 }
@@ -181,7 +199,7 @@ button {
     background-color: rgba(255, 255, 255, 0.95);
     color: black;
     font-family: "IBM Plex Mono", Courier, monospace;
-    height: 30vh;
+    height: 35vh;
     width: 90%;
     /* border-radius: 5%; */
     user-select: none;
