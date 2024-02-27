@@ -22,8 +22,8 @@
             <div id="intro-pop-container"></div>
             <button id="intro-button-1" class="hidden intro-buttons">LET'S STEAL SOME CARS</button>
         </article>
-        <div id="flex-container-page">
-            <aside class="">
+        <div id="container-page">
+            <nav class="nav">
                 <div class="logo-container logo">
                     <!-- <img src="/assets/gtaLogoNEWnoBG.png" alt="Grand Theft Autocorrect" width="250px" height="250px" class="logo" /> -->
                 </div>
@@ -46,7 +46,7 @@
                         <li>Errors: <span id="current-errors" class="stat-inject">0</span></li>
                     </ul>
                 </section>
-            </aside>
+            </nav>
             <main>
                 <section id="graphics">
                     <div class="progress-container">
@@ -78,16 +78,16 @@
                         <button id="next-button">Next Session</button>
                         <button class="restart-button">Reset</button>
                     </div>
-                    <section class="speed">
-                        <div class="statblock">
-                            <ul class="user-stats">
-                                <li>Current Speed: <span id="user-speed" class="stat-inject"></span></li>
-                                <li>Police Speed: <span id="police-speed" class="stat-inject"></span></li>
-                            </ul>
-                        </div>
-                    </section>
                 </article>
             </main>
+            <aside class="sidebar">
+                <section class="speed">
+                    <ul class="user-stats">
+                        <li>Current Speed: <span id="user-speed" class="stat-inject"></span></li>
+                        <li>Police Speed: <span id="police-speed" class="stat-inject"></span></li>
+                    </ul>
+                </section>
+            </aside>
         </div>
         <footer></footer>
         <script type="text/javascript" src="js/app.js"></script>
