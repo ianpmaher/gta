@@ -2,8 +2,9 @@ body {
     background-image: url("/assets/miamibaby.png");
     background-size: cover;
     background-position: center;
-    width: 99vw;
-    height: 99vh;
+    background-attachment: fixed;
+    /* width: 99vw; */
+    min-height: 99vh;
     overflow-x: hidden;
     box-sizing: border-box;
 }
@@ -11,6 +12,7 @@ body::-webkit-scrollbar {
     display: none;
 }
 header {
+    grid-area: header;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -27,12 +29,12 @@ header {
     transition: 0.5s;
     padding: 0 auto;
     margin: 0;
-    height: 18rem;
-    width: 18rem;
+    height: 12rem;
+    width: 12rem;
 }
 .logo:active {
-    height: 15rem;
-    width: 15rem;
+    height: 20rem;
+    width: 20rem;
 }
 #container-page {
     display: grid;
@@ -54,33 +56,32 @@ main {
     align-self: center;
     gap: 0.5rem;
     height: 100%;
-    margin: 10rem auto 0rem auto;
+    margin: 3rem auto 0rem auto;
+}
+.nav, .sidebar {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 .nav {
     grid-area: nav;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 100%;
-    width: 100%;
 }
 .sidebar {
     grid-area: side;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 100%;
-    width: 100%;
 }
 .speed {
     font-family: "Caprasimo", "Segoe UI", Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: whitesmoke;
     font-size: 1.5rem;
     padding: 2rem;
     border-radius: 0.5rem;
-    height: 40%;
-    background-color: rebeccapurple;
+    height: 30%;
+    /* margin: 0.25rem auto; */
+    background-color: black;
 }
 aside {
     display: flex;
@@ -93,12 +94,27 @@ aside {
 .hidden {
     display: none;
 }
+
+/* card */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(1,1,1,0.8);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    /* margin: 0.5rem; */
+    width: 90%;
+    height: 100%;
+    box-shadow: 0 0 1rem 0.5rem black;
+}
+
 .intro {
     display: flex;
     flex-direction: column;
     /* background: linear-gradient(90deg, rgb(85, 141, 199) 0%, rgb(119, 76, 133) 60%); */
-    background-color: black;
-    text-align: center;
+    background-color: rgba(1,1,1,0.8);    text-align: center;
     justify-content: center;
     align-items: center;
     width: 70%;
@@ -111,32 +127,44 @@ aside {
     /* width: 99vw; */
     align-items: center;
 }
-.intro-buttons {
-    font-size: 1.1rem;
-    background: linear-gradient(45deg, rgba(117, 251, 204, 1) 0%, rgba(94, 204, 215, 1) 100%);
+button {
+    height: 5rem;
+    min-width: 5rem;
+    max-width: 7rem;
+    margin: 0.5rem;
     border-radius: 20%;
-    padding: 0.5rem;
-    margin: 1rem;
-    max-width: 10rem;
+    font-size: 1.4rem;
+    font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.intro-buttons {
+    background: linear-gradient(45deg, rgba(117, 251, 204, 1) 0%, rgba(94, 204, 215, 1) 100%);    
+}
+#no-intro-button {
+    display: none;
+}
+#next-button {
+    background-color: rgba(116, 248, 201, 1);
+}
+.restart-button {
+    background-color: rgba(248, 116, 116, 1);
 }
 #intro-pop-container {
     /* width: 99vw; */
     align-self: center;
+    height: 100%;
+    width: 100%;
 }
 .intro-text {
     font-family: "IBM Plex Mono", monospace;
     color: white;
     font-size: 1.1rem;
     text-align: center;
-    animation: tracking-in-expand 0.8s ease-in-out both;
-    -webkit-animation: tracking-in-expand 0.8s ease-in-out both;
+    /* animation: tracking-in-expand 0.8s ease-in-out both;
+    -webkit-animation: tracking-in-expand 0.8s ease-in-out both; */
     line-height: 1.5;
     margin: 0 auto;
 }
 
-#no-intro-button {
-    display: none;
-}
 
 /* ================ */
 /* GRAPHICS SECTION */
@@ -171,7 +199,7 @@ aside {
     background-color: rgba(255, 255, 255, 0.95);
     color: black;
     font-family: "IBM Plex Mono", Courier, monospace;
-    height: 20vh;
+    height: 35vh;
     width: 90%;
     /* border-radius: 5%; */
     user-select: none;
@@ -261,22 +289,6 @@ label {
     text-align: center;
     background: linear-gradient(90deg, rgb(85, 141, 199) 0%, rgb(119, 76, 133) 60%);
 }
-#next-button {
-    font-size: 1.4rem;
-    border-radius: 20%;
-    width: 12rem;
-    height: 5rem;
-    background-color: rgba(116, 248, 201, 1);
-    font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-.restart-button {
-    font-size: 1.4rem;
-    border-radius: 20%;
-    width: 5rem;
-    height: 5rem;
-    background-color: rgba(248, 116, 116, 1);
-    font-family: "Caprasimo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
 #time-remaining {
     font-size: 2rem;
     font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
@@ -331,13 +343,6 @@ label {
     justify-content: center;
     background-color: rgba(1,1,1,0.9);
     border-radius: 0.5rem;
-}
-.speed {
-    display: flex;
-    flex-flow: column wrap;
-    margin: 0 auto;
-    max-width: 20rem;
-    min-width: 10rem;
 }
 #user-vehicle {
     max-width: 250px;
