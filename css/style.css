@@ -55,7 +55,7 @@ main {
     align-self: center;
     gap: 0.5rem;
     height: 100%;
-    margin: 3rem auto 0rem auto;
+    margin: 1rem auto 0rem auto;
 }
 .nav, .sidebar {
     display: flex;
@@ -90,12 +90,12 @@ main {
     text-align: center;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 0.5rem;
     /* width: 100%; */
     /* background: linear-gradient(0deg, rgba(115, 61, 161, 1) 0%, rgba(157, 43, 142, 1) 100%); */
     background-color: black;
     border-radius: 0.5rem;
-    margin: 0.25rem auto;
+    margin: 0 auto;
     font-family: "Caprasimo", "Segoe UI", Arial, Helvetica, sans-serif;
     font-size: 1rem;
     color: ghostwhite;
@@ -117,7 +117,7 @@ aside {
     justify-content: space-evenly;
     align-items: center;
     border-radius: 0.5rem;
-    padding: 2rem;
+    padding: 1rem;
     background-color: black;
     color: white;
 }
@@ -162,7 +162,7 @@ button {
     height: 5rem;
     min-width: 5rem;
     max-width: 7rem;
-    margin: 0.5rem;
+    margin: 0.25rem;
     border-radius: 20%;
     padding: 0.5rem;
     max-width: 10rem;
@@ -218,7 +218,7 @@ button {
     z-index: 2;
     width: 90%;
     box-shadow: 0 0 1rem 0.5rem black;
-    border: 1rem solid rgba(1,1,1,0.9);
+    border: 0.3rem solid rgba(1,1,1,0.9);
 }
 .car-images {
     width: 112px;
@@ -230,15 +230,16 @@ button {
 }
 #quote-container {
     background-color: rgba(255, 255, 255, 0.95);
-    color: black;
+    /* color: black; */
     font-family: "IBM Plex Mono", Courier, monospace;
-    height: 35vh;
+    height: 30vh;
     width: 90%;
     /* border-radius: 5%; */
     user-select: none;
     position: relative;
     margin: 0 auto;
     outline: 5px solid black;
+    padding: 2rem 2rem 0 2rem;
 }
 #quote-container,
 textarea,
@@ -247,7 +248,7 @@ textarea,
     font-size: 1.45rem;
     letter-spacing: normal;
     line-height: normal;
-    padding: 0rem;
+    /* padding: 1rem; */
     font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
 }
 .correct-character {
@@ -269,22 +270,27 @@ textarea,
 }
 textarea {
     resize: none;
-    text-shadow: 0 0 0.5rem black;
-    caret-color: rgb(119, 76, 133);
+    color: transparent;
+    /* text-shadow: 0 0 0.5rem black; */
+    /* caret-color: rgb(119, 76, 133); */
     margin: 0 auto;
     border: none;
     font-size: 1.25rem;
     outline: none;
     /* border-right: 0.2rem solid rgba(0, 0, 0, 0.6); */
-    white-space: preserve;
+    /* white-space: break-word; */
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
     text-wrap: wrap;
+    /* word-break: break-all; */
     /* white-space-collapse:preserve; */
+    white-space: pre-wrap;
 }
 .text-input {
     margin: 0;
     background: transparent;
     border: none;
-    color: white;
+    /* color: white; */
     width: 100%;
     /* TODO need to make cursor */
     /* animation: blink 1s infinite; */
@@ -365,10 +371,15 @@ label {
 #user-vehicle {
     max-width: 250px;
     max-height: 225px;
-    transition: scale 1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    transition: all 1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    z-index: 1;
 }
 #user-vehicle:hover {
-    scale: 1.8;
+    scale: 2;
+    transform: translate(25%, -10%);
+}
+.vehicle-stats {
+    text-transform: uppercase;
 }
 .wasted-div {
     width: 100%;
