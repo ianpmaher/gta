@@ -2,6 +2,7 @@
 
 // defining up here for the sake of debugging and control flow
 let textInputArea = document.querySelector(".text-input");
+let mainElem = document.querySelector("main");
 
 const introSequence = () => {
     let introButton1Elem = document.querySelector("#intro-button-1");
@@ -60,10 +61,10 @@ let noIntroButton = document.querySelector("#no-intro-button");
 // introSequence();
 // clicking on the logo will restart the intro
 let logoElem = document.querySelector(".logo");
-logoElem.addEventListener("click", () => {
-    introSequence();
-    // noIntroButton.classList.add(".hidden");
-});
+// logoElem.addEventListener("click", () => {
+//     introSequence();
+//     // noIntroButton.classList.add(".hidden");
+// });
 
 // when user clicks on the no-intro-button, will stop intro and unhide good stuff
 noIntroButton.addEventListener("click", () => {
@@ -76,6 +77,26 @@ noIntroButton.addEventListener("click", () => {
     let introArticleElem = document.querySelector(".intro").classList.add("hidden");
     noIntroButton.remove();
 });
+
+// ===================== // ===================== // ===================== //
+// modal for instructions
+// Get the modal
+let modal = document.querySelector(".modal");
+const openModal = () => {
+    modal.style.visibility = "visible";
+    mainElem.style.visibility = "hidden";
+}
+logoElem.addEventListener("click", () => {
+    openModal();
+    // noIntroButton.classList.add(".hidden");
+});
+const closeModal = () => {
+    modal.style.visibility = "hidden";
+    mainElem.style.visibility = "visible";
+}
+mainElem.addEventListener("click", () => {
+    closeModal()
+})
 
 // making a CLASS for user, so can make one for police later if two player
 class Player {
@@ -327,7 +348,6 @@ function getRandomIndices(arr, numElements) {
 }
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
 
-
 const updatePromptWords = () => {
     // https://www.mit.edu/~ecprice/wordlist.10000
     // "../assets/wordlist10000.txt";
@@ -543,7 +563,7 @@ const handleUserTypingInput = () => {
     let accuracy = correctCharacterCount / typedCharsInput;
     // 100 to make accuracy a percentage value
     let accuracyText = accuracy * 100;
-    accuracyCurrentElem.textContent = Math.round(accuracyText) + "%";
+    accuracyCurrentElem.textContent = Math.ceil(accuracyText) + "%";
     // maybe store accuracy as something else ??
     accuracySaved = accuracy;
     userPlayer.accuracyArray.push(accuracySaved);
@@ -625,7 +645,8 @@ const showResultSession = () => {
     let currentUserCharacters = textInputArea.value.length;
     // wpm **
     // words per minute is characters per minute divided by 5, so an average
-    wpm = Math.round((currentUserCharacters / 4 / timeElapsed) * 60);
+    // word length of 5 characters is assumed or 4 characters per word
+    wpm = Math.ceil((currentUserCharacters / 4 / timeElapsed) * 60);
     userSpeedCurrentElem.textContent = wpm + "wpm";
 
     updateCareerStats();
