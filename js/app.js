@@ -3,6 +3,9 @@
 // defining up here for the sake of debugging and control flow
 let textInputArea = document.querySelector(".text-input");
 let mainElem = document.querySelector("main");
+let graphicsElem = document.querySelector("#graphics");
+let quotesContainerElem = document.querySelector("#quote-container");
+let containerPageElem = document.querySelector("#container-page");
 
 const introSequence = () => {
     let introButton1Elem = document.querySelector("#intro-button-1");
@@ -11,7 +14,7 @@ const introSequence = () => {
     let introArticleElem = document.querySelector(".intro");
     let introTextElem = document.querySelector(".intro-text");
     // hides the site's main contents!
-    let mainElem = document.querySelector("main").classList.add("hidden");
+    containerPageElem.style.visibility = "hidden";
 
     let newTextElem0 = document.createElement("p");
     // allows style to match and have animation
@@ -53,7 +56,7 @@ const introSequence = () => {
         introArticleElem.classList.add("hidden");
         noIntroButton.remove();
         let introPopContainerElem = document.querySelector("#intro-pop-container").classList.add("hidden");
-        let mainElem = document.querySelector("main").classList.remove("hidden");
+        containerPageElem.style.visibility = "visible";
     });
 };
 
@@ -744,7 +747,11 @@ const resetWholeGame = () => {
     avgSpeedElem.textContent = "";
     avgAccuracyElem.textContent = "";
     updateVehicleStats();
-    let mainElem = document.querySelector("main").classList.remove("hidden");
+    // let mainElem = document.querySelector("main").classList.remove("hidden");
+    // make visible the progress graphic and the quote container
+    // hide the progress graphic and the quote container
+    graphicsElem.classList.remove("hidden");
+    quotesContainerElem.classList.remove("hidden");
 };
 
 const createResetWholeGameButton = () => {
@@ -778,7 +785,10 @@ const checkWin = () => {
 
 // WASTED - if player dies from too many errors
 const displayWastedScreen = () => {
-    let mainElem = document.querySelector("main").classList.add("hidden");
+    // hide the progress graphic and the quote container
+    graphicsElem.classList.add("hidden");
+    quotesContainerElem.classList.add("hidden");
+    // let mainElem = document.querySelector("main").classList.add("hidden");
     // display WASTED screen
     let wastedDiv = document.createElement("div");
     flexContainerPageElem.appendChild(wastedDiv);
@@ -794,7 +804,10 @@ const displayWastedScreen = () => {
 
 // BUSTED - if player's wpm count is lower than the police at the time
 const displayBustedScreen = () => {
-    let mainElem = document.querySelector("main").classList.add("hidden");
+    // hide the progress graphic and the quote container
+    graphicsElem.classList.add("hidden");
+    quotesContainerElem.classList.add("hidden");
+    // let mainElem = document.querySelector("main").classList.add("hidden");
     // display BUSTED screen
     let bustedDiv = document.createElement("div");
     flexContainerPageElem.appendChild(bustedDiv);
@@ -811,7 +824,10 @@ const displayBustedScreen = () => {
 
 // display winning screen if user reaches end of vehicles array successfully
 const displayWinningScreen = () => {
-    let mainElem = document.querySelector("main").classList.add("hidden");
+    // hide the progress graphic and the quote container
+    graphicsElem.classList.add("hidden");
+    quotesContainerElem.classList.add("hidden");
+    // let mainElem = document.querySelector("main").classList.add("hidden");
     // show succcess thing
     let successDiv = document.createElement("div");
     flexContainerPageElem.appendChild(successDiv);
@@ -844,6 +860,9 @@ const resetCurrentValues = () => {
     removePlayerCarMove();
     removePoliceCarMove();
     removeNextButtonAnim();
+    // make visible the progress graphic and the quote container
+    graphicsElem.classList.remove("hidden");
+    quotesContainerElem.classList.remove("hidden");
 };
 
 // reset button you can hit "tab" to get to, like 10FastFingers
@@ -876,6 +895,9 @@ const startSession = () => {
 
     textInputArea.setAttribute("autofocus", "autofocus");
 };
+
+// prompt displays this text by default and until session starts
+quoteElem.textContent = "Click here to start the typing test!";
 
 // going to have prompt timer start when user clicks into the text area
 textInputArea.addEventListener(
