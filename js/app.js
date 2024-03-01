@@ -88,7 +88,7 @@ let modal = document.querySelector(".modal");
 const openModal = () => {
     modal.style.visibility = "visible";
     mainElem.style.visibility = "hidden";
-}
+};
 logoElem.addEventListener("click", () => {
     openModal();
     // noIntroButton.classList.add(".hidden");
@@ -96,10 +96,10 @@ logoElem.addEventListener("click", () => {
 const closeModal = () => {
     modal.style.visibility = "hidden";
     mainElem.style.visibility = "visible";
-}
+};
 mainElem.addEventListener("click", () => {
-    closeModal()
-})
+    closeModal();
+});
 
 // making a CLASS for user, so can make one for police later if two player
 class Player {
@@ -370,8 +370,8 @@ const updatePromptWords = () => {
             console.log(randomIndices);
             // currentPrompt = randomIndices.map(index => quotes[index]).join(' ');
             currentPrompt = randomIndices.join(" ");
-            console.log(`current prompt: ${currentPrompt}`)
-            
+            console.log(`current prompt: ${currentPrompt}`);
+
             let splitPrompt = currentPrompt.split("");
             let arrSplitPrompt = splitPrompt.map((value) => {
                 // necessary to split each character into an individual HTML span
@@ -381,19 +381,18 @@ const updatePromptWords = () => {
                 return `<span class="prompt-text">${value}</span>`;
             });
             // my new STRETCH GOAL is new find a way to to .textContent instead of innerHTMl since innerHTMl is less secure
-            
+
             let textInputArea = document.querySelector(".text-input");
             // clearing existing words
             quoteElem.innerHTML = "";
             textInputArea.value = "";
-            
+
             // adding new words
             quoteElem.innerHTML += arrSplitPrompt.join("");
             textInputArea.innerHTML += arrSplitPrompt.join("");
 
-            console.log('finished updating prompt words');
+            console.log("finished updating prompt words");
             // quoteElem.classList.add('text-input');
-            
         })
         .catch((error) => console.error("Error:", error));
 };
@@ -524,7 +523,7 @@ const removePoliceCarMove = () => {
 const handleUserTypingInput = () => {
     // this line will reset the currentError (prompt) each time
     // currentErrors = 0;
-    console.log("handleUserTypingInput function running")
+    console.log("handleUserTypingInput function running");
     let promptCharacters = document.querySelectorAll(".prompt-text");
     let arrPromptCharacters = Array.from(promptCharacters);
     // let textInputArea = document.querySelector(".text-input");
@@ -668,6 +667,8 @@ const removeCarFlipAnimation = () => {
     userVehiclePicElem.style.cssText -= `animation:rotate-and-scale 0.8s linear both`;
 };
 
+// ============ // ============ // ============ //
+// NEXT BUTTON ANIMATION
 const nextButton = document.querySelector("#next-button");
 
 const addNextButtonAnim = () => {
@@ -716,10 +717,39 @@ const updateCareerStats = () => {
 const userVehicleNameElem = document.querySelector("#vehicle-name");
 const userVehicleCostElem = document.querySelector("#vehicle-worth");
 
+// ============ // ============ // ============ //
+// ANIMATION FOR USER STATS
+// ============ // ============ // ============ //
+// userHealthElem // totalHeistsCountElem // avgAccuracyElem // avgSpeedElem
+// ============ // ============ // ============ //
+// userVehicleNameElem // userVehicleCostElem
+const addStatsAnim = () => {
+    userHealthElem.style.cssText += `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    totalHeistsCountElem.style.cssText += `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    avgAccuracyElem.style.cssText += `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    avgSpeedElem.style.cssText += `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    userVehicleNameElem.style.cssText += `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    userVehicleCostElem.style.cssText += `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+};
+const removeStatsAnim = () => {
+    userHealthElem.style.cssText -= `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    totalHeistsCountElem.style.cssText -= `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    avgAccuracyElem.style.cssText -= `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    avgSpeedElem.style.cssText -= `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    userVehicleNameElem.style.cssText -= `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+    userVehicleCostElem.style.cssText -= `animation: tracking-in-expand 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;`;
+};
+
 const updateVehicleStats = () => {
     userVehiclePicElem.src = userPlayer.vehicle.pic;
     userVehicleNameElem.textContent = `${userPlayer.vehicle.year} ${userPlayer.vehicle.make} ${userPlayer.vehicle.model}`;
     userVehicleCostElem.textContent = `$ ${userPlayer.vehicle.price}`;
+    // STATS ANIMATION
+    addStatsAnim();
+    // remove stats animation
+    setTimeout(() => {
+        removeStatsAnim();
+    }, 1000);
 };
 
 // ============ //
