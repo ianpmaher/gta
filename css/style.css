@@ -217,6 +217,7 @@ button {
     background-size: contain;
     z-index: 2;
     width: 95%;
+    height: 4rem;
     box-shadow: 0 0 1rem 0.5rem black;
     border: 0.3rem solid rgba(1,1,1,0.9);
 }
@@ -294,6 +295,14 @@ textarea {
     width: 100%;
     /* TODO need to make cursor */
     /* animation: blink 1s infinite; */
+}
+/*  */
+.caret {
+    text-decoration: underline;
+    text-decoration-color: blue;
+    text-decoration-thickness: 0.2rem;
+    text-decoration-style: solid;
+    animation: blink 1s infinite;
 }
 .quote-text {
     font-size: 1.25rem;

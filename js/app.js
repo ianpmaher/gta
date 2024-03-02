@@ -536,6 +536,11 @@ const handleUserTypingInput = () => {
     // going to use the forEach iterative method for array to execute/call
     // callbackfunction on each element in that array of promptCharacters
     arrPromptCharacters.forEach((character, index) => {
+
+        // CARET POSITION
+        // remove the caret from the previous character
+        character.classList.remove("caret");
+
         // in plain English, if the prompt character matches the character entered by the user (user input)
         if (character.textContent == currentUserInputArr[index]) {
             // add correct class to style
@@ -549,6 +554,8 @@ const handleUserTypingInput = () => {
                 character.classList.remove("incorrect-character");
             }
             // NOW if character enters the WRONG character
+        } else if (index == currentUserInputArr.length) {
+            character.classList.add("caret");
         } else {
             // necessary to check if this character already has styling, otherwise error count will be off
             // the syntax below !character.classList.contains ==> if the class list DOES NOT contain
@@ -556,6 +563,8 @@ const handleUserTypingInput = () => {
                 // add error
                 currentErrors += 1;
                 character.classList.add("incorrect-character");
+            } else {
+                // current character has caret 
             }
         }
     });
