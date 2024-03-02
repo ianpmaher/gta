@@ -509,6 +509,7 @@ const removePlayerCarMove = () => {
     carPlayerElem.style.cssText -= `animation: move-right 30s linear both`;
 };
 // police car animation, going to have be slower
+// achieved by making the animation longer aka more time to go constant distance ***
 const addPoliceCarMove = () => {
     carPoliceElem.style.cssText += `animation: move-right 60s linear both`;
 };
@@ -648,7 +649,7 @@ const showResultSession = () => {
     // wpm **
     // words per minute is characters per minute divided by 5, so an average
     // word length of 5 characters is assumed or 4 characters per word
-    wpm = Math.ceil((currentUserCharacters / 4 / timeElapsed) * 60);
+    wpm = Math.ceil((currentUserCharacters / 4) / (timeElapsed * 60));
     userSpeedCurrentElem.textContent = wpm + "wpm";
 
     updateCareerStats();

@@ -216,7 +216,7 @@ button {
     background-position: bottom;
     background-size: contain;
     z-index: 2;
-    width: 90%;
+    width: 95%;
     box-shadow: 0 0 1rem 0.5rem black;
     border: 0.3rem solid rgba(1,1,1,0.9);
 }
@@ -336,10 +336,10 @@ label {
     color: ghostwhite;
 }
 .stat-inject {
-    color: whitesmoke;
-    background-color: rgba(243, 93, 29, 0.5);
+    color: #18181A;
+    background-color: #6cc8cd;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 .user-stats {
     /* background: linear-gradient(90deg, rgb(232, 117, 79, 1) 0%, rgb(235 197 97) 100%); */
@@ -473,8 +473,8 @@ label {
         -webkit-transform: translateX(0);
     }
     100% {
-        transform: translateX(900px);
-        -webkit-transform: translateX(900px);
+        transform: translateX(calc(50vw - 250px));
+        -webkit-transform: translateX(calc(50vw - 250px));
     }
 }
 @-webkit-keyframes move-right {
@@ -483,8 +483,8 @@ label {
         -webkit-transform: translateX(0);
     }
     100% {
-        transform: translateX(900px);
-        -webkit-transform: translateX(900px);
+        transform: translateX(calc(50vw - 250px));
+        -webkit-transform: translateX(calc(50vw - 250px));
     }
 }
 @keyframes mobile-move-right {
