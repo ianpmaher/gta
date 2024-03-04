@@ -1,105 +1,45 @@
-// user opens webpage, gets greeting/intro text as below
-
 // defining up here for the sake of debugging and control flow
 let textInputArea = document.querySelector(".text-input");
 let mainElem = document.querySelector("main");
 let graphicsElem = document.querySelector("#graphics");
 let quotesContainerElem = document.querySelector("#quote-container");
 let containerPageElem = document.querySelector("#container-page");
-
-const introSequence = () => {
-    let introButton1Elem = document.querySelector("#intro-button-1");
-    introButton1Elem.classList.add("hidden");
-    let introPopContainerElem = document.querySelector("#intro-pop-container");
-    let introArticleElem = document.querySelector(".intro");
-    let introTextElem = document.querySelector(".intro-text");
-    // hides the site's main contents!
-    containerPageElem.style.visibility = "hidden";
-
-    let newTextElem0 = document.createElement("p");
-    // allows style to match and have animation
-    newTextElem0.classList.add("intro-text");
-    newTextElem0.textContent = "This is a typing test and a game all in one. We need someone to run some jobs for us.";
-    introPopContainerElem.appendChild(newTextElem0);
-    const newTextElem1Func = () => {
-        let newTextElem1 = document.createElement("p");
-        newTextElem1.setAttribute("class", "intro-text");
-        newTextElem1.textContent =
-            "You gotta type in the provided quote as QUICKLY as you can. Your speed (words/minute) is compared to the speed of the cops. ";
-        introPopContainerElem.appendChild(newTextElem1);
-    };
-    let timeoutIntro = setTimeout(newTextElem1Func, 1000);
-    const newTextElem2Func = () => {
-        let newTextElem2 = document.createElement("p");
-        newTextElem2.classList.add("intro-text");
-        newTextElem2.textContent =
-            "Not only will typos DECREASE your words/minute speed, they'll also cost you HEALTH. You lose 1 health for every 2 typos.";
-        introPopContainerElem.appendChild(newTextElem2);
-    };
-    let timeoutIntro2 = setTimeout(newTextElem2Func, 3000);
-    const newTextElem3Func = () => {
-        let newTextElem3 = document.createElement("p");
-        newTextElem3.classList.add("intro-text");
-        newTextElem3.textContent =
-            "Each quote means one more car to add to your collection. Also, remember this: Autocorrect won't save you in the real world.";
-        introPopContainerElem.appendChild(newTextElem3);
-    };
-    let timeoutIntro3 = setTimeout(newTextElem3Func, 5000);
-    // showing the full website
-    // let introButton1Elem = document.querySelector("#intro-button1");
-    introButton1Elem.classList.remove("hidden");
-    introButton1Elem.addEventListener("click", () => {
-        textInputArea.disabled = false;
-        let introArticleElem = document.querySelector(".intro");
-        // let introTextElem = document.querySelectorAll(".intro-text").classList.add("hidden")
-        introButton1Elem.classList.add("hidden");
-        introArticleElem.classList.add("hidden");
-        noIntroButton.remove();
-        let introPopContainerElem = document.querySelector("#intro-pop-container").classList.add("hidden");
-        containerPageElem.style.visibility = "visible";
-    });
-};
-
-let noIntroButton = document.querySelector("#no-intro-button");
-// introSequence();
-// clicking on the logo will restart the intro
-let logoElem = document.querySelector(".logo");
-// logoElem.addEventListener("click", () => {
-//     introSequence();
-//     // noIntroButton.classList.add(".hidden");
-// });
-
-// when user clicks on the no-intro-button, will stop intro and unhide good stuff
-noIntroButton.addEventListener("click", () => {
-    let mainElem = document.querySelector("main").classList.remove("hidden");
-    textInputArea.disabled = false;
-    let introButton1Elem = document.querySelector("#intro-button-1").classList.add("hidden");
-    // introButton2Elem.classList.add("hidden");
-    // introButton3Elem.classList.add("hidden");
-    let introPopContainerElem = document.querySelector("#intro-pop-container").classList.add("hidden");
-    let introArticleElem = document.querySelector(".intro").classList.add("hidden");
-    noIntroButton.remove();
-});
-
 // ===================== // ===================== // ===================== //
-// modal for instructions
-// Get the modal
+let logoElem = document.querySelector(".logo");
+let modalContainer = document.querySelector(".modal-container");
 let modal = document.querySelector(".modal");
+let fillerElem = document.querySelector(".filler");
+let beginButton = document.querySelector("#begin");
+// modal for instructions
 const openModal = () => {
-    modal.style.visibility = "visible";
-    mainElem.style.visibility = "hidden";
-};
-logoElem.addEventListener("click", () => {
-    openModal();
-    // noIntroButton.classList.add(".hidden");
-});
+    modal.classList.remove("hidden");
+    fillerElem.classList.remove("hidden");
+    // disable user from typing while modal is open
+    textInputArea.disabled = true;
+}
+
+// when user clicks on logo, modal will appear
+logoElem.addEventListener("click", openModal);
+
 const closeModal = () => {
-    modal.style.visibility = "hidden";
-    mainElem.style.visibility = "visible";
-};
-mainElem.addEventListener("click", () => {
-    closeModal();
+    modal.classList.add("hidden");
+    fillerElem.classList.add("hidden");
+    // enable user to type again
+    textInputArea.disabled = false;
+}
+// When the user clicks anywhere outside of the modal, close it
+fillerElem.addEventListener("click", closeModal);
+// when user clicks on begin button, modal will close
+beginButton.addEventListener("click", closeModal);
+
+// also escape key to close modal
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeModal();
+    }
 });
+
+// When the user clicks on modal, close it
 
 // making a CLASS for user, so can make one for police later if two player
 class Player {
