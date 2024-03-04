@@ -10,6 +10,7 @@ let modalContainer = document.querySelector(".modal-container");
 let modal = document.querySelector(".modal");
 let fillerElem = document.querySelector(".filler");
 let beginButton = document.querySelector("#begin");
+let startTime;
 // modal for instructions
 const openModal = () => {
     modal.classList.remove("hidden");
@@ -255,6 +256,8 @@ let typedCharsInput = 0;
 // will initialize timer on below function, likely an anonymous function
 let timerInterval = "";
 
+// let wpm = "";
+
 // LOGIC OF PROMPT INPUT STUFF
 // prompt generated from API works because
 // console.log(typeof(promptElem).textContent) = STRING
@@ -464,7 +467,6 @@ const removePoliceCarMove = () => {
 const handleUserTypingInput = () => {
     // this line will reset the currentError (prompt) each time
     // currentErrors = 0;
-    console.log("handleUserTypingInput function running");
     let promptCharacters = document.querySelectorAll(".prompt-text");
     let arrPromptCharacters = Array.from(promptCharacters);
     // let textInputArea = document.querySelector(".text-input");
@@ -577,6 +579,7 @@ const timerTickTockFunction = () => {
     // even though global variable defines timeLimit = 60, I am putting this here to reset timer
     timeRemaining = 30;
     timerInterval = setInterval(timerUpdateSession, 1000);
+    // 2024 update ==> using Date.now() to get time in milliseconds
 };
 
 // show Difficulty for police
@@ -598,7 +601,7 @@ const showResultSession = () => {
     // wpm **
     // words per minute is characters per minute divided by 5, so an average
     // word length of 5 characters is assumed or 4 characters per word
-    wpm = Math.ceil((currentUserCharacters / 4) / (timeElapsed * 60));
+    wpm = Math.ceil((currentUserCharacters * (60 / timeElapsed)) / 5); // YES 
     userSpeedCurrentElem.textContent = wpm + "wpm";
 
     updateCareerStats();
@@ -646,6 +649,7 @@ const updateCareerStats = () => {
     if (totalHeists === 1) {
         // update health
         userHealth = userHealth - Math.round(totalErrors / 2);
+        console.log(userHealth)
         userHealthElem.textContent = userHealth;
         // update average speed per minute
         avgSpeedElem.textContent = `${wpm} wpm`;
@@ -706,7 +710,7 @@ const updateVehicleStats = () => {
 // RESTART GAME //
 // ============ //
 
-const flexContainerPageElem = document.querySelector("#flex-container-page");
+const flexContainerPageElem = document.querySelector("#container-page");
 
 const resetWholeGame = () => {
     // running resetCurrentValues

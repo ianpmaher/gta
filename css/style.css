@@ -22,12 +22,14 @@ header {
 .logo-container {
     z-index: 2;
     transition: 0.5s;
-    padding: 0 auto;
-    margin: 0;
+    margin: -1rem;
+    width: fit-content;
+    height: fit-content;
+    
 }
 .logo {
-    position: static;
-    display: block;
+    /* position: static; */
+    transition: 0.5s ease;
 }
 .logo:active {
     height: 20rem;
@@ -58,7 +60,8 @@ main {
 .nav, .sidebar {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    gap: 0.5rem;
     align-items: center;
     height: 100%;
     width: 100%;
@@ -79,6 +82,7 @@ main {
     height: 30%;
     /* margin: 0.25rem auto; */
     background-color: black;
+    outline: 0.25rem solid rgba(155,61,161,1);
 }
 .statblock {
     display: flex;
@@ -89,6 +93,7 @@ main {
     align-items: flex-start;
     justify-content: flex-start;
     gap: 0.5rem;
+    outline: 0.25rem solid rgba(155,61,161,1);
     /* width: 100%; */
     /* background: linear-gradient(0deg, rgba(115, 61, 161, 1) 0%, rgba(157, 43, 142, 1) 100%); */
     background-color: black;
@@ -118,6 +123,7 @@ aside {
     padding: 1rem;
     background-color: black;
     color: white;
+    /* outline: 0.25rem solid rgba(155,61,161,1); */
 }
 .intro {
     display: flex;
@@ -356,6 +362,7 @@ label {
     justify-content: flex-start;
     padding: 0;
     margin: 0;
+    
 }
 .user-stats li {
     padding: 0;
