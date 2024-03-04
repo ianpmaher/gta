@@ -40,6 +40,7 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+
 // When the user clicks on modal, close it
 
 // making a CLASS for user, so can make one for police later if two player
