@@ -17,7 +17,7 @@ const openModal = () => {
     fillerElem.classList.remove("hidden");
     // disable user from typing while modal is open
     textInputArea.disabled = true;
-}
+};
 
 // when user clicks on logo, modal will appear
 logoElem.addEventListener("click", openModal);
@@ -27,7 +27,7 @@ const closeModal = () => {
     fillerElem.classList.add("hidden");
     // enable user to type again
     textInputArea.disabled = false;
-}
+};
 // When the user clicks anywhere outside of the modal, close it
 fillerElem.addEventListener("click", closeModal);
 // when user clicks on begin button, modal will close
@@ -39,7 +39,6 @@ document.addEventListener("keydown", (event) => {
         closeModal();
     }
 });
-
 
 // When the user clicks on modal, close it
 
@@ -461,6 +460,58 @@ const removePoliceCarMove = () => {
     carPoliceElem.style.cssText -= `animation: move-right 60s linear both`;
 };
 
+// ===================== // ===================== // ===================== //
+// CANVAS SPEEDOMETER
+const canvas = document.querySelector("#speedometer");
+const ctx = canvas.getContext("2d");
+
+// setting the width and height of the canvas
+canvas.width = 200;
+canvas.height = 200;
+
+// setting the line width
+ctx.lineWidth = 5;
+
+// setting the line cap
+ctx.lineCap = "round";
+
+// setting the font size and font family
+ctx.font = "15px sans-serif";
+ctx.fillStyle = "black";
+
+// setting the text alignment
+ctx.textAlign = "center";
+
+// setting the text baseline
+ctx.textBaseline = "middle";
+
+// function to draw the speedometer
+
+function drawSpeedometer(speed, maxSpeed) {
+    // clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // calculate the angle for the speedometer
+    // const angle = (speed / maxSpeed) * Math.PI * 1.5;
+
+    // draw the speedometer
+    ctx.beginPath();
+    ctx.arc(100, 100, 80, Math.PI, 2 * Math.PI);
+    ctx.stroke();
+
+    // Calculate the angle for the needle
+    const maxWPM = 180;
+    const angle = Math.PI + ((Math.min(speed, maxSpeed) / maxWPM) * Math.PI);
+    
+    // Draw the needle
+    ctx.beginPath();
+    ctx.moveTo(100, 100); // Pivot point at the center
+    // Calculate the end point of the needle
+    ctx.lineTo(100 + 80 * Math.cos(angle), 100 + 80 * Math.sin(angle));
+    ctx.stroke();
+
+}
+
 // ***
 // function to handle USER INPUT
 // ***
@@ -479,7 +530,6 @@ const handleUserTypingInput = () => {
     // going to use the forEach iterative method for array to execute/call
     // callbackfunction on each element in that array of promptCharacters
     arrPromptCharacters.forEach((character, index) => {
-
         // CARET POSITION
         // remove the caret from the previous character
         character.classList.remove("caret");
@@ -507,7 +557,7 @@ const handleUserTypingInput = () => {
                 currentErrors += 1;
                 character.classList.add("incorrect-character");
             } else {
-                // current character has caret 
+                // current character has caret
             }
         }
     });
@@ -523,6 +573,16 @@ const handleUserTypingInput = () => {
     accuracySaved = accuracy;
     userPlayer.accuracyArray.push(accuracySaved);
 
+    // canvas speedometer
+    let currentUserCharacters = textInputArea.value.length;
+    // wpm **
+    // words per minute is characters per minute divided by 5, so an average
+    // word length of 5 characters is assumed or 4 characters per word
+    wpm = Math.ceil((currentUserCharacters * (60 / timeElapsed)) / 5); // YES
+
+    // draw the speedometer
+    drawSpeedometer(Math.min(wpm, 180))
+
     // now writing function to return TRUE if characters are all entered correctly
     // so user doesn't have to wait for timer to complete unnecessarily
     // using the function .every() with callback function
@@ -537,25 +597,9 @@ const handleUserTypingInput = () => {
     }
 };
 
-// ===================== // ===================== // ===================== //
-// let textInputArea = document.querySelector(".text-input");
+// draw the speedometer
+drawSpeedometer(0); // initial speed is 0
 
-// Assuming `inputElem` is the input field where the user is typing
-// textInputArea.addEventListener('input', () => {
-//     // Remove any leading/trailing whitespace from the user's input
-//     const userInput = textInputArea.value.trim();
-
-//     // If the user's input matches the current line of words, display a new line of words
-//     if (userInput === currentPrompt) {
-//         updatePromptWords();
-
-//         // Clear the input field
-//         textInputArea.value = '';
-
-//         // set the caret position to the start of the next word
-//         const nextSpaceIndex = currentPrompt.indexOf(' ', 1);
-//     }
-// });
 // ===================== // ===================== // ===================== //
 
 // now working on time variables
@@ -602,7 +646,7 @@ const showResultSession = () => {
     // wpm **
     // words per minute is characters per minute divided by 5, so an average
     // word length of 5 characters is assumed or 4 characters per word
-    wpm = Math.ceil((currentUserCharacters * (60 / timeElapsed)) / 5); // YES 
+    wpm = Math.ceil((currentUserCharacters * (60 / timeElapsed)) / 5); // YES
     userSpeedCurrentElem.textContent = wpm + "wpm";
 
     updateCareerStats();
@@ -650,7 +694,7 @@ const updateCareerStats = () => {
     if (totalHeists === 1) {
         // update health
         userHealth = userHealth - Math.round(totalErrors / 2);
-        console.log(userHealth)
+        console.log(userHealth);
         userHealthElem.textContent = userHealth;
         // update average speed per minute
         avgSpeedElem.textContent = `${wpm} wpm`;

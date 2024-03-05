@@ -125,6 +125,18 @@ aside {
     color: white;
     /* outline: 0.25rem solid rgba(155,61,161,1); */
 }
+.speedometer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    color: black;
+    outline: 0.25rem solid rgba(155,61,161,1);
+}
 .intro {
     display: flex;
     flex-direction: column;
