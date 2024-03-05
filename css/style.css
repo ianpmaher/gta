@@ -61,7 +61,7 @@ main {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    gap: 0.5rem;
+    gap: 1.5rem;
     align-items: center;
     height: 100%;
     width: 100%;
@@ -77,9 +77,9 @@ main {
     text-align: center;
     color: whitesmoke;
     font-size: 1.5rem;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 0.5rem;
-    height: 30%;
+    height: auto;
     /* margin: 0.25rem auto; */
     background-color: black;
     outline: 0.25rem solid rgba(155,61,161,1);
@@ -126,8 +126,9 @@ aside {
     /* outline: 0.25rem solid rgba(155,61,161,1); */
 }
 .speedometer {
+    font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
@@ -136,6 +137,7 @@ aside {
     background-color: white;
     color: black;
     outline: 0.25rem solid rgba(155,61,161,1);
+    padding: 0.5rem 1rem;
 }
 .intro {
     display: flex;
