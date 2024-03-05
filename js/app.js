@@ -468,14 +468,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
 
     // setting the width and height of the canvas
-    // setting the line width
-    ctx.lineWidth = 5;
 
     // setting the line cap
     ctx.lineCap = "round";
 
     // setting the font size and font family
-    ctx.font = "15px sans-serif";
+    ctx.font = "12px sans-serif";
     ctx.fillStyle = "black";
 
     // setting the text alignment
@@ -487,28 +485,68 @@ document.addEventListener("DOMContentLoaded", () => {
     // function to draw the speedometer
 
     function drawSpeedometer(wpm) {
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height;
+        const radius = 80;
+        const startAngle = Math.PI;
+        const endAngle = 2 * Math.PI;
+
+        const maxWPM = 180;
+
         // clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // calculate the angle for the speedometer
+        // gradient for the speedometer
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+        gradient.addColorStop(0, "cyan");
+        gradient.addColorStop(0.5, "green");
+        gradient.addColorStop(1, "red");
+
         // const angle = (speed / maxSpeed) * Math.PI * 1.5;
 
-        // draw the speedometer
+        // draw the speedometer "arc"
         ctx.beginPath();
-        ctx.arc(100, 100, 80, Math.PI, 2 * Math.PI);
+        // ctx.arc(100, 100, 80, Math.PI, 2 * Math.PI);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.strokeStyle = gradient;
         ctx.stroke();
+
+        // draw scale markings on the speedometer
+        for (let i = 0; i <= maxWPM; i += 10) {
+            const angle = startAngle + (i / maxWPM) * Math.PI; // start angle is Math.PI
+            const markLength = i % 30 === 0 ? 15 : 10; // longer mark every 30
+            const innerX = centerX + (radius - markLength) * Math.cos(angle); // x = r * cos(angle) //
+            const innerY = centerY + (radius - markLength) * Math.sin(angle); // y = r * sin(angle)
+            const outerX = centerX + radius * Math.cos(angle);
+            const outerY = centerY + radius * Math.sin(angle);
+            ctx.beginPath();
+            ctx.moveTo(innerX, innerY);
+            ctx.lineTo(outerX, outerY);
+            ctx.lineWidth = i & (30 === 0) ? 2 : 1; // thicker every 30
+            ctx.strokeStyle = "#333";
+            ctx.stroke();
+        }
 
         // Calculate the angle for the needle
-        const maxWPM = 180;
-        const angle = Math.PI + ((Math.min(wpm, maxWPM) / maxWPM) * Math.PI);
-        
+        // const angle = Math.PI + ((Math.min(wpm, maxWPM) / maxWPM) * Math.PI);
+
         // Draw the needle
+        const needleLength = radius - 10;
+        const needleAngle = startAngle + (Math.min(wpm, maxWPM) / maxWPM) * Math.PI;
         ctx.beginPath();
-        ctx.moveTo(100, 100); // Pivot point at the center
+        ctx.moveTo(centerX, centerY); // Pivot point at the center
         // Calculate the end point of the needle
-        ctx.lineTo(100 + 80 * Math.cos(angle), 100 + 80 * Math.sin(angle));
+        ctx.lineTo(centerX + needleLength * Math.cos(needleAngle), centerY + needleLength * Math.sin(needleAngle));
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "black";
         ctx.stroke();
 
+        // Draw the needle base
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+        // Calculate the end point of the needle
+        ctx.fillStyle = "black";
+        ctx.fill();
     }
 
     // ***
@@ -577,10 +615,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // wpm **
         // words per minute is characters per minute divided by 5, so an average
         // word length of 5 characters is assumed or 4 characters per word
-        wpm = Math.ceil((currentUserCharacters * (60 / timeElapsed)) / 5); // YES
+        wpm = Math.floor((currentUserCharacters * (60 / timeElapsed)) / 5); // YES
 
         // draw the speedometer
-        drawSpeedometer(Math.min(wpm, 180)) // *****
+        drawSpeedometer(Math.min(wpm, 180)); // *****
         numSpeedometer.textContent = wpm;
 
         // now writing function to return TRUE if characters are all entered correctly
@@ -646,7 +684,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // wpm **
         // words per minute is characters per minute divided by 5, so an average
         // word length of 5 characters is assumed or 4 characters per word
-        wpm = Math.ceil((currentUserCharacters * (60 / timeElapsed)) / 5); // YES
+        wpm = Math.floor((currentUserCharacters * (60 / timeElapsed)) / 5); // YES
         userSpeedCurrentElem.textContent = wpm + "wpm";
 
         updateCareerStats();
