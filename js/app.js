@@ -498,8 +498,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // gradient for the speedometer
         const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-        gradient.addColorStop(0, "cyan");
-        gradient.addColorStop(0.5, "green");
+        gradient.addColorStop(0, "blue");
+        gradient.addColorStop(0.25, "cyan");
+        gradient.addColorStop(0.5, "chartreuse");
+        gradient.addColorStop(0.75, "orange");
         gradient.addColorStop(1, "red");
 
         // const angle = (speed / maxSpeed) * Math.PI * 1.5;
