@@ -75,15 +75,15 @@ document.addEventListener("DOMContentLoaded", () => {
             pic: "/assets/oldsmobile.jpg",
             policeDifficulty: 30,
         },
-        {
-            year: 2001,
-            make: "Ford",
-            model: "Fiesta",
-            price: 400,
-            saying: "That paint job doesn't mask the cigarette smell.",
-            pic: "/assets/fordFiesta.jpg",
-            policeDifficulty: 35,
-        },
+        // {
+        //     year: 2001,
+        //     make: "Ford",
+        //     model: "Fiesta",
+        //     price: 400,
+        //     saying: "That paint job doesn't mask the cigarette smell.",
+        //     pic: "/assets/fordFiesta.jpg",
+        //     policeDifficulty: 35,
+        // },
         {
             year: 2004,
             make: "Dodge",
@@ -91,35 +91,35 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 600,
             saying: "You can fit so many friends in there, and safely, too!",
             pic: "/assets/dodgeCaravan.jpg",
-            policeDifficulty: 40,
+            policeDifficulty: 35,
         },
-        {
-            year: 2008,
-            make: "Chrysler",
-            model: "PT Cruiser",
-            price: 750,
-            saying: "Why were these things so popular, anyways?",
-            pic: "/assets/ChryslerPTCruiser.jpg",
-            policeDifficulty: 45,
-        },
-        {
-            year: 2011,
-            make: "RAM",
-            model: "2500 Regular Cab",
-            price: 900,
-            saying: "Maybe I oughta get myself a truck.",
-            pic: "/assets/ramTruck.jpg",
-            policeDifficulty: 50,
-        },
-        {
-            year: 2006,
-            make: "Jeep",
-            model: "Commander",
-            price: 2600,
-            saying: "That thing has SO MUCH cargo space.",
-            pic: "/assets/jeepCommander.jpg",
-            policeDifficulty: 55,
-        },
+        // {
+        //     year: 2008,
+        //     make: "Chrysler",
+        //     model: "PT Cruiser",
+        //     price: 750,
+        //     saying: "Why were these things so popular, anyways?",
+        //     pic: "/assets/ChryslerPTCruiser.jpg",
+        //     policeDifficulty: 45,
+        // },
+        // {
+        //     year: 2011,
+        //     make: "RAM",
+        //     model: "2500 Regular Cab",
+        //     price: 900,
+        //     saying: "Maybe I oughta get myself a truck.",
+        //     pic: "/assets/ramTruck.jpg",
+        //     policeDifficulty: 50,
+        // },
+        // {
+        //     year: 2006,
+        //     make: "Jeep",
+        //     model: "Commander",
+        //     price: 2600,
+        //     saying: "That thing has SO MUCH cargo space.",
+        //     pic: "/assets/jeepCommander.jpg",
+        //     policeDifficulty: 55,
+        // },
         {
             year: 2019,
             make: "Volkswagen",
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 5000,
             saying: "I can't believe you fit in that thing.",
             pic: "/assets/vWNewBeetle.jpg",
-            policeDifficulty: 60,
+            policeDifficulty: 40,
         },
         {
             year: 2015,
@@ -136,17 +136,17 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 10000,
             saying: "Hybrid? You're not charging that thing off MY electric bill.",
             pic: "/assets/lincolnMKZHybrid.jpg",
-            policeDifficulty: 65,
+            policeDifficulty: 45,
         },
-        {
-            year: 2018,
-            make: "Chevrolet",
-            model: "Bolt LS",
-            price: 14000,
-            saying: "WHAT DID I JUST SAY ABOUT ELECTRIC CARS?",
-            pic: "/assets/chevyBolt.jpg",
-            policeDifficulty: 70,
-        },
+        // {
+        //     year: 2018,
+        //     make: "Chevrolet",
+        //     model: "Bolt LS",
+        //     price: 14000,
+        //     saying: "WHAT DID I JUST SAY ABOUT ELECTRIC CARS?",
+        //     pic: "/assets/chevyBolt.jpg",
+        //     policeDifficulty: 70,
+        // },
         {
             year: 2021,
             make: "Land Rover",
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 30000,
             saying: "Now THAT is a vehicle worth my time.",
             pic: "/assets/landRoverDiscovery.jpg",
-            policeDifficulty: 75,
+            policeDifficulty: 50,
         },
         {
             year: 2021,
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 36000,
             saying: "I would seriously count your blessings now, kid. The owner will want this one back.",
             pic: "/assets/mercedesAclass.jpg",
-            policeDifficulty: 80,
+            policeDifficulty: 55,
         },
         {
             year: 2020,
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 43000,
             saying: "Hold your horses, now, son. You don't want to get caught now.",
             pic: "/assets/bMWm340i.jpg",
-            policeDifficulty: 85,
+            policeDifficulty: 60,
         },
         {
             year: 2022,
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 55000,
             saying: "Okay, you realize how much Teslas stand out, right?",
             pic: "/assets/teslaModelY.jpg",
-            policeDifficulty: 90,
+            policeDifficulty: 65,
         },
         {
             year: 1963,
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 83000,
             saying: "Classic Jags really do age like fine wine.",
             pic: "/assets/mercedesAclass.jpg",
-            policeDifficulty: 95,
+            policeDifficulty: 70,
         },
         {
             year: 2021,
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 150000,
             saying: "I'm nervous you even drove around in that thing.",
             pic: "/assets/porsche911.jpg",
-            policeDifficulty: 100,
+            policeDifficulty: 75,
         },
     ];
 
@@ -510,6 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.beginPath();
         // ctx.arc(100, 100, 80, Math.PI, 2 * Math.PI);
         ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.lineWidth = 20;
         ctx.strokeStyle = gradient;
         ctx.stroke();
 
@@ -750,6 +751,9 @@ document.addEventListener("DOMContentLoaded", () => {
             avgAccuracyElem.textContent = Math.round(accuracySaved * 100) + "%";
             updateVehicleStats();
         }
+        // ADDING MODAL FOR WASTED SCREEN 2024
+        // wastedDiv.classList.add("modal")
+        checkpointModalElem.classList.remove("hidden");
     };
 
     // update vehicle attributes and player progress
@@ -852,6 +856,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // modal for checkpoint
+    const checkpointModalElem = document.querySelector("#checkpoint-modal");
+    const fillerCheckpointElem = document.querySelector("#checkpoint-filler");
+    const modalCheckpointButton = document.querySelector("#modal-button");
+    const openCheckpointModal = () => {
+        checkpointModalElem.classList.remove("hidden");
+        fillerCheckpointElem.classList.remove("hidden");
+        // disable user from typing while modal is open
+        textInputArea.disabled = true;
+    };
+
+    const closeCheckpointModal = () => {
+        checkpointModalElem.classList.add("hidden");
+        fillerCheckpointElem.classList.add("hidden");
+        // enable user to type again
+        textInputArea.disabled = false;
+    };
+    // When the user clicks anywhere outside of the modal, close it
+    fillerCheckpointElem.addEventListener("click", closeCheckpointModal);
+    // when user clicks on begin button, modal will close
+    modalCheckpointButton.addEventListener("click", closeCheckpointModal);
+
+    // also escape key to close modal
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeCheckpointModal();
+        }
+    });
+
     // WASTED - if player dies from too many errors
     const displayWastedScreen = () => {
         // hide the progress graphic and the quote container
@@ -860,12 +893,17 @@ document.addEventListener("DOMContentLoaded", () => {
         // let mainElem = document.querySelector("main").classList.add("hidden");
         // display WASTED screen
         let wastedDiv = document.createElement("div");
-        flexContainerPageElem.appendChild(wastedDiv);
+        // ADDING MODAL FOR WASTED SCREEN 2024
+        // wastedDiv.classList.add("modal")
+        openCheckpointModal();
+        checkpointModalElem.appendChild(wastedDiv);
+        // flexContainerPageElem.appendChild(wastedDiv);
         wastedDiv.classList.add("wasted-div");
         createResetWholeGameButton();
         let resetGameButton = document.querySelector("#reset-whole-game");
         resetGameButton.addEventListener("click", () => {
             resetWholeGame();
+            closeCheckpointModal();
             wastedDiv.remove();
             resetGameButton.remove();
         });
@@ -878,14 +916,19 @@ document.addEventListener("DOMContentLoaded", () => {
         quotesContainerElem.classList.add("hidden");
         // let mainElem = document.querySelector("main").classList.add("hidden");
         // display BUSTED screen
+        openCheckpointModal();
         let bustedDiv = document.createElement("div");
-        flexContainerPageElem.appendChild(bustedDiv);
+        // ADDING MODAL FOR BUSTED SCREEN 2024
+        // bustedDiv.classList.add("modal")
+        checkpointElem.classList.remove("hidden");
+        checkpointModalElem.appendChild(bustedDiv);
         bustedDiv.classList.add("busted-div");
         createResetWholeGameButton();
         let resetGameButton = document.querySelector("#reset-whole-game");
         resetGameButton.addEventListener("click", () => {
             window.location.reload();
             resetWholeGame();
+            closeCheckpointModal();
             bustedDiv.remove();
             resetGameButton.remove();
         });
@@ -898,13 +941,19 @@ document.addEventListener("DOMContentLoaded", () => {
         quotesContainerElem.classList.add("hidden");
         // let mainElem = document.querySelector("main").classList.add("hidden");
         // show succcess thing
+        openCheckpointModal();
         let successDiv = document.createElement("div");
-        flexContainerPageElem.appendChild(successDiv);
+        // ADDING MODAL FOR SUCCESS SCREEN 2024
+        // successDiv.classList.add("modal")
+        // flexContainerPageElem.appendChild(successDiv);
+        checkpointModalElem.appendChild(successDiv);
         successDiv.classList.add("success-div");
         createResetWholeGameButton();
         let resetGameButton = document.querySelector("#reset-whole-game");
         resetGameButton.addEventListener("click", () => {
+            window.location.reload;
             resetWholeGame();
+            closeCheckpointModal();
             successDiv.remove();
             resetGameButton.remove();
         });
@@ -926,6 +975,8 @@ document.addEventListener("DOMContentLoaded", () => {
         accuracyCurrentElem.textContent = 100;
         timeRemainingElem.textContent = timeRemaining + "sec";
         userSpeedCurrentElem.textContent = "";
+        drawSpeedometer(0);
+        wpm = 0;
         removePlayerCarMove();
         removePoliceCarMove();
         removeNextButtonAnim();
