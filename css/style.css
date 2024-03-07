@@ -443,6 +443,15 @@ label {
     background-size: cover;
     background-repeat: no-repeat;
 }
+.capslock {
+    color: #ff5555;
+    font-size: 1.5rem;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+}
 
 /* ===============
 === ANIMATIONS ===

@@ -462,6 +462,24 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // ===================== // ===================== // ===================== //
+    // see if caps lock is on
+    // https://stackoverflow.com/questions/1185788/check-if-caps-lock-is-on-using-javascript
+    // function to check if caps lock is on
+    // graphicsElem
+
+    const capsLockElem = document.querySelector(".capslock");
+
+    const checkCapsLock = (event) => {
+        // e.getModifierState('CapsLock') returns a boolean
+        // if true, then caps lock is on
+        if (event.getModifierState("CapsLock")) {
+            capsLockElem.classList.remove("hidden");
+        } else {
+            capsLockElem.classList.add("hidden");
+        }
+    };
+
+    // ===================== // ===================== // ===================== //
     // CANVAS SPEEDOMETER
     const numSpeedometer = document.querySelector("#num-speedometer");
     const canvas = document.querySelector("#speedometer");
@@ -613,6 +631,10 @@ document.addEventListener("DOMContentLoaded", () => {
         accuracySaved = accuracy;
         userPlayer.accuracyArray.push(accuracySaved);
 
+        // caps lock check
+        textInputArea.addEventListener("keydown", checkCapsLock);
+        textInputArea.addEventListener("keyup", checkCapsLock);
+
         // canvas speedometer
         let currentUserCharacters = textInputArea.value.length;
         // wpm **
@@ -753,7 +775,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         // ADDING MODAL FOR WASTED SCREEN 2024
         // wastedDiv.classList.add("modal")
-        checkpointModalElem.classList.remove("hidden");
+        // checkpointModalElem.classList.remove("hidden");
     };
 
     // update vehicle attributes and player progress
@@ -845,14 +867,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // CHECK WIN //
     // ========= //
     const checkWin = () => {
-        if (totalHeists === vehicles.length && userHealth > 0) {
-            displayWinningScreen();
-        } else if (userHealth <= 0) {
+        if (userHealth <= 0) {
             // too many typos
             displayWastedScreen();
         } else if (wpm < userPlayer.vehicle.policeDifficulty && userHealth > 0) {
             // BUSTED - if player's wpm count is lower than the police at the time
             displayBustedScreen();
+        } else if (totalHeists === vehicles.length && userHealth > 0) {
+            displayWinningScreen();
         }
     };
 
@@ -895,15 +917,15 @@ document.addEventListener("DOMContentLoaded", () => {
         let wastedDiv = document.createElement("div");
         // ADDING MODAL FOR WASTED SCREEN 2024
         // wastedDiv.classList.add("modal")
-        openCheckpointModal();
-        checkpointModalElem.appendChild(wastedDiv);
-        // flexContainerPageElem.appendChild(wastedDiv);
+        // openCheckpointModal();
+        // checkpointModalElem.appendChild(wastedDiv);
+        flexContainerPageElem.appendChild(wastedDiv);
         wastedDiv.classList.add("wasted-div");
         createResetWholeGameButton();
         let resetGameButton = document.querySelector("#reset-whole-game");
         resetGameButton.addEventListener("click", () => {
             resetWholeGame();
-            closeCheckpointModal();
+            // closeCheckpointModal();
             wastedDiv.remove();
             resetGameButton.remove();
         });
@@ -916,19 +938,19 @@ document.addEventListener("DOMContentLoaded", () => {
         quotesContainerElem.classList.add("hidden");
         // let mainElem = document.querySelector("main").classList.add("hidden");
         // display BUSTED screen
-        openCheckpointModal();
+        // openCheckpointModal();
         let bustedDiv = document.createElement("div");
         // ADDING MODAL FOR BUSTED SCREEN 2024
-        // bustedDiv.classList.add("modal")
-        checkpointElem.classList.remove("hidden");
-        checkpointModalElem.appendChild(bustedDiv);
+        // checkpointElem.classList.remove("hidden");
+        // checkpointModalElem.appendChild(bustedDiv);
+        flexContainerPageElem.appendChild(bustedDiv);
         bustedDiv.classList.add("busted-div");
         createResetWholeGameButton();
         let resetGameButton = document.querySelector("#reset-whole-game");
         resetGameButton.addEventListener("click", () => {
             window.location.reload();
             resetWholeGame();
-            closeCheckpointModal();
+            // closeCheckpointModal();
             bustedDiv.remove();
             resetGameButton.remove();
         });
@@ -941,19 +963,18 @@ document.addEventListener("DOMContentLoaded", () => {
         quotesContainerElem.classList.add("hidden");
         // let mainElem = document.querySelector("main").classList.add("hidden");
         // show succcess thing
-        openCheckpointModal();
+        // openCheckpointModal();
         let successDiv = document.createElement("div");
         // ADDING MODAL FOR SUCCESS SCREEN 2024
-        // successDiv.classList.add("modal")
-        // flexContainerPageElem.appendChild(successDiv);
-        checkpointModalElem.appendChild(successDiv);
+        // checkpointModalElem.appendChild(successDiv);
+        flexContainerPageElem.appendChild(successDiv);
         successDiv.classList.add("success-div");
         createResetWholeGameButton();
         let resetGameButton = document.querySelector("#reset-whole-game");
         resetGameButton.addEventListener("click", () => {
             window.location.reload;
             resetWholeGame();
-            closeCheckpointModal();
+            // closeCheckpointModal();
             successDiv.remove();
             resetGameButton.remove();
         });
