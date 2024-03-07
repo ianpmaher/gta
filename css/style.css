@@ -403,13 +403,14 @@ label {
     display: inline-block;
 }
 .car-card:hover #user-vehicle {
-    transform: scale(2.5);
+    /* transform: scale(2.5); */
     position: fixed;
     z-index: 9999;
-    left: 50%;
-    top: 50%; 
-    transform: translate(-50%, -50%) scale(2.5);
+    left: 40%;
+    top: 40%; 
+    /* transform: translate(-50%, -50%) scale(2.5); */
     box-shadow: 0 0 1rem 0.5rem black;
+    scale: 2;
 }
 .car-card:hover .vehicle-stats, .car-card:hover .vehicle-stuff {
     font-size: calc(1.5rem + 0.5vw);
