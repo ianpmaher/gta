@@ -397,12 +397,22 @@ label {
 #user-vehicle {
     max-width: 250px;
     max-height: 225px;
-    transition: all 1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-    z-index: 1;
 }
-#user-vehicle:hover {
-    scale: 2;
-    transform: translate(25%, -10%);
+.car-card {
+    transition: transform 1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    display: inline-block;
+}
+.car-card:hover #user-vehicle {
+    transform: scale(2.5);
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%) scale(2.5);
+    box-shadow: 0 0 1rem 0.5rem black;
+}
+.car-card:hover .vehicle-stats, .car-card:hover .vehicle-stuff {
+    font-size: calc(1.5rem + 0.5vw);
 }
 .vehicle-stats {
     text-transform: uppercase;
@@ -445,6 +455,7 @@ label {
 }
 .capslock {
     color: #ff5555;
+    background-color: #18181A;  
     font-size: 1.5rem;
     font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     text-align: center;
