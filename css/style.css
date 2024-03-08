@@ -111,6 +111,16 @@ aside {
     height: 100%;
     width: 100%;
 }
+.cta {
+    margin: 0 auto;
+    font-family: "Caprasimo", "Segoe UI", Arial, Helvetica, sans-serif;
+    border-radius: 0.5rem;
+    background-color: black;
+    color: white;
+    padding: 0.5rem;
+    outline: 0.25rem solid rgba(155,61,161,1);
+
+}
 .hidden {
     visibility: hidden;
 }
@@ -124,6 +134,28 @@ aside {
     background-color: black;
     color: white;
     /* outline: 0.25rem solid rgba(155,61,161,1); */
+}
+.link-card {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: black;
+    color: white;
+}
+.link-card a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-family: "IBM Plex Mono", "Segoe UI", Arial, Helvetica, sans-serif;
+    outline: 2px solid rgba(155,61,161,1);
+}
+.link-card a:hover {
+    color: rgba(2, 255, 255, 0.7);
+    scale: 1.1;
 }
 .speedometer {
     font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
@@ -402,15 +434,15 @@ label {
     transition: transform 1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
     display: inline-block;
 }
-.car-card:hover #user-vehicle {
-    /* transform: scale(2.5); */
-    position: fixed;
+.car-card:hover {
+    transform:translateX(5vw);
+    scale: 1.2;
     z-index: 9999;
-    left: 40%;
-    top: 40%; 
+}
+.car-card:hover #user-vehicle {
     /* transform: translate(-50%, -50%) scale(2.5); */
     box-shadow: 0 0 1rem 0.5rem black;
-    scale: 2;
+    scale: 1.3;
 }
 .car-card:hover .vehicle-stats, .car-card:hover .vehicle-stuff {
     font-size: calc(1.5rem + 0.5vw);
