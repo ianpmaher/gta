@@ -1001,7 +1001,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // prompt displays this text by default and until session starts
-    quoteElem.textContent = "Click here to start the typing test!";
+    quoteElem.textContent = "Click here to start typing!";
 
     // going to have prompt timer start when user clicks into the text area
     textInputArea.addEventListener(
