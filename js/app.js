@@ -403,44 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // random paragraph API
     // http://metaphorpsum.com/
-
-    // const updateRandomPromptQuote = () => {
-    //     const url =
-    //         // 1 randomly generated paragraph, containing 3 sentences!
-    //         "https://metaphorpsum.com/paragraphs/1/3";
-
-    //     fetch(url, {
-    //         headers: {},
-    //     })
-    //         .then((response) => {
-    //             // since API returns just the text, no object, I needed to do
-    //             // response.text()
-    //             return response.text();
-    //         })
-    //         .then(
-    //             (data) => {
-    //                 // api returns just the text, not as JSON
-    //                 quotesData1 = JSON.stringify(data);
-    //                 let splitPromptRandom = quotesData1.split("");
-    //                 let arrSplitPromptRandom = splitPromptRandom.map((value) => {
-    //                     // as stated in updatePromptQuote(), need to split each character
-    //                     // into individual HTML span tag element
-    //                     return `<span class="prompt-text">${value}</span>`;
-    //                 });
-    //                 // the API quote had quotation marks, so removing first and last element of the
-    //                 // span array will remove those quotation marks (since they are now span elements)
-    //                 arrSplitPromptRandom.shift();
-    //                 arrSplitPromptRandom.pop();
-    //                 quoteElem.innerHTML += arrSplitPromptRandom.join("");
-    //                 // quote itself is content of one element
-    //                 // let promptObj = { prompt: quotesData1 };
-    //                 // promptsUsedArray.push(promptObj);
-    //             },
-    //             (err) => console.log(err)
-    //         );
-    // };
-    // fetchRandomPrompt();
-
+    
     // Vanilla JavaScript solution to move the cars
     // moving is just translateX CSS animation, so going to add and remove that CSS property
     const carPlayerElem = document.querySelector("#car-player");
