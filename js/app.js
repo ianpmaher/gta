@@ -409,20 +409,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const carPlayerElem = document.querySelector("#car-player");
     const carPoliceElem = document.querySelector("#car-police");
 
-    const addPlayerCarMove = () => {
-        carPlayerElem.style.cssText += `animation: move-right 30s linear both`;
-    };
-    const removePlayerCarMove = () => {
-        carPlayerElem.style.cssText -= `animation: move-right 30s linear both`;
-    };
-    // police car animation, going to have be slower
-    // achieved by making the animation longer aka more time to go constant distance ***
-    const addPoliceCarMove = () => {
-        carPoliceElem.style.cssText += `animation: move-right 60s linear both`;
-    };
-    const removePoliceCarMove = () => {
-        carPoliceElem.style.cssText -= `animation: move-right 60s linear both`;
-    };
+    let playerPosition = 0;
+    let computerPosition = 0;
+    let requestId;
+    const raceTrackWidth = document.querySelector(".progress-container").clientWidth;
+    
+
+    const wordLength = 5;
+    const computerSpeedWPM = userPlayer.vehicle.policeDifficulty;
+
+    function moveComputerCar() {
+        const now = Date.now();
+        // const elapsed = (now - startTime) / 1000; // in seconds
+        const distancePerSecond = (computerSpeedWPM * wordLength) / 60;
+        computerPosition = timeElapsed * distancePerSecond * 6; // Scaling for better visual effect
+
+        if (computerPosition < raceTrackWidth - 50) {
+            carPoliceElem.style.left = `${computerPosition}px`;
+            requestId = requestAnimationFrame(moveComputerCar);
+        } else {
+            carPoliceElem.style.left = `${raceTrackWidth - 50}px`;
+            cancelAnimationFrame(requestId);
+        }
+    }
+
+    function movePlayerCar() {
+        let currentUserCharacters = textInputArea.value.length;
+        // const now = Date.now();
+        // const timeElapsed = (now - startTime) / 1000; // in seconds
+        wpm = currentUserCharacters; // YES
+        const distance = (wpm * wordLength) / 15;
+        playerPosition = distance * 15; // Scaling for better visual effect
+        console.log(playerPosition);
+
+        if (playerPosition < raceTrackWidth - 50) {
+            carPlayerElem.style.left = `${playerPosition}px`;
+        } else {
+            carPlayerElem.style.left = `${raceTrackWidth - 50}px`;
+        }
+    }
 
     // ===================== // ===================== // ===================== //
     // see if caps lock is on
@@ -608,6 +633,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // draw the speedometer
         drawSpeedometer(Math.min(wpm, 180)); // *****
         numSpeedometer.textContent = wpm;
+
+        // animations
+        movePlayerCar();
 
         // now writing function to return TRUE if characters are all entered correctly
         // so user doesn't have to wait for timer to complete unnecessarily
@@ -961,8 +989,12 @@ document.addEventListener("DOMContentLoaded", () => {
         userSpeedCurrentElem.textContent = "";
         drawSpeedometer(0);
         wpm = 0;
-        removePlayerCarMove();
-        removePoliceCarMove();
+        playerPosition = 0;
+        computerPosition = 0;
+        carPlayerElem.style.left = "0px";
+        carPoliceElem.style.left = "0px";
+        // removePlayerCarMove();
+        // removePoliceCarMove();
         removeNextButtonAnim();
         // make visible the progress graphic and the quote container
         graphicsElem.classList.remove("hidden");
@@ -998,6 +1030,8 @@ document.addEventListener("DOMContentLoaded", () => {
         removeCarFlipAnimation();
 
         textInputArea.setAttribute("autofocus", "autofocus");
+        startTime = Date.now();
+        requestId = requestAnimationFrame(moveComputerCar);
     };
 
     // prompt displays this text by default and until session starts
@@ -1016,8 +1050,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // going to have prompt timer start when user clicks into the text area
     textInputArea.addEventListener("input", () => {
         handleUserTypingInput();
-        addPlayerCarMove();
-        addPoliceCarMove();
+        // addPlayerCarMove();
+        // addPoliceCarMove();
     });
 
     nextButton.addEventListener("click", () => {
