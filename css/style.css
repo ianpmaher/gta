@@ -268,10 +268,12 @@ button:hover {
     height: 4rem;
     box-shadow: 0 0 1rem 0.5rem black;
     border: 0.3rem solid rgba(1,1,1,0.9);
+    position: relative;
 }
 .car-images {
     width: 112px;
     height: 72px;
+    position: absolute;
 }
 .move-animation-fast {
     animation: move-right 5s linear both;
